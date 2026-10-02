@@ -31,6 +31,15 @@ body {
   color: var(--color-texto); /* Pinta todas las letras */
   font-family: var(--fuente-principal); /* Aplica el tipo de letra */
   line-height: 1.6; /* Separa un poquito los renglones de texto para que se lea mejor */
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Obliga a la página a medir por lo menos el 100% de la pantalla */
+
+}
+
+main {
+  flex: 1; /* Esto hace que el centro se estire y empuje el footer hacia el fondo */
 }
 
 .contenedor {
@@ -486,4 +495,117 @@ a:hover, a:focus-visible {
   .bloque-cta {
     padding: 1.5rem; /* Le quita relleno al cuadro de pedidos porque en celular hay menos espacio */
   }
+}
+
+
+/* ==========================================================================
+   DISEÑO ADICIONAL PARA LA PÁGINA DE INICIO (Limpiando los "style")
+   ========================================================================== */
+.subtitulo-descriptivo {
+  margin-bottom: 1.5rem; 
+  color: var(--color-texto-mutado);
+}
+
+.centro-boton {
+  text-align: center; 
+  margin-top: 2rem;
+}
+
+.boton-contorno {
+  background-color: var(--color-secundario); 
+  border: 1px solid var(--color-acento);
+  /* Nota: No forzamos el color del texto aquí porque tu CSS ya obliga a que sea blanco (!important) */
+}
+
+.margen-cta {
+  margin: 1rem 0 1.5rem;
+  /* Nota: El color blanco del texto ya lo maneja automáticamente la regla .bloque-cta p */
+}
+
+.margen-parrafo {
+  margin-top: 1rem;
+}
+/* ==========================================================================
+   DISEÑO PARA LA PÁGINA DE LOGIN Y REGISTRO (Limpieza de estilos)
+   ========================================================================== */
+.seccion-auth {
+  min-height: calc(100vh - 220px);
+}
+
+.grilla-login {
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 2rem; 
+  max-width: 900px; 
+  margin: 0 auto;
+}
+
+.tarjeta-formulario {
+  background-color: var(--color-superficie); 
+  padding: 2rem; 
+  border-radius: 8px; 
+  border: 1px solid var(--color-borde);
+}
+
+.texto-ayuda-formulario {
+  font-size: 0.85rem; 
+  color: var(--color-texto-mutado); 
+  margin-bottom: 1.5rem;
+}
+
+.boton-expandido {
+  width: 100%;
+}
+
+/* ==========================================================================
+   DISEÑO PARA LA PÁGINA DE PEDIDOS PERSONALIZADOS
+   ========================================================================== */
+.bloque-instrucciones {
+  text-align: left; 
+  margin-bottom: 2rem;
+}
+
+.lista-instrucciones {
+  margin-left: 1.5rem; 
+  margin-top: 0.5rem; 
+  color: var(--color-texto-mutado);
+}
+
+/* ==========================================================================
+   DISEÑO PARA LAS PÁGINAS DE MENSAJE (ÉXITO / CONFIRMACIÓN)
+   ========================================================================== */
+.seccion-mensaje {
+  text-align: center; 
+  padding: 4rem 1rem; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+}
+
+.icono-exito {
+  font-size: 4rem; 
+  color: #28a745; 
+  margin-bottom: 1rem;
+}
+
+.titulo-mensaje {
+  margin-bottom: 1rem;
+}
+
+.texto-mensaje {
+  font-size: 1.1rem; 
+  max-width: 600px; 
+  margin: 0 auto 2rem auto; 
+  color: var(--color-texto-mutado);
+}
+
+.enlace-instagram {
+  font-weight: bold; 
+  font-size: 1.2rem;
+}
+
+.boton-enlace {
+  display: inline-block; 
+  text-decoration: none;
 }

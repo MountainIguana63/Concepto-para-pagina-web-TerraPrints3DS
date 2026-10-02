@@ -41,22 +41,22 @@
   <!-- 3. CONTENIDO PRINCIPAL: MENSAJE DE ÉXITO                                  -->
   <!-- ========================================================================= -->
   <!-- Envuelve el mensaje. "text-align: center" hace que todo el texto quede centradito en la pantalla -->
-  <main class="contenedor seccion" style="text-align: center; padding: 4rem 1rem; min-height: calc(100vh - 220px); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <main class="contenedor seccion seccion-mensaje">
     
     <!-- EL CHEQUECITO VERDE -->
     <!-- Este div dibuja un símbolo de "✓" gigante. "color: #28a745" es el código del color verde de éxito -->
-    <div style="font-size: 4rem; color: #28a745; margin-bottom: 1rem;">✓</div>
+    <div class="icono-exito">✓</div>
     
     <!-- TÍTULO DE ÉXITO -->
-    <h1 class="titulo-seccion" style="margin-bottom: 1rem;">¡Acceso correcto!</h1> <!-- El título que confirma que todo salió bien -->
+    <h1 class="titulo-seccion titulo-mensaje"></h1>¡Acceso correcto!</h1> <!-- El título que confirma que todo salió bien -->
     
     <!-- PÁRRAFO DE INSTRUCCIONES -->
-    <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto; color: var(--color-texto-mutado);"> <!-- Párrafo con el texto gris explicativo -->
+    <p class="texto-mensaje">
       Bienvenido, gracias por iniciar sesión <!-- confirmación para el cliente -->
     </p>
       
     <!-- Este botón envia a la página principal -->
-    <a href="index.html" class="boton-cta" style="display: inline-block; text-decoration: none;">Ir a inicio</a>
+    <a href="index.html" class="boton-cta boton-enlace">Ir a inicio</a>
     
   </main> <!-- Termina todo el contenido central de la página -->
 

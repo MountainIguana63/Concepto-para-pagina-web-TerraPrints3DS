@@ -44,19 +44,19 @@
   <!-- ========================================================================= -->
   <!-- 3. CONTENIDO PRINCIPAL: LOS DOS FORMULARIOS (INICIAR SESIÓN Y REGISTRAR)  -->
   <!-- ========================================================================= -->
-  <main class="contenedor seccion" style="min-height: calc(100vh - 220px);"> <!-- Es el corazón de la página, envuelve la zona más importante -->
+  <main class="contenedor seccion seccion-auth"> <!-- Es el corazón de la página, envuelve la zona más importante -->
     
     <!-- Esta caja organiza los dos formularios para que estén lado a lado en computadora, o uno debajo del otro en celular -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+    <div class="grilla-login">
       
       <!-- ============================================ -->
       <!-- FORMULARIO A: INICIAR SESIÓN (USUARIOS VIEJOS) -->
       <!-- ============================================ -->
       <!-- "form" crea el formulario. Al presionar el botón final, enviará los datos a la página "mensaje.html" -->
-      <form action="mensaje3.html" method="GET" style="background-color: var(--color-superficie); padding: 2rem; border-radius: 8px; border: 1px solid var(--color-borde);">
+      <form action="mensaje3.html" method="GET" class="tarjeta-formulario">
         
         <h2>Iniciar Sesión</h2> <!-- Título grande del primer formulario -->
-        <p style="font-size: 0.85rem; color: var(--color-texto-mutado); margin-bottom: 1.5rem;">Accede para rastrear tus impresiones 3D.</p> <!-- Textito pequeño con instrucciones debajo del título -->
+        <p class="texto-ayuda-formulario">Accede para rastrear tus impresiones 3D.</p> <!-- Textito pequeño con instrucciones debajo del título -->
 
         <!-- CAMPO: CORREO ELECTRÓNICO -->
         <div class="grupo-formulario"> <!-- Agrupa el título de la pregunta y su cajita de texto para que no se separen -->
@@ -71,7 +71,7 @@
         </div>
 
         <!-- BOTÓN DE ENTRAR -->
-        <button type="submit" class="boton-cta" style="width: 100%;">Ingresar</button> <!-- Botón que el usuario presiona para entrar a su cuenta -->
+        <button type="submit" class="boton-cta boton-expandido">Ingresar</button> <!-- Botón que el usuario presiona para entrar a su cuenta -->
       </form>
 
 
@@ -79,10 +79,10 @@
       <!-- FORMULARIO B: CREAR CUENTA (NUEVOS USUARIOS) -->
       <!-- ============================================ -->
       <!-- Este es el segundo formulario, la lógica es casi idéntica al primero -->
-      <form action="mensaje3.html" method="GET" style="background-color: var(--color-superficie); padding: 2rem; border-radius: 8px; border: 1px solid var(--color-borde);">
+      <form action="mensaje3.html" method="GET" class="tarjeta-formulario">
         
         <h2>Crear Cuenta</h2> <!-- Título grande del segundo formulario -->
-        <p style="font-size: 0.85rem; color: var(--color-texto-mutado); margin-bottom: 1.5rem;">Regístrate para cotizaciones rápidas.</p> <!-- Textito de ayuda -->
+        <p class="texto-ayuda-formulario">Regístrate para cotizaciones rápidas.</p> <!-- Textito de ayuda -->
 
         <!-- CAMPO: NOMBRE -->
         <div class="grupo-formulario">
@@ -104,7 +104,7 @@
 
         <!-- BOTÓN DE REGISTRO -->
         <!-- Botón para crear la cuenta. Tiene instrucciones de color directo (style) para que se vea diferente al otro botón -->
-        <button type="submit" class="boton-cta" style="width: 100%; background-color: var(--color-secundario); color: var(--color-texto); border: 1px solid var(--color-acento);">Registrarse</button>
+        <button type="submit" class="boton-cta boton-expandido boton-contorno">Registrarse</button>
       </form>
 
     </div> <!-- Termina la caja que organiza los formularios -->
