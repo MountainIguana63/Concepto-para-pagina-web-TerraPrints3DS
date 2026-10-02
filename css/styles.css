@@ -375,7 +375,71 @@ a:hover, a:focus-visible {
 }
 
 /* ==========================================================================
-   10. PIE DE PÁGINA (La cinta oscura de hasta abajo)
+   10. PÁGINA DE CHECKOUT
+   ========================================================================== */
+/* Seccion principal del checkout que ajusta el espaciado vertical y la altura minima */
+.seccion-checkout {
+  padding: 2.5rem 0; /* Espaciado superior e inferior para despejar la barra y el pie de pagina */
+  min-height: calc(100vh - 220px); /* Garantiza que la pagina ocupe el alto completo de la pantalla */
+}
+
+/* Grilla principal responsiva para organizar las dos tarjetas principales */
+.grilla-checkout {
+  display: grid; /* Activa el modelo CSS Grid */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Crea columnas adaptables de minimo 350px */
+  gap: 3rem; /* Espacio de separacion generoso entre la tarjeta del resumen y el formulario */
+  width: 100%; /* Ocupa todo el ancho delimitado por el contenedor padre */
+}
+
+/* Espaciado interno generoso para las tarjetas blancas contenedoras */
+.tarjeta-checkout {
+  padding: 1.75rem !important; /* Margen interno para que el contenido no toque las orillas blancas */
+}
+
+/* Cada elemento o producto listado individualmente en el resumen */
+.item-carrito {
+  margin-bottom: 1.25rem; /* Margen inferior para separar de la siguiente tarjeta o producto */
+  border-bottom: 1px solid var(--color-borde); /* Linea divisoria discreta entre items */
+  padding-bottom: 0.85rem; /* Espacio interno inferior sobre la linea divisoria */
+}
+
+/* Titulo del producto individual */
+.item-carrito h4 {
+  margin-bottom: 0.25rem; /* Separacion ligera con las especificaciones del producto */
+  color: var(--color-principal); 
+}
+
+/* Texto de especificaciones tecnicas o variaciones del producto */
+.detalles-item {
+  font-size: 0.85rem;
+  color: var(--color-texto-mutado); 
+  margin-bottom: 0.25rem;
+}
+
+/* Precio destacado por unidad del producto */
+.precio-item {
+  color: var(--color-acento); 
+  font-weight: bold; /* Resaltado en negrita */
+}
+
+/* Fila de resumen de monto total con Flexbox */
+.total-carrito {
+  display: flex; /* Activa Flexbox para alineacion horizontal */
+  justify-content: space-between; /* Empuja el texto 'Total:' a la izquierda y el precio a la derecha */
+  align-items: center; /* Centra los dos textos verticalmente */
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1.5rem; /* Margen superior para despejar del ultimo producto */
+  padding-top: 0.5rem;
+}
+
+/* Formato para el monto final en dinero */
+.monto-total {
+  color: var(--color-acento); 
+  font-size: 1.3rem; /* Tamaño de fuente*/
+}
+/* ==========================================================================
+   11. PIE DE PÁGINA (La cinta oscura de hasta abajo)
    ========================================================================== */
 .pie-pagina {
   background-color: var(--color-principal); /* Pinta el fondo azul muy oscuro */
@@ -399,7 +463,7 @@ a:hover, a:focus-visible {
 }
 
 /* ==========================================================================
-   11. ADAPTACIÓN A CELULARES (Diseño Responsive)
+   12. ADAPTACIÓN A CELULARES (Diseño Responsive)
    OJO: Todo lo que está aquí abajo SOLO se aplica cuando la pantalla es chiquita.
    Si se abre en una laptop, la compu ignora esto.
    ========================================================================== */
