@@ -1,0 +1,242 @@
+<!-- ========================================================================= -->
+<!-- 1. INICIO Y CONFIGURACIÓN BÁSICA DEL DOCUMENTO                            -->
+<!-- ========================================================================= -->
+<!DOCTYPE html> <!-- Le avisa a la computadora que este es un archivo de página web -->
+<html lang="es"> <!-- Comienza la página web y le dice que el idioma es español -->
+
+<head> <!-- Esta sección está oculta al público, tiene configuraciones del navegador -->
+  <meta charset="UTF-8"> <!-- Permite que se lean bien las tildes y la letra ñ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la página para que se vea bien en celulares -->
+  
+  <title>Catálogo Completo | SV3DPrints</title> <!-- Es el texto que sale en la pestañita del navegador -->
+  
+  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta esta página con el archivo que le da los colores y el diseño visual -->
+</head>
+
+<body> <!-- Aquí empieza lo que la gente realmente ve en la pantalla -->
+
+  <!-- ========================================================================= -->
+  <!-- 2. ENCABEZADO Y MENÚ DE NAVEGACIÓN (BARRA SUPERIOR)                       -->
+  <!-- ========================================================================= -->
+  <header class="encabezado-principal"> <!-- Crea la franja de arriba de la página -->
+    <div class="contenedor barra-navegacion"> <!-- Agrupa el logo y el menú para que no se desordenen -->
+      
+      <!-- ZONA DEL LOGO -->
+      <a href="index.html" class="logo-marca"> <!-- Al dar clic aquí, te lleva a la página de inicio (index.html) -->
+        <img src="img/logo.jpg" alt="Logo SV3DPrints"> <!-- Carga la foto del logo desde la carpeta "img" -->
+        <span>TerraPrints 3D</span> <!-- Texto con el nombre de la empresa a la par del logo -->
+      </a>
+
+      <!-- ZONA DE LOS BOTONES DEL MENÚ -->
+      <nav aria-label="Navegación principal"> <!-- Avisa que esta es la zona para navegar por la página -->
+        <ul class="menu-navegacion"> <!-- Lista que contiene los botones -->
+          <li><a href="index.html">Inicio</a></li> <!-- Botón para ir al Inicio -->
+          <li><a href="catalogo.html" class="activo">Catálogo</a></li> <!-- Botón actual. Dice "activo" para que se vea resaltado -->
+          <li><a href="pedidos.html">Personaliza tu pedido</a></li> <!-- Botón para ir a pedidos -->
+          <li><a href="checkout.html">Carrito</a></li> <!-- Botón para ir a pagar -->
+          <li><a href="login.html">Login</a></li> <!-- Botón para iniciar sesión -->
+        </ul>
+      </nav>
+
+    </div> <!-- Cierra el grupo del encabezado -->
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 3. CONTENIDO PRINCIPAL: EL CATÁLOGO DE PRODUCTOS                          -->
+  <!-- ========================================================================= -->
+  <main class="contenedor seccion"> <!-- Envuelve todo el contenido del centro de la página -->
+    <h1 class="titulo-seccion">Catálogo</h1> <!-- El título gigante que dice "Catálogo" -->
+
+    <!-- Esta "caja" organiza todas las tarjetitas de productos en forma de cuadrícula -->
+    <div class="grilla-productos">
+      
+      <!-- ============================================================== -->
+      <!-- PRODUCTO 1: Llavero de corazón y espada (EXPLICADO EN DETALLE) -->
+      <!-- ============================================================== -->
+      <article class="tarjeta-producto"> <!-- Crea el cuadrito blanco o gris de UN producto -->
+        
+        <!-- FOTOS DEL PRODUCTO -->
+        <div class="tarjeta-galeria-dos"> <!-- Agrupa las fotos del producto -->
+          <img src="img/prod1_1.jpg" alt="Llavero de corazón y espada foto 1"> <!-- Cambia "img/prod1_1.jpg" por el nombre de tu primera foto -->
+          <img src="img/prod1_2.jpg" alt="Llavero de corazón y espada foto 2"> <!-- Cambia "img/prod1_2.jpg" por tu segunda foto -->
+        </div>
+
+        <!-- INFORMACIÓN DEL PRODUCTO -->
+        <div class="tarjeta-cuerpo"> <!-- Agrupa el texto debajo de las fotos -->
+          <h3 class="tarjeta-titulo">Llavero de corazón y espada</h3> <!-- Cambia este texto para poner el nombre de tu producto -->
+          
+          <ul class="tarjeta-detalles"> <!-- Lista con los datos de impresión (viñetas) -->
+            <!-- <li> es cada línea de la lista. <strong> pone el texto en negrita -->
+            <li><strong>Tiempo:</strong> 3h 20m | <strong>Multicolor:</strong> No</li> <!-- Cambia el tiempo y si es multicolor aquí -->
+            <li><strong>Relleno:</strong> 20% | <strong>Medidas:</strong> 18x19 cm</li> <!-- Cambia el porcentaje y las medidas aquí -->
+          </ul>
+          
+          <p class="tarjeta-precio">14.25 USD</p> <!-- Cambia el precio aquí -->
+          <a href="checkout.html" class="boton-cta">Añadir al carrito</a> <!-- Botón que lleva al cliente a la página de pagar -->
+        </div>
+      </article> <!-- Termina la tarjeta del Producto 1 -->
+
+
+      <!-- ============================================================== -->
+      <!-- PRODUCTO 2: Gancho Real Hasta la Muerte                        -->
+      <!-- ============================================================== -->
+      <!-- De aquí en adelante, es exactamente la misma estructura. Solo cambia textos e imágenes. -->
+      <article class="tarjeta-producto">
+        <div class="tarjeta-galeria-dos">
+          <img src="img/prod2_1.jpg" alt="Gancho Real Hasta la Muerte foto 1"> <!-- Foto 1 -->
+          <img src="img/prod2_2.jpg" alt="Gancho Real Hasta la Muerte foto 2"> <!-- Foto 2 -->
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h3 class="tarjeta-titulo">Gancho Real Hasta la Muerte</h3> <!-- Nombre -->
+          <ul class="tarjeta-detalles">
+            <li><strong>Tiempo:</strong> 12h 45m | <strong>Multicolor:</strong> Sí</li> <!-- Datos fila 1 -->
+            <li><strong>Relleno:</strong> 15% | <strong>Medidas:</strong> 13x20 cm</li> <!-- Datos fila 2 -->
+          </ul>
+          <p class="tarjeta-precio">$15.00 USD</p> <!-- Precio -->
+          <a href="checkout.html" class="boton-cta">Añadir al carrito</a>
+        </div>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- PRODUCTO 3: Figura de Tralarelo larala                         -->
+      <!-- ============================================================== -->
+      <article class="tarjeta-producto">
+        <div class="tarjeta-galeria-dos">
+          <img src="img/prod3_1.jpg" alt="Figurita de Tralarelo larala foto 1"> <!-- Foto 1 -->
+          <img src="img/prod3_2.jpg" alt="Figurita de Tralarelo larala foto 2"> <!-- Foto 2 -->
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h3 class="tarjeta-titulo">Figura de Tralarelo larala</h3> <!-- Nombre -->
+          <ul class="tarjeta-detalles">
+            <li><strong>Tiempo:</strong> 6h 10m | <strong>Multicolor:</strong> Sí</li>
+            <li><strong>Relleno:</strong> 15% | <strong>Medidas:</strong> 5x10 cm</li>
+          </ul>
+          <p class="tarjeta-precio">$10.00 USD</p> <!-- Precio -->
+          <a href="checkout.html" class="boton-cta">Añadir al carrito</a>
+        </div>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- PRODUCTO 4: Llavero de mapache                                 -->
+      <!-- ============================================================== -->
+      <article class="tarjeta-producto">
+        <div class="tarjeta-galeria-dos">
+          <img src="img/prod4_1.jpg" alt="Llavero de mapache foto 1"> <!-- Foto 1 -->
+          <img src="img/prod4_2.jpg" alt="Llavero de mapache foto 2"> <!-- Foto 2 -->
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h3 class="tarjeta-titulo">Llavero de mapache</h3> <!-- Nombre -->
+          <ul class="tarjeta-detalles">
+            <li><strong>Tiempo:</strong> 8h 30m | <strong>Multicolor:</strong> Sí</li>
+            <li><strong>Relleno:</strong> 95% | <strong>Medidas:</strong> 10x15 cm</li>
+          </ul>
+          <p class="tarjeta-precio">$10.00 USD</p> <!-- Precio -->
+          <a href="checkout.html" class="boton-cta">Añadir al carrito</a>
+        </div>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- PRODUCTO 5: Llavero de Snoopy                                  -->
+      <!-- ============================================================== -->
+      <article class="tarjeta-producto">
+        <div class="tarjeta-galeria-dos">
+          <img src="img/prod5_1.jpg" alt="Llavero de Snoopy foto 1"> <!-- Foto 1 -->
+          <img src="img/prod5_2.jpg" alt="Llavero de Snoopy foto 2"> <!-- Foto 2 -->
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h3 class="tarjeta-titulo">Llavero de Snoopy</h3> <!-- Nombre -->
+          <ul class="tarjeta-detalles">
+            <li><strong>Tiempo:</strong> 10h 15m | <strong>Multicolor:</strong> sÍ</li>
+            <li><strong>Relleno:</strong> 25% | <strong>Medidas:</strong> 5x5 cm</li>
+          </ul>
+          <p class="tarjeta-precio">$2.50 USD</p> <!-- Precio -->
+          <a href="checkout.html" class="boton-cta">Añadir al carrito</a>
+        </div>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- PRODUCTO 6: Figura de búho                                     -->
+      <!-- ============================================================== -->
+      <article class="tarjeta-producto">
+        <div class="tarjeta-galeria-dos">
+          <img src="img/prod6_1.jpg" alt="Figurita de búho foto 1"> <!-- Foto 1 -->
+          <img src="img/prod6_2.jpg" alt="Figurita de búho foto 2"> <!-- Foto 2 -->
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h3 class="tarjeta-titulo">Figura de búho</h3> <!-- Nombre -->
+          <ul class="tarjeta-detalles">
+            <li><strong>Tiempo:</strong> 1h 15m | <strong>Multicolor:</strong> sÍ</li>
+            <li><strong>Relleno:</strong> 100% | <strong>Medidas:</strong> 7x5 cm</li>
+          </ul>
+          <p class="tarjeta-precio">$5.00 USD</p> <!-- Precio -->
+          <a href="checkout.html" class="boton-cta">Añadir al Carrito</a>
+        </div>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- PRODUCTO 7: Soporte para reloj                                 -->
+      <!-- ============================================================== -->
+      <article class="tarjeta-producto">
+        <div class="tarjeta-galeria-dos">
+          <img src="img/prod7_1.jpg" alt="Soporte para reloj foto 1"> <!-- Foto 1 -->
+          <img src="img/prod7_2.jpg" alt="Soporte para reloj foto 2"> <!-- Foto 2 -->
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h3 class="tarjeta-titulo">Soporte para reloj</h3> <!-- Nombre -->
+          <ul class="tarjeta-detalles">
+            <li><strong>Tiempo:</strong> 14h 00m | <strong>Multicolor:</strong> No</li>
+            <li><strong>Relleno:</strong> 10% | <strong>Medidas:</strong> 10x7 cm</li>
+          </ul>
+          <p class="tarjeta-precio">$2.50 USD</p> <!-- Precio -->
+          <a href="checkout.html" class="boton-cta">Añadir al Carrito</a>
+        </div>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- PRODUCTO 8: Llavero Sanrio Cinnamon Roll                       -->
+      <!-- ============================================================== -->
+      <article class="tarjeta-producto">
+        <div class="tarjeta-galeria-dos">
+          <img src="img/prod8_1.jpg" alt="Engranaje foto 1"> <!-- Foto 1 -->
+          <img src="img/prod8_2.jpg" alt="Engranaje foto 2"> <!-- Foto 2 -->
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h3 class="tarjeta-titulo">Llavero Sanrio Cinnamon Roll</h3> <!-- Nombre -->
+          <ul class="tarjeta-detalles">
+              <li><strong>Tiempo:</strong> 10h 15m | <strong>Multicolor:</strong> sÍ</li>
+              <li><strong>Relleno:</strong> 25% | <strong>Medidas:</strong> 5x5 cm</li>
+          </ul>
+          <p class="tarjeta-precio">$2.50 USD</p> <!-- Precio -->
+          <a href="checkout.html" class="boton-cta">Añadir al Carrito</a>
+        </div>
+      </article>
+
+    </div> <!-- Termina la cuadrícula donde están todas las tarjetas -->
+  </main> <!-- Termina el contenido principal del catálogo -->
+
+
+  <!-- ========================================================================= -->
+  <!-- 4. PIE DE PÁGINA (PARTE FINAL DE ABAJO)                                   -->
+  <!-- ========================================================================= -->
+  <footer class="pie-pagina"> <!-- Franja del final de la página web -->
+    <div class="contenedor pie-contenido"> <!-- Agrupa la información en dos columnas -->
+      
+      <!-- COLUMNA 1: INFO DE LA EMPRESA -->
+      <div>
+        <p><strong>TerraPrints 3D</strong></p> <!-- Nombre de la empresa en negrita -->
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- A qué se dedican -->
+      </div>
+      
+      <!-- COLUMNA 2: REDES Y DERECHOS -->
+      <div>
+        <!-- Texto con enlace a Instagram. Al darle clic, abre el perfil en una pestaña nueva -->
+        <p>Para productos personalizados, siguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
+        
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p> <!-- Mensaje de derechos de autor -->
+      </div>
+
+    </div> <!-- Cierra el grupo del pie de página -->
+  </footer> <!-- Termina la sección del pie de página -->
+
+</body> <!-- Termina la parte visual de la página -->
+</html> <!-- Fin de todo el documento -->

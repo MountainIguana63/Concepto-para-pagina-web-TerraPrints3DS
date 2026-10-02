@@ -1,0 +1,150 @@
+<!-- ========================================================================= -->
+<!-- 1. INICIO Y CONFIGURACIÓN BÁSICA DEL DOCUMENTO                            -->
+<!-- ========================================================================= -->
+<!DOCTYPE html> <!-- Le avisa a la computadora que este es un archivo de página web -->
+<html lang="es"> <!-- Comienza la página web y le dice que el idioma es español -->
+
+<head> <!-- Esta sección está oculta al público, tiene configuraciones del navegador -->
+  <meta charset="UTF-8"> <!-- Permite que se lean bien las tildes y la letra ñ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la página para que se vea bien en celulares -->
+  
+  <title>Carrito y Checkout | SV3DPrints</title> <!-- Es el texto que sale en la pestañita del navegador -->
+  
+  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta esta página con el archivo que le da los colores y el diseño visual -->
+</head>
+
+<body> <!-- Aquí empieza lo que la gente realmente ve en la pantalla -->
+
+  <!-- ========================================================================= -->
+  <!-- 2. ENCABEZADO Y MENÚ DE NAVEGACIÓN (BARRA SUPERIOR)                       -->
+  <!-- ========================================================================= -->
+  <header class="encabezado-principal"> <!-- Crea la franja de arriba de la página -->
+    <div class="contenedor barra-navegacion"> <!-- Agrupa el logo y el menú para que no se desordenen -->
+      
+      <!-- ZONA DEL LOGO -->
+      <a href="index.html" class="logo-marca"> <!-- Al dar clic aquí, te lleva a la página de inicio (index.html) -->
+        <img src="img/logo.jpg" alt="Logo SV3DPrints"> <!-- Carga la foto del logo desde la carpeta "img" -->
+        <span>TerraPrints 3D</span> <!-- Texto con el nombre de la empresa a la par del logo -->
+      </a>
+
+      <!-- ZONA DE LOS BOTONES DEL MENÚ -->
+      <nav aria-label="Navegación principal"> <!-- Avisa que esta es la zona para navegar por la página -->
+        <ul class="menu-navegacion"> <!-- Lista que contiene los botones -->
+          <li><a href="index.html">Inicio</a></li> <!-- Botón para ir al Inicio -->
+          <li><a href="catalogo.html">Catálogo</a></li> <!-- Botón para ir a ver los productos -->
+          <li><a href="pedidos.html">Personaliza tu pedido</a></li> <!-- Botón para ir a pedidos -->
+          <li><a href="checkout.html" class="activo">Carrito</a></li> <!-- Botón actual. Dice "activo" para que se vea resaltado -->
+          <li><a href="login.html">Login</a></li> <!-- Botón para iniciar sesión -->
+        </ul>
+      </nav>
+
+    </div> <!-- Cierra el grupo del encabezado -->
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 3. CONTENIDO PRINCIPAL: RESUMEN DE COMPRA Y FORMULARIO DE PAGO            -->
+  <!-- ========================================================================= -->
+  <!-- Envuelve todo el contenido del centro, alineando los textos y centrando las cajas -->
+  <main class="contenedor seccion" style="text-align: center; padding: 4rem 1rem; min-height: calc(100vh - 220px); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    
+    <h1 class="titulo-seccion">Resumen de Carrito y Pago</h1> <!-- El título gigante de la página -->
+
+    <!-- Esta "caja" organiza las dos secciones (el resumen y el formulario) para que estén lado a lado o una sobre otra -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+      
+      <!-- ============================================ -->
+      <!-- SECCIÓN A: RESUMEN DE LO QUE ESTÁ COMPRANDO  -->
+      <!-- ============================================ -->
+      <div style="background-color: var(--color-superficie); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--color-borde);">
+        <h2>Productos Seleccionados</h2> <!-- Subtítulo de esta sección -->
+        
+        <!-- PRODUCTO 1 EN EL CARRITO -->
+        <div style="margin: 1rem 0; border-bottom: 1px solid var(--color-borde); padding-bottom: 0.75rem;">
+          <h4>1x Figura de búho</h4> <!-- Cantidad y nombre del producto. ¡Cámbialo aquí si es otro! -->
+          <p style="font-size: 0.85rem; color: var(--color-texto-mutado);">Color: Negro | Relleno: 20%</p> <!-- Detalles pequeñitos del producto -->
+          <p style="color: var(--color-acento);">$2.50</p> <!-- Precio del producto -->
+        </div>
+
+        <!-- PRODUCTO 2 EN EL CARRITO -->
+        <div style="margin: 1rem 0; border-bottom: 1px solid var(--color-borde); padding-bottom: 0.75rem;">
+          <h4>1x Soporte para reloj</h4> <!-- Cantidad y nombre del segundo producto -->
+          <p style="font-size: 0.85rem; color: var(--color-texto-mutado);">Multicolor | LED incluido</p> <!-- Detalles pequeñitos -->
+          <p style="color: var(--color-acento);">$2.50</p> <!-- Precio del segundo producto -->
+        </div>
+
+        <!-- TOTAL A PAGAR -->
+        <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-top: 1.5rem;">
+          <span>Total:</span> <!-- Texto que dice "Total:" -->
+          <span style="color: var(--color-acento);">$5.00 USD</span> <!-- El monto final sumado de todo lo anterior -->
+        </div>
+      </div>
+
+
+      <!-- ============================================ -->
+      <!-- SECCIÓN B: FORMULARIO PARA DATOS Y PAGAR     -->
+      <!-- ============================================ -->
+      <!-- Al presionar el botón final, este formulario mandará a la persona a la página "mensaje2.html" (página de gracias) -->
+      <form action="mensaje2.html" method="GET" style="background-color: var(--color-superficie); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--color-borde);">
+        
+        <h2>Datos de Entrega y Pago</h2> <!-- Subtítulo de esta sección -->
+
+        <!-- CAMPO: NOMBRE COMPLETO -->
+        <div class="grupo-formulario"> <!-- Agrupa el título y la cajita para escribir -->
+          <label for="nombre_factura">Nombre Completo *</label> <!-- Pide el nombre de la persona -->
+          <input type="text" id="nombre_factura" name="nombre_factura" required placeholder="Ej. Carlos Mendoza"> <!-- Cajita de texto. "required" significa que no puede dejarlo vacío -->
+        </div>
+
+        <!-- CAMPO: TELÉFONO -->
+        <div class="grupo-formulario">
+          <label for="telefono">Teléfono / WhatsApp *</label> <!-- Pide el número de teléfono -->
+          <!-- "type=tel" le dice al celular que abra el teclado de numeritos. "placeholder" es el texto gris de ejemplo -->
+          <input type="tel" id="telefono" name="telefono" required placeholder="7000-0000"> 
+        </div>
+
+        <!-- CAMPO: DIRECCIÓN -->
+        <div class="grupo-formulario">
+          <label for="direccion">Dirección de Envío en El Salvador *</label> <!-- Pide dónde entregar el producto -->
+          <input type="text" id="direccion" name="direccion" required placeholder="Municipio, Departamento, Calle..."> <!-- Cajita de texto para la dirección completa -->
+        </div>
+
+        <!-- CAMPO: TARJETA DE CRÉDITO/DÉBITO -->
+        <div class="grupo-formulario">
+          <label for="tarjeta">Número de Tarjeta *</label> <!-- Pide los números de la tarjeta -->
+          <!-- "pattern" obliga al usuario a escribir exactamente 16 números seguidos, sin letras ni espacios -->
+          <input type="text" id="tarjeta" name="tarjeta" required pattern="[0-9]{16}" placeholder="16 dígitos continuos">
+        </div>
+
+        <!-- BOTÓN DE CONFIRMAR PAGO -->
+        <!-- Botón que el cliente presiona para terminar la compra. Cambia el precio de adentro si el total cambia -->
+        <button type="submit" class="boton-cta" style="width: 100%;">Confirmar Pago ($33.50)</button>
+      </form>
+
+    </div> <!-- Termina la caja que organiza el resumen y el formulario -->
+  </main> <!-- Termina el contenido principal del centro de la página -->
+
+
+  <!-- ========================================================================= -->
+  <!-- 4. PIE DE PÁGINA (PARTE FINAL DE ABAJO)                                   -->
+  <!-- ========================================================================= -->
+  <footer class="pie-pagina"> <!-- Franja del final de la página web -->
+    <div class="contenedor pie-contenido"> <!-- Agrupa la información en dos columnas -->
+      
+      <!-- COLUMNA 1: INFO DE LA EMPRESA -->
+      <div>
+        <p><strong>TerraPrints 3D</strong></p> <!-- Nombre de la empresa en negrita -->
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- A qué se dedican -->
+      </div>
+      
+      <!-- COLUMNA 2: REDES Y DERECHOS -->
+      <div>
+        <!-- Texto con enlace a Instagram. Al darle clic, abre el perfil en una pestaña nueva -->
+        <p>Para productos personalizados, siguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
+        
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p> <!-- Mensaje de derechos de autor -->
+      </div>
+
+    </div> <!-- Cierra el grupo del pie de página -->
+  </footer> <!-- Termina la sección del pie de página -->
+
+</body> <!-- Termina la parte visual de la página -->
+</html> <!-- Fin de todo el documento -->
