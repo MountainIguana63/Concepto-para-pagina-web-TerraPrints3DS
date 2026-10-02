@@ -1,0 +1,99 @@
+<!-- ========================================================================= -->
+<!-- 1. INICIO Y CONFIGURACIÓN BÁSICA DEL DOCUMENTO                            -->
+<!-- ========================================================================= -->
+<!DOCTYPE html> <!-- Le avisa a la computadora que este es un archivo de página web -->
+<html lang="es"> <!-- Comienza la página web y le dice que el idioma es español -->
+
+<head> <!-- Esta sección está oculta al público, tiene configuraciones del navegador -->
+  <meta charset="UTF-8"> <!-- Permite que se lean bien las tildes y la letra ñ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la página para que se vea bien en celulares -->
+  
+  <title>Acceso / Cuenta | SV3DPrints</title> <!-- Es el texto que sale en la pestañita de arriba del navegador -->
+  
+  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta esta página con el archivo que le da los colores y el diseño visual -->
+</head>
+
+<body> <!-- Aquí empieza todo lo que la gente realmente ve en la pantalla -->
+
+  <!-- ========================================================================= -->
+  <!-- 2. ENCABEZADO Y MENÚ DE NAVEGACIÓN (BARRA SUPERIOR)                       -->
+  <!-- ========================================================================= -->
+  <header class="encabezado-principal"> <!-- Crea la franja de arriba de la página -->
+    <div class="contenedor barra-navegacion"> <!-- Agrupa el logo y el menú para que no se desordenen -->
+      
+      <!-- ZONA DEL LOGO -->
+      <a href="index.html" class="logo-marca"> <!-- Al dar clic aquí, te lleva a la página de inicio (index.html) -->
+        <img src="img/logo.jpg" alt="Logo SV3DPrints"> <!-- Carga la foto del logo -->
+        <span>TerraPrints 3D</span> <!-- Texto con el nombre de la empresa a la par del logo -->
+      </a>
+
+      <!-- ZONA DE LOS BOTONES DEL MENÚ -->
+      <nav aria-label="Navegación principal"> <!-- Avisa que esta es la zona para navegar por la página -->
+        <ul class="menu-navegacion"> <!-- Lista que contiene los botones -->
+          <li><a href="index.html">Inicio</a></li> <!-- Botón para ir al Inicio -->
+          <li><a href="catalogo.html">Catálogo</a></li> <!-- Botón para ir a ver los productos -->
+          <li><a href="pedidos.html">Personaliza tu pedido</a></li> <!-- Botón para ir a pedidos -->
+          <li><a href="checkout.html">Carrito</a></li> <!-- Botón para ir a pagar -->
+          <li><a href="login.html" class="activo">Login</a></li> <!-- Botón para iniciar sesión. Tiene la clase "activo" para verse resaltado -->
+        </ul>
+      </nav>
+
+    </div> <!-- Cierra el grupo del encabezado -->
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 3. CONTENIDO PRINCIPAL: MENSAJE DE ÉXITO                                  -->
+  <!-- ========================================================================= -->
+  <!-- Envuelve el mensaje. "text-align: center" hace que todo el texto quede centradito en la pantalla -->
+  <main class="contenedor seccion" style="text-align: center; padding: 4rem 1rem; min-height: calc(100vh - 220px); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    
+    <!-- EL CHEQUECITO VERDE -->
+    <!-- Este div dibuja un símbolo de "✓" gigante. "color: #28a745" es el código del color verde de éxito -->
+    <div style="font-size: 4rem; color: #28a745; margin-bottom: 1rem;">✓</div>
+    
+    <!-- TÍTULO DE ÉXITO -->
+    <h1 class="titulo-seccion" style="margin-bottom: 1rem;">¡Solicitud de cotización enviada!</h1> <!-- El título que confirma que todo salió bien -->
+    
+    <!-- PÁRRAFO DE INSTRUCCIONES -->
+    <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto; color: var(--color-texto-mutado);"> <!-- Párrafo con el texto gris explicativo -->
+      Hemos recibido los datos de tu pedido. Para completar el proceso, por favor envíanos tu archivo (STL, OBJ o 3MF) por mensaje directo a nuestro Instagram: <!-- Instrucción para el cliente -->
+      
+      <br><br> <!-- "br" significa salto de línea (como presionar Enter dos veces) para separar el texto -->
+      
+      <!-- ENLACE AL INSTAGRAM -->
+      <!-- Enlace hacia Instagram para que envíen el archivo. Al tocarlo abre en pestaña nueva -->
+      <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer" style="font-weight: bold; font-size: 1.2rem;">@sv3dprints</a>
+    </p>
+
+    <!-- BOTÓN PARA REGRESAR -->
+    <!-- Este botón los devuelve a la página de pedidos por si quieren encargar otra cosa -->
+    <a href="pedidos.html" class="boton-cta" style="display: inline-block; text-decoration: none;">Volver a realizar otro pedido</a>
+    
+  </main> <!-- Termina todo el contenido central de la página -->
+
+
+  <!-- ========================================================================= -->
+  <!-- 4. PIE DE PÁGINA (PARTE FINAL DE ABAJO)                                   -->
+  <!-- ========================================================================= -->
+  <footer class="pie-pagina"> <!-- Franja oscura del final de la página web -->
+    <div class="contenedor pie-contenido"> <!-- Agrupa la información en dos columnas -->
+      
+      <!-- COLUMNA 1: INFO DE LA EMPRESA -->
+      <div>
+        <p><strong>TerraPrints 3D</strong></p> <!-- Nombre de la empresa en negrita -->
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- A qué se dedican -->
+      </div>
+      
+      <!-- COLUMNA 2: REDES Y DERECHOS -->
+      <div>
+        <!-- Texto con enlace a Instagram. Al darle clic, abre el perfil en una pestaña nueva -->
+        <p>Para productos personalizados, siguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
+        
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p> <!-- Mensaje de derechos de autor -->
+      </div>
+
+    </div> <!-- Cierra el grupo del pie de página -->
+  </footer> <!-- Termina la sección del pie de página -->
+
+</body> <!-- Termina la parte visual de la página -->
+</html> <!-- Fin de todo el documento -->
