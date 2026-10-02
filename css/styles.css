@@ -1,0 +1,447 @@
+/* ==========================================================================
+   1. COLORES PRINCIPALES (Variables)
+   Aquí guardamos los colores. Si alguien te pide cambiar el azul por rojo, 
+   solo cambias el código aquí y mágicamente se actualizará en TODA la página web.
+   ========================================================================== */
+:root {
+  --color-principal: #0f172a;     /* Color de la barra de arriba y textos importantes (Azul muy oscuro) */
+  --color-secundario: #2a4365;    /* Color de los botones y detalles (Azul medio) */
+  --color-acento: #3182ce;        /* Color llamativo para resaltar cositas y bordes (Celeste) */
+  --color-hover: #1d4ed8;         /* Color que toma un botón solo cuando le pones el mouse encima */
+  --color-fondo: #f8fafc;         /* Color de fondo de toda la página (Casi blanco) */
+  --color-superficie: #ffffff;    /* Color del fondo de las tarjetitas blancas de los productos */
+  --color-texto: #1e293b;         /* Color de las letras normales (Gris oscuro, más fácil de leer que negro) */
+  --color-texto-mutado: #64748b;  /* Color para letras chiquitas o instrucciones (Gris claro) */
+  --color-borde: #e2e8f0;         /* Color de las líneas separadoras */
+  --fuente-principal: 'Segoe UI', system-ui, -apple-system, sans-serif; /* El tipo de letra principal */
+}
+
+/* ==========================================================================
+   2. LIMPIEZA INICIAL
+   Esto borra los márgenes y espacios feos que traen los navegadores por defecto.
+   ========================================================================== */
+* {
+  box-sizing: border-box; /* Evita que las cajas se deformen si les pones bordes */
+  margin: 0; /* Quita el margen invisible de afuera */
+  padding: 0; /* Quita el espacio de adentro */
+}
+
+body {
+  background-color: var(--color-fondo); /* Pinta el fondo de la página entera */
+  color: var(--color-texto); /* Pinta todas las letras */
+  font-family: var(--fuente-principal); /* Aplica el tipo de letra */
+  line-height: 1.6; /* Separa un poquito los renglones de texto para que se lea mejor */
+}
+
+.contenedor {
+  width: 90%; /* Hace que el contenido no quede pegado a las orillas de la pantalla */
+  max-width: 1200px; /* Evita que la página se estire exageradamente en monitores gigantes */
+  margin: 0 auto; /* Centra todo en medio de la pantalla */
+}
+
+img {
+  max-width: 100%; /* Las fotos nunca se van a desbordar de sus cajas */
+  height: auto; /* Mantiene la proporción de las fotos para que no se vean aplastadas */
+  display: block;
+}
+
+a {
+  color: var(--color-acento); /* Pinta los enlaces o links */
+  text-decoration: none; /* Le quita la rayita de subrayado a los links */
+  font-weight: 600; /* Pone las letras de los links un poco gorditas (negrita suave) */
+  transition: color 0.3s ease; /* Hace que el cambio de color al pasar el mouse sea suavecito */
+}
+
+a:hover, a:focus-visible {
+  color: var(--color-hover); /* Pinta el link cuando le pasas el mouse por encima */
+}
+
+/* ==========================================================================
+   3. LA BARRA DE ARRIBA (Menú y Logo)
+   ========================================================================== */
+.encabezado-principal {
+  position: sticky; /* Hace que el menú se quede pegado arriba del navegador aunque bajes en la página */
+  top: 0;
+  z-index: 100; /* Asegura que el menú flote por encima de las fotos o textos */
+  background-color: var(--color-principal); /* Pinta la barra de azul oscuro */
+  border-bottom: 3px solid var(--color-acento); /* Le dibuja una rayita celeste abajo de adorno */
+  padding: 0.85rem 0; /* Hace la barra un poquito más alta */
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15); /* Le pone una sombrita difuminada */
+}
+
+.barra-navegacion {
+  display: flex; /* Pone el logo y los botones del menú en la misma línea horizontal */
+  justify-content: space-between; /* Empuja el logo a la izquierda y el menú a la derecha */
+  align-items: center; /* Centra el logo y los botones verticalmente */
+  flex-wrap: wrap; /* Si la pantalla es pequeña, baja el menú en vez de cortarlo o aplastarlo */
+  gap: 1rem;
+}
+
+.logo-marca {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Espacito entre la foto del logo y el nombre de la empresa */
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #ffffff; /* Nombre de la empresa en letras blancas */
+}
+
+.logo-marca img {
+  width: 45px; /* Ancho de la foto del logo */
+  height: 45px; /* Alto de la foto del logo */
+  border-radius: 50%; /* Hace que la foto del logo se vea en forma de círculo perfecto */
+  object-fit: cover;
+  border: 2px solid var(--color-acento); /* Bordecito celeste alrededor del círculo del logo */
+}
+
+.menu-navegacion {
+  display: flex; /* Pone los botones uno a la par del otro */
+  list-style: none; /* Le quita los puntitos negros de lista a los botones */
+  gap: 1.25rem; /* Separación entre cada botón del menú */
+  flex-wrap: wrap;
+}
+
+.menu-navegacion a {
+  color: #ffffff; /* Letras de los botones del menú en blanco */
+  font-weight: 600;
+  padding: 0.5rem 0.85rem; /* Hace que el "área pellizcable" del botón sea más grande */
+  border-radius: 6px; /* Redondea las esquinas del fondo del botón */
+  transition: all 0.3s ease; /* Transición suave de colores */
+}
+
+/* Efecto cuando pasas el mouse por el menú o cuando estás en esa página (activo) */
+.menu-navegacion a:hover,
+.menu-navegacion a.activo {
+  background-color: var(--color-secundario); /* Le pone un fondito azul medio */
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(49, 130, 206, 0.4); /* Le pone un brillito celeste */
+}
+
+/* ==========================================================================
+   4. EL BANNER (Animación de las fotos grandes en la página de Inicio)
+   ========================================================================== */
+.carrusel-contenedor {
+  position: relative;
+  width: 100%;
+  height: 380px; /* Qué tan alta es la zona de las fotos gigantes */
+  overflow: hidden; /* Esconde cualquier cosa de las fotos que intente salirse de la caja */
+  border-radius: 12px; /* Esquinas bien redondeadas */
+  margin: 1.5rem 0; /* Separación por arriba y por abajo */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Sombrita elegante */
+}
+
+.carrusel-slide {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  opacity: 0; /* Empieza totalmente invisible */
+  animation: carruselAnimacion 15s infinite; /* Corre la animación por 15 segundos y se repite infinito */
+}
+
+/* Temporizador para que las fotos salgan una después de la otra */
+.carrusel-slide:nth-child(1) { animation-delay: 0s; } /* La primera foto arranca de inmediato */
+.carrusel-slide:nth-child(2) { animation-delay: 5s; } /* La segunda foto espera 5 segundos */
+.carrusel-slide:nth-child(3) { animation-delay: 10s; } /* La tercera foto espera 10 segundos */
+
+.carrusel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Hace que la foto llene toda su zona sin verse deformada */
+}
+
+.carrusel-texto {
+  position: absolute;
+  bottom: 0; /* Pega el cuadrito negro con letras blancas abajo de la foto */
+  left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(15, 23, 42, 0.9)); /* Crea un degradado de transparente a oscuro para que se lean las letras */
+  padding: 2.5rem 1.5rem 1.25rem;
+  color: #ffffff;
+}
+
+/* Los pasos matemáticos de la animación de las fotos (aparecer y desaparecer suavemente) */
+@keyframes carruselAnimacion {
+  0% { opacity: 0; }
+  6% { opacity: 1; }
+  33% { opacity: 1; }
+  39% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ==========================================================================
+   5. SECCIONES Y ORGANIZACIÓN (Ejemplo: Catálogo de productos)
+   ========================================================================== */
+.seccion {
+  padding: 2.5rem 0; /* Espacio gigante arriba y abajo de cada gran bloque de contenido */
+}
+
+.titulo-seccion {
+  font-size: 1.8rem; /* Tamaño de los títulos principales como "Catálogo" o "Productos" */
+  color: var(--color-principal);
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--color-secundario); /* Le pone una rayita subrayada al título */
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
+
+.grilla-productos {
+  display: grid; /* Activa la cuadrícula automática */
+  /* Esto acomoda las tarjetitas: si la pantalla es ancha mete varias, si es celular mete una por fila */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 1.5rem; /* Separación entre cada cuadrito de producto */
+}
+
+.tarjeta-producto {
+  background-color: var(--color-superficie); /* La tarjeta del producto es blanca */
+  border: 1px solid var(--color-borde); /* Un borde gris suavecito */
+  border-radius: 10px; /* Esquinas de la tarjeta redonditas */
+  overflow: hidden; /* Corta la foto del producto si se sale del marco de la tarjeta */
+  display: flex;
+  flex-direction: column; /* Apila la foto arriba, luego textos, luego botón hasta abajo */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* El efecto especial de "saltito" cuando pasas el mouse por encima de un producto */
+.tarjeta-producto:hover {
+  transform: translateY(-6px); /* Eleva la tarjeta */
+  border-color: var(--color-acento); /* Pinta el borde de la tarjeta de celeste */
+  box-shadow: 0 10px 20px rgba(42, 67, 101, 0.12); /* Sombra más pronunciada */
+}
+
+.tarjeta-galeria-dos {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide la zona superior del producto en dos fotos iguales */
+  height: 180px; /* Altura de las fotos en el catálogo */
+  gap: 2px; /* Un hilito de separación entre foto 1 y foto 2 */
+  background-color: var(--color-borde);
+}
+
+.tarjeta-galeria-dos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tarjeta-cuerpo {
+  padding: 1.25rem; /* Espacio adentro del cuadrito de texto del producto */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Hace que el cuadro de texto se estire para llenar lo que falte de la tarjeta */
+}
+
+.tarjeta-titulo {
+  font-size: 1.15rem; /* Letra del nombre del producto */
+  margin-bottom: 0.5rem;
+  color: var(--color-principal);
+}
+
+.tarjeta-detalles {
+  font-size: 0.85rem; /* Letra chiquita para los detalles técnicos de impresión */
+  color: var(--color-texto-mutado);
+  margin-bottom: 1rem;
+  list-style: none; /* Quita viñetas o puntitos de lista */
+}
+
+.tarjeta-detalles li {
+  margin-bottom: 0.25rem;
+}
+
+.tarjeta-precio {
+  font-size: 1.3rem; /* Precio en tamaño grande y llamativo */
+  font-weight: bold;
+  color: var(--color-secundario);
+  margin-top: auto; /* Empuja el precio y botón hasta el final de la tarjeta para que todo quede ordenado */
+  margin-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   6. BOTONES (El diseño de los botones "Añadir al carrito", etc.)
+   ========================================================================== */
+.boton-cta {
+  display: inline-block;
+  background-color: var(--color-secundario); /* Botón de color azul normal */
+  color: #ffffff !important; /* Forza letras blancas, '!important' significa que NADIE puede cambiar esta regla */
+  padding: 0.7rem 1.25rem; /* Lo hace rellenito (ancho y alto) */
+  font-weight: bold;
+  border-radius: 6px; /* Esquinas redondeadas */
+  text-align: center; /* Texto centrado en el botón */
+  border: none;
+  cursor: pointer; /* Convierte la flechita del mouse en la mano que señala al tocar el botón */
+  transition: all 0.3s ease;
+}
+
+.boton-cta:hover {
+  background-color: var(--color-hover); /* Pinta el botón azul brillante al pasar el mouse */
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3); /* Le pone un resplandor azulito */
+}
+
+/* ==========================================================================
+   7. CAJA DE ANUNCIO / PEDIDOS (La franja oscura en la pantalla principal)
+   ========================================================================== */
+.bloque-cta {
+  background: linear-gradient(135deg, var(--color-principal), var(--color-secundario)); /* Fondo que cambia suave de azul oscuro a azul medio */
+  color: #ffffff !important; /* Fuerza todo el texto a blanco */
+  padding: 2.5rem; /* La hace una caja súper grande con mucho espacio adentro */
+  border-radius: 12px;
+  text-align: center;
+  margin: 2rem 0;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+.bloque-cta h2, 
+.bloque-cta h3 {
+  color: #ffffff !important; /* Los títulos de esta caja son blancos 100% */
+}
+
+.bloque-cta p, 
+.bloque-cta ol, 
+.bloque-cta li {
+  color: #e2e8f0 !important; /* Los párrafos o listas son de color blanco-grisáceo para descansar la vista */
+}
+
+.bloque-cta a {
+  color: #63b3ed !important; /* El link de Instagram adentro de la caja oscura es celeste brillante */
+}
+
+.bloque-cta a:hover {
+  color: #ffffff !important;
+}
+
+/* Diseño del botón pero cuando está metido adentro de esta caja oscura */
+.bloque-cta a.boton-cta {
+  background-color: var(--color-acento); /* Pinta el botón celeste brillante */
+  color: #ffffff !important;
+}
+
+.bloque-cta a.boton-cta:hover {
+  background-color: #ffffff; /* Al pasarle el mouse se vuelve blanco el botón... */
+  color: var(--color-principal) !important; /* ...y las letras se vuelven oscuras */
+}
+
+/* ==========================================================================
+   8. SECCIÓN SOBRE NOSOTROS (La historia en la pantalla de Inicio)
+   ========================================================================== */
+.sobre-nosotros-contenido {
+  display: flex;
+  gap: 2rem; /* Separa la foto del bloque de texto */
+  align-items: center; /* Alinea los textos a la altura del centro de la foto */
+  flex-wrap: wrap; /* Si la pantalla es pequeña, pone el texto debajo de la foto */
+}
+
+.sobre-nosotros-imagen {
+  flex: 1 1 300px; /* La foto intenta ocupar un ancho base de 300px */
+}
+
+.sobre-nosotros-imagen img {
+  border-radius: 10px;
+  border: 3px solid var(--color-secundario); /* Le dibuja un marco azul a la foto */
+}
+
+.sobre-nosotros-texto {
+  flex: 2 1 400px; /* El texto intenta ser más ancho que la foto (el doble aproximadamente) */
+}
+
+/* ==========================================================================
+   9. FORMULARIOS (Donde llenas tu nombre, correo o inicias sesión)
+   ========================================================================== */
+.grupo-formulario {
+  margin-bottom: 1.25rem; /* Espacio hacia abajo para que no se peguen las preguntas */
+  display: flex;
+  flex-direction: column; /* Apila el título de la pregunta y la caja donde escribes (una encima de otra) */
+}
+
+.grupo-formulario label {
+  margin-bottom: 0.4rem;
+  font-weight: 600; /* Letrita gruesa para el título de la pregunta */
+  color: var(--color-principal);
+}
+
+.grupo-formulario input,
+.grupo-formulario select,
+.grupo-formulario textarea {
+  padding: 0.75rem; /* Hace que las cajas de texto sean amplias y cómodas de presionar en el celular */
+  border-radius: 6px;
+  border: 1px solid var(--color-borde); /* Borde gris normal para las cajitas */
+  background-color: #ffffff;
+  color: var(--color-texto);
+  font-family: inherit; /* Usa exactamente el mismo tipo de letra de la página */
+}
+
+/* Qué pasa cuando le das clic a una caja de texto para empezar a escribir */
+.grupo-formulario input:focus,
+.grupo-formulario textarea:focus,
+.grupo-formulario select:focus {
+  outline: 2px solid var(--color-acento); /* Le pinta un borde celeste fuerte para que sepas dónde estás escribiendo */
+}
+
+/* La tabla de ejemplo (mockup) por si alguna vez necesitan poner filas y columnas */
+.tabla-mockup {
+  width: 100%;
+  border-collapse: collapse; /* Pega las rayitas de la tabla para que se vea moderna */
+  margin-top: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.tabla-mockup th, .tabla-mockup td {
+  border: 1px solid var(--color-borde);
+  padding: 0.75rem;
+  text-align: center; /* Centra las letritas de las tablas */
+}
+
+.tabla-mockup th {
+  background-color: var(--color-principal); /* La parte de arriba de la tabla va en azul oscuro */
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   10. PIE DE PÁGINA (La cinta oscura de hasta abajo)
+   ========================================================================== */
+.pie-pagina {
+  background-color: var(--color-principal); /* Pinta el fondo azul muy oscuro */
+  color: #ffffff; /* Letras blancas */
+  border-top: 3px solid var(--color-acento); /* Pone una rayita separadora celeste */
+  padding: 2rem 0; /* Lo hace bien alto */
+  margin-top: 3rem; /* Separa este bloque de todo lo que esté arriba en la página */
+  font-size: 0.9rem; /* Letras chiquitas */
+}
+
+.pie-pagina a {
+  color: var(--color-acento); /* Links en celeste */
+}
+
+.pie-contenido {
+  display: flex;
+  justify-content: space-between; /* Manda un pedacito de texto a la izquierda y el otro a la derecha */
+  align-items: center;
+  flex-wrap: wrap; /* En celular empuja un texto abajo del otro */
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   11. ADAPTACIÓN A CELULARES (Diseño Responsive)
+   OJO: Todo lo que está aquí abajo SOLO se aplica cuando la pantalla es chiquita.
+   Si se abre en una laptop, la compu ignora esto.
+   ========================================================================== */
+@media (max-width: 768px) {
+  
+  .barra-navegacion {
+    flex-direction: column; /* Pone el logo arriba y los botones de menú abajo */
+    text-align: center; /* Centra el texto */
+  }
+
+  .menu-navegacion {
+    justify-content: center; /* Junta todos los botones de menú al medio */
+    gap: 0.5rem; /* Los pega un poquito más para que quepan todos */
+  }
+
+  .carrusel-contenedor {
+    height: 240px; /* Hace que las fotos del inicio sean más chaparritas para no tapar toda la pantalla del teléfono */
+  }
+
+  .bloque-cta {
+    padding: 1.5rem; /* Le quita relleno al cuadro de pedidos porque en celular hay menos espacio */
+  }
+}
