@@ -1,0 +1,258 @@
+<!-- ========================================================================= -->
+<!-- 1. INICIO Y CONFIGURACIÓN BÁSICA DEL DOCUMENTO                            -->
+<!-- ========================================================================= -->
+<!DOCTYPE html> <!-- Le avisa a la computadora que este es un archivo de página web -->
+<html lang="es"> <!-- Comienza la página web y le dice que el idioma es español -->
+
+<head> <!-- Esta sección está oculta al público, tiene configuraciones para el navegador y Google -->
+  <meta charset="UTF-8"> <!-- Permite que se lean bien las tildes y la letra ñ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la página para que se vea bien en celulares -->
+  <meta name="description" content="SV3DPrints - Tienda de Impresión y Modelado 3D en El Salvador"> <!-- Es el texto resumen que muestra Google cuando alguien busca tu página -->
+  
+  <title>SV3DPrints | Impresión 3D Profesional</title> <!-- Es el texto que sale en la pestañita de arriba del navegador -->
+  
+  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta esta página con el archivo que le da los colores y el diseño visual -->
+</head>
+
+<body> <!-- Aquí empieza todo lo que la gente realmente ve en la pantalla -->
+
+  <!-- ========================================================================= -->
+  <!-- 2. ENCABEZADO Y MENÚ DE NAVEGACIÓN (BARRA SUPERIOR)                       -->
+  <!-- ========================================================================= -->
+  <header class="encabezado-principal"> <!-- Crea la franja de arriba de la página -->
+    <div class="contenedor barra-navegacion"> <!-- Agrupa el logo y el menú para que no se desordenen -->
+      
+      <!-- ZONA DEL LOGO -->
+      <a href="index.html" class="logo-marca"> <!-- Al dar clic aquí, recarga la página de inicio -->
+        <img src="img/logo.jpg" alt="Logo SV3DPrints El Salvador"> <!-- Carga la foto del logo desde la carpeta "img" -->
+        <span>TerraPrints 3D</span> <!-- Texto con el nombre de la empresa a la par del logo -->
+      </a>
+
+      <!-- ZONA DE LOS BOTONES DEL MENÚ -->
+      <nav aria-label="Navegación principal"> <!-- Avisa que esta es la zona para navegar por la página -->
+        <ul class="menu-navegacion"> <!-- Lista que contiene los botones -->
+          <li><a href="index.html" class="activo">Inicio</a></li> <!-- Botón actual. Dice "activo" para que se vea resaltado -->
+          <li><a href="catalogo.html">Catálogo</a></li> <!-- Botón para ir a ver los productos -->
+          <li><a href="pedidos.html">Personaliza tu pedido</a></li> <!-- Botón para ir a hacer un pedido especial -->
+          <li><a href="checkout.html">Carrito</a></li> <!-- Botón para ir a pagar -->
+          <li><a href="login.html">Login</a></li> <!-- Botón para iniciar sesión -->
+        </ul>
+      </nav>
+
+    </div> <!-- Cierra el grupo del encabezado -->
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 3. CONTENIDO PRINCIPAL DE LA PÁGINA DE INICIO                             -->
+  <!-- ========================================================================= -->
+  <main class="contenedor"> <!-- Envuelve todo el contenido central de la página -->
+    
+    <!-- ======================================================== -->
+    <!-- SECCIÓN A: EL BANNER DE IMÁGENES QUE PASAN (CARRUSEL)    -->
+    <!-- ======================================================== -->
+    <section class="carrusel-contenedor" aria-label="Novedades de impresión 3D"> <!-- Caja del banner animado -->
+      
+      <!-- IMAGEN 1 DEL BANNER -->
+      <div class="carrusel-slide">
+        <img src="img/banner1.jpg" alt="Impresión 3D multicolor de alta precisión"> <!-- Foto 1 grande del inicio -->
+        <div class="carrusel-texto"> <!-- Caja transparente con texto sobre la imagen -->
+          <h2>Impresiones Multicolor de Alta Calidad</h2> <!-- Título gigante sobre la foto 1 -->
+          <p>Piezas detalladas con acabados profesionales e insumos Premium.</p> <!-- Textito abajo del título -->
+        </div>
+      </div>
+      
+      <!-- IMAGEN 2 DEL BANNER -->
+      <div class="carrusel-slide">
+        <img src="img/banner2.jpg" alt="Figuras coleccionables personalizadas"> <!-- Foto 2 grande del inicio -->
+        <div class="carrusel-texto">
+          <h2>Coleccionables y Modelado Custom</h2> <!-- Título sobre la foto 2 -->
+          <p>Transformamos tus ideas e imágenes en figuras tridimensionales reales.</p>
+        </div>
+      </div>
+      
+      <!-- IMAGEN 3 DEL BANNER -->
+      <div class="carrusel-slide">
+        <img src="img/banner3.jpg" alt="Prototipado funcional industrial"> <!-- Foto 3 grande del inicio -->
+        <div class="carrusel-texto">
+          <h2>Prototipado Rápido y Repuestos</h2> <!-- Título sobre la foto 3 -->
+          <p>Resistencia estructural optimizada con porcentajes de relleno a medida.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- SECCIÓN B: PRODUCTOS DESTACADOS (MUESTRA 5 PRODUCTOS)    -->
+    <!-- ======================================================== -->
+    <section class="seccion">
+      <h2 class="titulo-seccion">Productos Destacados</h2> <!-- Título grande de esta sección -->
+      <p style="margin-bottom: 1.5rem; color: var(--color-texto-mutado);">
+        Muestra de nuestros modelos más populares en stock. <!-- Textito explicativo abajo del título -->
+      </p>
+
+      <div class="grilla-productos"> <!-- Esta caja organiza las tarjetitas en cuadrícula -->
+        
+        <!-- PRODUCTO 1 DESTACADO -->
+        <article class="tarjeta-producto"> <!-- Cuadrito blanco de UN producto -->
+          <div class="tarjeta-galeria-dos"> <!-- Agrupa las fotos de este producto -->
+            <img src="img/prod1_1.jpg" alt="Llavero de corazón y espada foto 1"> <!-- Cambia la foto principal aquí -->
+            <img src="img/prod1_2.jpg" alt="Llavero de corazón y espada foto 2"> <!-- Cambia la foto secundaria aquí -->
+          </div>
+          <div class="tarjeta-cuerpo"> <!-- Agrupa los textos del producto -->
+            <h3 class="tarjeta-titulo">Llavero de corazón y espada</h3> <!-- Nombre del producto -->
+            <ul class="tarjeta-detalles"> <!-- Lista de detalles técnicos -->
+              <li><strong>Tiempo:</strong> 3h 20m | <strong>Multicolor:</strong> No</li> <!-- Fila 1 de detalles -->
+              <li><strong>Relleno:</strong> 20% | <strong>Medidas:</strong> 18x19 cm</li> <!-- Fila 2 de detalles -->
+            </ul>
+            <p class="tarjeta-precio">14.25 USD</p> <!-- Precio del producto -->
+            <a href="checkout.html" class="boton-cta">Añadir al carrito</a> <!-- Botón de comprar -->
+          </div>
+        </article>
+
+        <!-- PRODUCTO 2 DESTACADO -->
+        <article class="tarjeta-producto">
+          <div class="tarjeta-galeria-dos">
+            <img src="img/prod2_1.jpg" alt="Gancho Real Hasta la Muerte foto 1">
+            <img src="img/prod2_2.jpg" alt="Gancho Real Hasta la Muerte foto 2">
+          </div>
+          <div class="tarjeta-cuerpo">
+            <h3 class="tarjeta-titulo">Gancho Real Hasta la Muerte</h3> <!-- Nombre -->
+            <ul class="tarjeta-detalles">
+              <li><strong>Tiempo:</strong> 12h 45m | <strong>Multicolor:</strong> Sí</li>
+              <li><strong>Relleno:</strong> 15% | <strong>Medidas:</strong> 13x20 cm</li>
+            </ul>
+            <p class="tarjeta-precio">$15.00 USD</p> <!-- Precio -->
+            <a href="checkout.html" class="boton-cta">Añadir al carrito</a>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 3 DESTACADO -->
+        <article class="tarjeta-producto">
+          <div class="tarjeta-galeria-dos">
+            <img src="img/prod3_1.jpg" alt="Figurita de Tralarelo larala foto 1">
+            <img src="img/prod3_2.jpg" alt="Figurita de Tralarelo larala foto 2">
+          </div>
+          <div class="tarjeta-cuerpo">
+            <h3 class="tarjeta-titulo">Figura de Tralarelo larala</h3> <!-- Nombre -->
+            <ul class="tarjeta-detalles">
+              <li><strong>Tiempo:</strong> 6h 10m | <strong>Multicolor:</strong> Sí</li>
+              <li><strong>Relleno:</strong> 15% | <strong>Medidas:</strong> 5x10 cm</li>
+            </ul>
+            <p class="tarjeta-precio">$10.00 USD</p> <!-- Precio -->
+            <a href="checkout.html" class="boton-cta">Añadir al carrito</a>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 4 DESTACADO -->
+        <article class="tarjeta-producto">
+          <div class="tarjeta-galeria-dos">
+            <img src="img/prod4_1.jpg" alt="Llavero de mapache foto 1">
+            <img src="img/prod4_2.jpg" alt="Llavero de mapache foto 2">
+          </div>
+          <div class="tarjeta-cuerpo">
+            <h3 class="tarjeta-titulo">Llavero de mapache</h3> <!-- Nombre -->
+            <ul class="tarjeta-detalles">
+              <li><strong>Tiempo:</strong> 8h 30m | <strong>Multicolor:</strong> Sí</li>
+              <li><strong>Relleno:</strong> 95% | <strong>Medidas:</strong> 10x15 cm</li>
+            </ul>
+            <p class="tarjeta-precio">$10.00 USD</p> <!-- Precio -->
+            <a href="checkout.html" class="boton-cta">Añadir al carrito</a>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 5 DESTACADO -->
+        <article class="tarjeta-producto">
+          <div class="tarjeta-galeria-dos">
+            <img src="img/prod5_1.jpg" alt="Llavero de Snoopy foto 1">
+            <img src="img/prod5_2.jpg" alt="Llavero de Snoopy foto 2">
+          </div>
+          <div class="tarjeta-cuerpo">
+            <h3 class="tarjeta-titulo">Llavero de Snoopy</h3> <!-- Nombre -->
+            <ul class="tarjeta-detalles">
+              <li><strong>Tiempo:</strong> 10h 15m | <strong>Multicolor:</strong> No</li>
+              <li><strong>Relleno:</strong> 25% | <strong>Medidas:</strong> 15x8x8 cm</li>
+            </ul>
+            <p class="tarjeta-precio">$2.50 USD</p> <!-- Precio -->
+            <a href="checkout.html" class="boton-cta">Añadir al carrito</a>
+          </div>
+        </article>
+
+      </div> <!-- Cierra la cuadrícula de productos -->
+
+      <!-- BOTÓN PARA IR A VER TODOS LOS PRODUCTOS -->
+      <div style="text-align: center; margin-top: 2rem;">
+        <!-- El botón te lleva a la página catalogo.html -->
+        <a href="catalogo.html" class="boton-cta" style="background-color: var(--color-secundario); color: var(--color-texto); border: 1px solid var(--color-acento);">
+          Ver catálogo completo con 10 artículos →
+        </a>
+      </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- SECCIÓN C: LLAMADO A LA ACCIÓN (PEDIDOS PERSONALIZADOS)  -->
+    <!-- ======================================================== -->
+    <section class="bloque-cta"> <!-- Caja destacada para animar a la gente a pedir algo especial -->
+      <h2>¿Tienes un modelo personal o un diseño propio?</h2> <!-- Título grande de la invitación -->
+      
+      <p style="margin: 1rem 0 1.5rem; color: var(--color-texto-mutado);"> <!-- Texto explicativo -->
+        Fabricamos piezas a medida con parámetros personalizados de relleno, color y escala.
+      </p>
+      
+      <!-- Botón que lleva a la página de pedidos a la medida -->
+      <a href="pedidos.html" class="boton-cta">Solicitar Pedido Personalizado</a> 
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- SECCIÓN D: SOBRE NOSOTROS (HISTORIA DE LA EMPRESA)       -->
+    <!-- ======================================================== -->
+    <section class="seccion">
+      <h2 class="titulo-seccion">Sobre SV3DPrints</h2> <!-- Título de la historia -->
+      
+      <div class="sobre-nosotros-contenido"> <!-- Caja que pone la foto al lado del texto -->
+        
+        <div class="sobre-nosotros-imagen">
+          <img src="img/logo.jpg" alt="Emprendedor SV3DPrints El Salvador"> <!-- Foto representativa del negocio (actualmente usa el logo) -->
+        </div>
+        
+        <div class="sobre-nosotros-texto"> <!-- Lado derecho: La historia en texto -->
+          <p>
+            TerraPrints 3D nació en El Salvador con la meta de ofrecer servicios accesibles de manufactura aditiva y prototipado 3D de alta definición. <!-- Primer párrafo de la historia -->
+          </p>
+          <p style="margin-top: 1rem;">
+            Nos especializamos en convertir modelos digitales STL/OBJ en realidades físicas utilizando filamentos ecológicos PLA+ y PETG de resistencia industrial. Atendemos proyectos estudiantiles, repuestos técnicos y artículos coleccionables. <!-- Segundo párrafo con detalles -->
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main> <!-- Termina todo el contenido central de la página -->
+
+
+  <!-- ========================================================================= -->
+  <!-- 4. PIE DE PÁGINA (PARTE FINAL DE ABAJO)                                   -->
+  <!-- ========================================================================= -->
+  <footer class="pie-pagina"> <!-- Franja oscura del final de la página web -->
+    <div class="contenedor pie-contenido"> <!-- Agrupa la información en dos columnas -->
+      
+      <!-- COLUMNA 1: INFO DE LA EMPRESA -->
+      <div>
+        <p><strong>TerraPrints 3D</strong></p> <!-- Nombre de la empresa en negrita -->
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- A qué se dedican -->
+      </div>
+      
+      <!-- COLUMNA 2: REDES SOCIALES Y DERECHOS -->
+      <div>
+        <!-- Texto con enlace a Instagram. Al darle clic, abre el perfil en una pestaña nueva -->
+        <p>Para productos personalizados, siguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
+        
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p> <!-- Mensaje legal y año -->
+      </div>
+
+    </div> <!-- Cierra el grupo del pie de página -->
+  </footer> <!-- Termina la sección del pie de página -->
+
+</body> <!-- Termina la parte visual de la página -->
+</html> <!-- Fin de todo el documento -->
