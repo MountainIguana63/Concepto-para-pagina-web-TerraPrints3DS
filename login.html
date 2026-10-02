@@ -1,0 +1,138 @@
+<!-- ========================================================================= -->
+<!-- 1. INICIO Y CONFIGURACIÓN BÁSICA DEL DOCUMENTO                            -->
+<!-- ========================================================================= -->
+<!DOCTYPE html> <!-- Le indica a la computadora que este es un archivo de página web moderna (HTML5) -->
+<html lang="es"> <!-- Comienza la página web y establece que el idioma del contenido será español (es) -->
+
+<head> <!-- Esta sección está "escondida". Tiene configuraciones importantes pero no se ven en la pantalla -->
+  <meta charset="UTF-8"> <!-- Permite que la página reconozca tildes, la letra "ñ" y caracteres especiales -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página se vea bien desde un celular o tablet -->
+  
+  <title>Acceso / Cuenta | SV3DPrints</title> <!-- Es el título que aparece en la pestañita de arriba en el navegador de internet -->
+  
+  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta esta página con un archivo externo que contiene los colores, tamaños y diseño (estilos) -->
+</head>
+
+<body> <!-- A partir de aquí comienza todo lo visual. ¡Esto es lo que las personas realmente ven en su pantalla! -->
+
+  <!-- ========================================================================= -->
+  <!-- 2. ENCABEZADO Y MENÚ DE NAVEGACIÓN (BARRA SUPERIOR)                       -->
+  <!-- ========================================================================= -->
+  <header class="encabezado-principal"> <!-- Crea la franja superior de la página (el encabezado) -->
+    <div class="contenedor barra-navegacion"> <!-- Una "caja" invisible que mantiene ordenado el logo y el menú -->
+      
+      <!-- LOGO DE LA MARCA -->
+      <a href="index.html" class="logo-marca"> <!-- Si haces clic en el logo, te lleva de regreso a la página principal ("index.html") -->
+        <img src="img/logo.jpg" alt="Logo SV3DPrints"> <!-- Carga la imagen del logo desde la carpeta "img" -->
+        <span>TerraPrints 3D</span> <!-- Es el texto del nombre de la marca que aparece a la par del logo -->
+      </a>
+
+      <!-- BOTONES DEL MENÚ -->
+      <nav aria-label="Navegación principal"> <!-- Agrupa todos los botones para moverse por la página web -->
+        <ul class="menu-navegacion"> <!-- Crea una lista donde cada elemento es un botón del menú -->
+          <li><a href="index.html">Inicio</a></li> <!-- Botón que te lleva a la página de inicio -->
+          <li><a href="catalogo.html">Catálogo</a></li> <!-- Botón que te lleva a ver los productos -->
+          <li><a href="pedidos.html">Personaliza tu pedido</a></li> <!-- Botón para ir a hacer un pedido a medida -->
+          <li><a href="checkout.html">Carrito</a></li> <!-- Botón para ir a pagar -->
+          <li><a href="login.html" class="activo">Login</a></li> <!-- Botón actual. Tiene la clase "activo" para que resalte y sepas que estás en esta página -->
+        </ul>
+      </nav>
+
+    </div> <!-- Fin de la caja del encabezado -->
+  </header> <!-- Fin del encabezado -->
+
+  <!-- ========================================================================= -->
+  <!-- 3. CONTENIDO PRINCIPAL: LOS DOS FORMULARIOS (INICIAR SESIÓN Y REGISTRAR)  -->
+  <!-- ========================================================================= -->
+  <main class="contenedor seccion" style="min-height: calc(100vh - 220px);"> <!-- Es el corazón de la página, envuelve la zona más importante -->
+    
+    <!-- Esta caja organiza los dos formularios para que estén lado a lado en computadora, o uno debajo del otro en celular -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+      
+      <!-- ============================================ -->
+      <!-- FORMULARIO A: INICIAR SESIÓN (USUARIOS VIEJOS) -->
+      <!-- ============================================ -->
+      <!-- "form" crea el formulario. Al presionar el botón final, enviará los datos a la página "mensaje.html" -->
+      <form action="mensaje3.html" method="GET" style="background-color: var(--color-superficie); padding: 2rem; border-radius: 8px; border: 1px solid var(--color-borde);">
+        
+        <h2>Iniciar Sesión</h2> <!-- Título grande del primer formulario -->
+        <p style="font-size: 0.85rem; color: var(--color-texto-mutado); margin-bottom: 1.5rem;">Accede para rastrear tus impresiones 3D.</p> <!-- Textito pequeño con instrucciones debajo del título -->
+
+        <!-- CAMPO: CORREO ELECTRÓNICO -->
+        <div class="grupo-formulario"> <!-- Agrupa el título de la pregunta y su cajita de texto para que no se separen -->
+          <label for="login_email">Correo Electrónico *</label> <!-- Texto que indica qué hay que escribir ahí -->
+          <input type="email" id="login_email" name="login_email" required placeholder="usuario@ejemplo.com"> <!-- Cajita de texto donde el usuario escribe. "required" significa que no puede dejarse en blanco -->
+        </div>
+
+        <!-- CAMPO: CONTRASEÑA -->
+        <div class="grupo-formulario">
+          <label for="login_pass">Contraseña *</label> <!-- Texto indicando la contraseña -->
+          <input type="password" id="login_pass" name="login_pass" required minlength="6"> <!-- Cajita para la clave. "type=password" oculta las letras con puntitos, y "minlength=6" exige al menos 6 letras/números -->
+        </div>
+
+        <!-- BOTÓN DE ENTRAR -->
+        <button type="submit" class="boton-cta" style="width: 100%;">Ingresar</button> <!-- Botón que el usuario presiona para entrar a su cuenta -->
+      </form>
+
+
+      <!-- ============================================ -->
+      <!-- FORMULARIO B: CREAR CUENTA (NUEVOS USUARIOS) -->
+      <!-- ============================================ -->
+      <!-- Este es el segundo formulario, la lógica es casi idéntica al primero -->
+      <form action="mensaje3.html" method="GET" style="background-color: var(--color-superficie); padding: 2rem; border-radius: 8px; border: 1px solid var(--color-borde);">
+        
+        <h2>Crear Cuenta</h2> <!-- Título grande del segundo formulario -->
+        <p style="font-size: 0.85rem; color: var(--color-texto-mutado); margin-bottom: 1.5rem;">Regístrate para cotizaciones rápidas.</p> <!-- Textito de ayuda -->
+
+        <!-- CAMPO: NOMBRE -->
+        <div class="grupo-formulario">
+          <label for="reg_nombre">Nombre Completo *</label> <!-- Pide el nombre de la persona -->
+          <input type="text" id="reg_nombre" name="reg_nombre" required placeholder="Tu Nombre"> <!-- Cajita de texto normal obligatoria -->
+        </div>
+
+        <!-- CAMPO: CORREO (REGISTRO) -->
+        <div class="grupo-formulario">
+          <label for="reg_email">Correo Electrónico *</label> <!-- Pide el correo nuevo -->
+          <input type="email" id="reg_email" name="reg_email" required placeholder="correo@ejemplo.com"> <!-- Cajita para el correo -->
+        </div>
+
+        <!-- CAMPO: CONTRASEÑA (REGISTRO) -->
+        <div class="grupo-formulario">
+          <label for="reg_pass">Contraseña (Mínimo 6 caracteres) *</label> <!-- Pide inventar una contraseña -->
+          <input type="password" id="reg_pass" name="reg_pass" required minlength="6"> <!-- Cajita que oculta lo que escribes y pide 6 letras como mínimo -->
+        </div>
+
+        <!-- BOTÓN DE REGISTRO -->
+        <!-- Botón para crear la cuenta. Tiene instrucciones de color directo (style) para que se vea diferente al otro botón -->
+        <button type="submit" class="boton-cta" style="width: 100%; background-color: var(--color-secundario); color: var(--color-texto); border: 1px solid var(--color-acento);">Registrarse</button>
+      </form>
+
+    </div> <!-- Termina la caja que organiza los formularios -->
+  </main> <!-- Termina el contenido principal del centro de la página -->
+
+
+  <!-- ========================================================================= -->
+  <!-- 4. PIE DE PÁGINA (PARTE FINAL DE ABAJO)                                   -->
+  <!-- ========================================================================= -->
+  <footer class="pie-pagina"> <!-- Crea la franja oscura que suele ir hasta abajo en las páginas web -->
+    <div class="contenedor pie-contenido"> <!-- Agrupa la información en dos columnas ordenadas -->
+      
+      <!-- COLUMNA 1: INFO DE LA EMPRESA -->
+      <div>
+        <p><strong>TerraPrints 3D</strong></p> <!-- Párrafo con el nombre del negocio (la etiqueta strong lo pone en negrita) -->
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- Párrafo que describe a qué se dedican -->
+      </div>
+      
+      <!-- COLUMNA 2: REDES Y DERECHOS RESERVADOS -->
+      <div>
+        <!-- Párrafo que incluye un enlace hacia Instagram. "target='_blank'" sirve para que, al darle clic, se abra en una pestaña nueva -->
+        <p>Para productos personalizados, siguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
+        
+        <p>&copy; TerraPrints 3D. Todos los derechos reservados.</p> <!-- Párrafo legal con el símbolo de copyright y el año -->
+      </div>
+
+    </div> <!-- Cierra el contenedor del pie de página -->
+  </footer> <!-- Termina el pie de página completo -->
+
+</body> <!-- Termina la parte visual de la página -->
+</html> <!-- Fin absoluto de todo el documento web -->
