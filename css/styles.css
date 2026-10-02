@@ -374,28 +374,6 @@ a:hover, a:focus-visible {
   outline: 2px solid var(--color-acento); /* Le pinta un borde celeste fuerte para que sepas dónde estás escribiendo */
 }
 
-/* La tabla de ejemplo (mockup) por si alguna vez necesitan poner filas y columnas */
-.tabla-mockup {
-  width: 100%;
-  border-collapse: collapse; /* Pega las rayitas de la tabla para que se vea moderna */
-  margin-top: 1rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.tabla-mockup th, .tabla-mockup td {
-  border: 1px solid var(--color-borde);
-  padding: 0.75rem;
-  text-align: center; /* Centra las letritas de las tablas */
-}
-
-.tabla-mockup th {
-  background-color: var(--color-principal); /* La parte de arriba de la tabla va en azul oscuro */
-  color: #ffffff;
-}
-
 /* ==========================================================================
    10. PIE DE PÁGINA (La cinta oscura de hasta abajo)
    ========================================================================== */
