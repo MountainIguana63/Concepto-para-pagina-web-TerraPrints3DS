@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8"> <!-- Permite que se lean bien las tildes y la letra ñ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la página para que se vea bien en celulares -->
+  
+  <title>Pedidos Personalizados | SV3DPrints</title> <!-- Es el texto que sale en la pestañita de arriba del navegador -->
+  
+  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta esta página con el archivo CSS -->
+</head>
+
+<body> 
+
+  <!-- ========================================================================= -->
+  <!-- 2. ENCABEZADO Y MENÚ DE NAVEGACIÓN (BARRA SUPERIOR)                       -->
+  <!-- ========================================================================= -->
+  <header class="encabezado-principal"> <!-- Crea la franja de arriba de la página -->
+    <div class="contenedor barra-navegacion"> <!-- Agrupa el logo y el menú para que no se desordenen -->
+      
+      <!-- ZONA DEL LOGO -->
+      <a href="index.html" class="logo-marca"> <!-- Al dar clic aquí, te lleva a la página de inicio (index.html) -->
+        <img src="img/logo.jpg" alt="Logo SV3DPrints"> <!-- Carga la foto del logo -->
+        <span>TerraPrints 3D</span> <!-- Texto con el nombre de la empresa a la par del logo -->
+      </a>
+
+      <!-- ZONA DE LOS BOTONES DEL MENÚ -->
+      <nav aria-label="Navegación principal"> <!-- Avisa que esta es la zona para navegar por la página -->
+        <ul class="menu-navegacion"> <!-- Lista que contiene los botones -->
+          <li><a href="index.html">Inicio</a></li> <!-- Botón para ir al Inicio -->
+          <li><a href="catalogo.html">Catálogo</a></li> <!-- Botón para ir a ver los productos -->
+          <li><a href="pedidos.html" class="activo">Personaliza tu pedido</a></li> <!-- Botón actual. Dice "activo" para que se vea resaltado -->
+          <li><a href="checkout.html">Carrito</a></li> <!-- Botón para ir a pagar -->
+          <li><a href="login.html">Login</a></li> <!-- Botón para iniciar sesión -->
+        </ul>
+      </nav>
+
+    </div> <!-- Cierra el grupo del encabezado -->
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 3. CONTENIDO PRINCIPAL: INSTRUCCIONES Y FORMULARIO DE PEDIDO              -->
+  <!-- ========================================================================= -->
+  <main class="contenedor seccion"> <!-- Envuelve todo el contenido central de la página -->
+    
+    <h1 class="titulo-seccion">Solicitud de Pedidos Personalizados</h1> <!-- Título gigante de la página -->
+
+    <!-- ======================================================== -->
+    <!-- SECCIÓN A: INSTRUCCIONES DE CÓMO PEDIR (TEXTO)           -->
+    <!-- ======================================================== -->
+    <section class="bloque-cta" style="text-align: left; margin-bottom: 2rem;"> <!-- Caja gris/destacada para las instrucciones -->
+      
+      <h3>¿Cómo cotizar un modelo 3D propio?</h3> <!-- Subtítulo de las instrucciones -->
+      
+      <!-- "ol" crea una lista enumerada (1, 2, 3...) -->
+      <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--color-texto-mutado);">
+        <li>Completa el siguiente formulario especificando los detalles del servicio.</li> <!-- Paso 1 -->
+        
+        <li>Envíanos tu archivo en formato STL, OBJ o 3MF por mensaje directo a nuestro Instagram: <!-- Paso 2 -->
+          <!-- Enlace hacia Instagram. Si cambian de usuario, cambia el link que está adentro de href="..." -->
+          <a href="https://www.instagram.com/sv3dprints?stkn=MTZ2OW91MzltMXJtYg%3D%3D" target="_blank" rel="noopener noreferrer">@sv3dprints</a>
+        </li>
+        
+        <li>Te responderemos con la cotización del peso en gramos y el tiempo de impresión estimado.</li> <!-- Paso 3 -->
+      </ol>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECCIÓN B: FORMULARIO PARA LLENAR LOS DATOS              -->
+    <!-- ======================================================== -->
+    <!-- Al presionar Enviar, esto manda al cliente a la página "mensaje.html" -->
+    <form action="mensaje.html" method="GET" style="background-color: var(--color-superficie); padding: 2rem; border-radius: 8px; border: 1px solid var(--color-borde);">
+
+      <!-- CAMPO 1: NOMBRE -->
+      <div class="grupo-formulario"> <!-- Agrupa la pregunta y su cajita de respuesta -->
+        <label for="nombre">Nombre Completo *</label> <!-- Texto que dice qué hay que escribir -->
+        <input type="text" id="nombre" name="nombre" required placeholder="Ej. Carolina Rauda"> <!-- Cajita de texto normal. Obligatoria ("required") -->
+      </div>
+
+      <!-- CAMPO 2: CORREO -->
+      <div class="grupo-formulario">
+        <label for="correo">Correo Electrónico *</label> <!-- Pide el correo -->
+        <input type="email" id="correo" name="correo" required placeholder="ejemplo@gmail.com"> <!-- Cajita de correo. Verifica que lleve un "@" -->
+      </div>
+
+      <!-- CAMPO 3: MENÚ DESPLEGABLE DE SERVICIOS -->
+      <div class="grupo-formulario">
+        <label for="tipo_servicio">Tipo de Servicio *</label> <!-- Pide elegir qué servicio quiere -->
+        <!-- "select" crea la cajita que al tocarla despliega varias opciones -->
+        <select id="tipo_servicio" name="tipo_servicio" required>
+          <option value="">Seleccione una opción...</option> <!-- Opción fantasma (solo dice "seleccione") -->
+          <!-- Si quieres agregar un nuevo servicio, solo copia una línea de "option" y pégala aquí abajo -->
+          <option value="impresion">Impresión de archivo STL/OBJ propio</option> <!-- Opción 1 -->
+          <option value="modelado">Modelado 3D desde cero</option> <!-- Opción 2 -->
+          <option value="modificacion">Modificación de archivo existente</option> <!-- Opción 3 -->
+        </select>
+      </div>
+
+      <!-- CAMPO 4: NÚMERO DE RELLENO -->
+      <div class="grupo-formulario">
+        <label for="relleno">Porcentaje de Relleno Deseado (%) *</label> <!-- Pregunta de números -->
+        <!-- "type=number" obliga a escribir un número. "min=10" y "max=100" evita que pongan números locos. "value=20" es el número que sale por defecto -->
+        <input type="number" id="relleno" name="relleno" min="10" max="100" value="20" required>
+      </div>
+
+      <!-- CAMPO 5: DESCRIPCIÓN GRANDE -->
+      <div class="grupo-formulario">
+        <label for="descripcion">Descripción detallada y medidas *</label> <!-- Pide los detalles -->
+        <!-- "textarea" es una cajita de texto mucho más grande (como un párrafo). "rows=4" indica qué tan alta es. -->
+        <textarea id="descripcion" name="descripcion" rows="4" required placeholder="Indica el uso de la pieza, color preferido y escala estimada en cm..."></textarea>
+      </div>
+
+      <!-- BOTÓN DE ENVIAR -->
+      <button type="submit" class="boton-cta">Enviar Solicitud de Cotización</button> <!-- Botón final que envía todo -->
+      
+    </form> <!-- Termina el formulario -->
+
+  </main> <!-- Termina todo el contenido central de la página -->
+
+
+  <!-- ========================================================================= -->
+  <!-- 4. PIE DE PÁGINA (PARTE FINAL DE ABAJO)                                   -->
+  <!-- ========================================================================= -->
+  <footer class="pie-pagina"> <!-- Franja oscura del final de la página web -->
+    <div class="contenedor pie-contenido"> <!-- Agrupa la información en dos columnas -->
+      
+      <!-- COLUMNA 1: INFO DE LA EMPRESA -->
+      <div>
+        <p><strong>TerraPrints 3D</strong></p> <!-- Nombre de la empresa en negrita -->
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- A qué se dedican -->
+      </div>
+      
+      <!-- COLUMNA 2: REDES Y DERECHOS -->
+      <div>
+        <!-- Texto con enlace a Instagram. Al darle clic, abre el perfil en una pestaña nueva -->
+        <p>Para productos personalizados, siguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
+        
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p> <!-- Mensaje de derechos de autor -->
+      </div>
+
+    </div> <!-- Cierra el grupo del pie de página -->
+  </footer> <!-- Termina la sección del pie de página -->
+
+</body> <!-- Termina la parte visual de la página -->
+</html> <!-- Fin de todo el documento -->
