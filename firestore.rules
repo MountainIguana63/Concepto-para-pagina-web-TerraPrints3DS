@@ -1,0 +1,128 @@
+rules_version = '2';
+
+// =============================================================================
+// REGLAS DE SEGURIDAD DE CLOUD FIRESTORE — SV3DPrints
+// -----------------------------------------------------------------------------
+// Cada lectura o escritura que hace la página se evalúa contra estas reglas en
+// los servidores de Google. Aunque alguien modifique el JavaScript del
+// navegador, NO puede saltarse estas reglas.
+//
+//   match            → a qué documentos se aplica la regla.
+//   allow read/...   → qué operaciones se permiten y bajo qué condición.
+//   request.auth     → usuario que hace la petición (null si no inició sesión).
+//   resource.data    → datos que YA están guardados en el documento.
+//   request.resource.data → datos como quedarían DESPUÉS de la operación.
+//
+// Todo lo que no esté permitido explícitamente queda DENEGADO.
+// Para publicarlas: Firebase Console → Firestore → Reglas (pegar y Publicar),
+// o con la CLI: firebase deploy --only firestore:rules
+// =============================================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------------------------------------------------------------------
+    // FUNCIONES DE AYUDA
+    // ---------------------------------------------------------------------
+
+    // ¿El usuario inició sesión?
+    function estaAutenticado() {
+      return request.auth != null;
+    }
+
+    // ¿El usuario tiene rol "admin" en su documento usuarios/{uid}?
+    function esAdmin() {
+      return estaAutenticado()
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+        && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.rol == 'admin';
+    }
+
+    // Estados válidos de fabricación de un pedido.
+    function estadoValido(estado) {
+      return estado in ['En espera', 'Imprimiendo', 'Completado'];
+    }
+
+    // Validación de los datos de un producto (mismas reglas que logica.js).
+    function productoValido(p) {
+      return p.nombre is string && p.nombre.size() >= 3 && p.nombre.size() <= 80
+        && p.categoria is string && p.categoria.size() > 0
+        && p.precio is number && p.precio > 0 && p.precio <= 500
+        && p.tiempo is int && p.tiempo > 0
+        && p.infill is int && p.infill >= 10 && p.infill <= 100
+        && p.medidas is string
+        && p.multicolor is bool
+        && p.imagen1 is string && p.imagen1.size() > 0
+        && p.imagen2 is string && p.imagen2.size() > 0;
+    }
+
+    // Validación de un pedido nuevo.
+    function pedidoValido(p) {
+      return p.clienteId == request.auth.uid           // solo a nombre propio
+        && p.clienteNombre is string
+        && p.servicio in ['catalogo', 'impresion', 'modelado', 'modificacion']
+        && p.material in ['PLA+', 'PETG', 'TPU']
+        && p.infill is int && p.infill >= 10 && p.infill <= 100
+        && p.cantidad is int && p.cantidad >= 1 && p.cantidad <= 50
+        && p.descripcion is string && p.descripcion.size() >= 15 && p.descripcion.size() <= 500
+        && p.precioEstimado is number && p.precioEstimado >= 0
+        && estadoValido(p.estado)
+        && p.fecha == request.time;                    // fecha puesta por el servidor
+    }
+
+    // ---------------------------------------------------------------------
+    // USUARIOS (perfil + rol)
+    // ---------------------------------------------------------------------
+    match /usuarios/{uid} {
+      // Cada quien lee su propio perfil; el admin puede leer todos.
+      allow read: if estaAutenticado() && (request.auth.uid == uid || esAdmin());
+
+      // Al registrarse solo se puede crear el PROPIO perfil y SIEMPRE como
+      // "cliente". Así nadie se convierte en admin por su propia elección.
+      allow create: if estaAutenticado()
+        && request.auth.uid == uid
+        && request.resource.data.rol == 'cliente';
+
+      // Cambiar roles o borrar perfiles: solo el admin.
+      allow update, delete: if esAdmin();
+    }
+
+    // ---------------------------------------------------------------------
+    // PRODUCTOS (catálogo)
+    // ---------------------------------------------------------------------
+    match /productos/{productoId} {
+      // El catálogo es público: cualquiera puede verlo, incluso sin cuenta.
+      allow read: if true;
+
+      // Crear, editar y eliminar: SOLO el administrador, con datos válidos.
+      allow create, update: if esAdmin() && productoValido(request.resource.data);
+      allow delete: if esAdmin();
+    }
+
+    // ---------------------------------------------------------------------
+    // PEDIDOS
+    // ---------------------------------------------------------------------
+    match /pedidos/{pedidoId} {
+      // El cliente solo ve SUS pedidos; el admin ve todos.
+      allow read: if esAdmin()
+        || (estaAutenticado() && resource.data.clienteId == request.auth.uid);
+
+      // Un cliente crea pedidos a su nombre y siempre "En espera".
+      // (El admin puede crear pedidos de demostración con otro estado.)
+      allow create: if estaAutenticado()
+        && pedidoValido(request.resource.data)
+        && (request.resource.data.estado == 'En espera' || esAdmin());
+
+      // Solo el admin cambia el estado, y SOLO puede tocar estado/actualizado.
+      allow update: if esAdmin()
+        && estadoValido(request.resource.data.estado)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado', 'actualizado']);
+
+      // El admin elimina cualquier pedido; el cliente solo cancela los suyos
+      // mientras siguen "En espera" (antes de empezar a imprimir).
+      allow delete: if esAdmin()
+        || (estaAutenticado()
+            && resource.data.clienteId == request.auth.uid
+            && resource.data.estado == 'En espera');
+    }
+  }
+}

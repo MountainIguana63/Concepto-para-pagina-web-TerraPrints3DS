@@ -1,1 +1,7 @@
 .DS_Store
+
+# Firebase CLI
+.firebase/
+.firebaserc
+firebase-debug.log
+firestore-debug.log
