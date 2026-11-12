@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de administración | SV3DPrints</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+
+<!-- Página exclusiva del rol "admin". El panel empieza oculto (hidden) y main.js
+     lo muestra solo si el perfil tiene rol admin. Ocultarlo es solo comodidad:
+     la seguridad real está en firestore.rules. -->
+<body data-pagina="admin">
+
+  <!-- ===================== ENCABEZADO Y MENÚ ===================== -->
+  <header class="encabezado-principal">
+    <div class="contenedor barra-navegacion">
+      <a href="index.html" class="logo-marca">
+        <img src="img/logo.jpg" alt="" width="45" height="45">
+        <span>TerraPrints 3D</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <ul class="menu-navegacion">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="pedidos.html">Mis pedidos</a></li>
+          <li id="nav-admin" hidden><a href="admin.html" class="activo" aria-current="page">Panel admin</a></li>
+          <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor seccion">
+    <h1 class="titulo-seccion">Panel de administración</h1>
+
+    <!-- Mensaje para usuarios que no son admin -->
+    <section id="acceso-denegado" class="bloque-admin acceso-denegado" hidden>
+      <h2>Acceso restringido</h2>
+      <p class="subtitulo-descriptivo">Esta sección es exclusiva para administradores de SV3DPrints.</p>
+      <a href="index.html" class="boton-cta">Volver al inicio</a>
+    </section>
+
+    <div id="panel-admin" hidden>
+
+      <!-- ===================== INDICADORES ===================== -->
+      <section aria-labelledby="titulo-indicadores">
+        <div class="encabezado-seccion">
+          <h2 id="titulo-indicadores">Resumen del negocio</h2>
+          <div class="acciones-formulario">
+            <button type="button" id="actualizar-panel" class="boton-cta boton-secundario">↻ Actualizar</button>
+            <button type="button" id="cargar-datos" class="boton-cta boton-secundario">Cargar datos iniciales</button>
+          </div>
+        </div>
+        <!-- Indicadores calculados en logica.js (resumirPedidos / resumirCatalogo) -->
+        <div id="indicadores" class="indicadores" aria-live="polite"></div>
+      </section>
+
+      <!-- ===================== CRUD DE PRODUCTOS ===================== -->
+      <section class="bloque-admin" aria-labelledby="titulo-productos">
+        <h2 id="titulo-productos" class="titulo-seccion">Productos del catálogo</h2>
+
+        <div class="grilla-admin">
+
+          <!-- Formulario para CREAR y EDITAR (mismo formulario; el campo oculto "id" decide) -->
+          <form id="form-producto" novalidate>
+            <h3 id="titulo-form-producto">Nuevo producto</h3>
+            <input type="hidden" name="productoId">
+
+            <div class="grupo-formulario">
+              <label for="prod-nombre">Nombre *</label>
+              <input type="text" id="prod-nombre" name="nombre" required minlength="3" maxlength="80">
+              <small class="error-campo" data-error="nombre"></small>
+            </div>
+
+            <div class="grupo-formulario">
+              <label for="prod-categoria">Categoría *</label>
+              <input type="text" id="prod-categoria" name="categoria" list="lista-categorias" required placeholder="Llaveros, Figuras…">
+              <datalist id="lista-categorias">
+                <option value="Llaveros"></option>
+                <option value="Figuras"></option>
+                <option value="Hogar y funcional"></option>
+                <option value="Prototipos"></option>
+              </datalist>
+              <small class="error-campo" data-error="categoria"></small>
+            </div>
+
+            <div class="fila-campos">
+              <div class="grupo-formulario">
+                <label for="prod-precio">Precio (USD) *</label>
+                <input type="number" id="prod-precio" name="precio" min="0.01" max="500" step="0.01" required>
+                <small class="error-campo" data-error="precio"></small>
+              </div>
+              <div class="grupo-formulario">
+                <label for="prod-tiempo">Tiempo (minutos) *</label>
+                <input type="number" id="prod-tiempo" name="tiempo" min="1" step="1" required>
+                <small class="error-campo" data-error="tiempo"></small>
+              </div>
+            </div>
+
+            <div class="fila-campos">
+              <div class="grupo-formulario">
+                <label for="prod-infill">Relleno (%) *</label>
+                <input type="number" id="prod-infill" name="infill" min="10" max="100" step="1" required>
+                <small class="error-campo" data-error="infill"></small>
+              </div>
+              <div class="grupo-formulario">
+                <label for="prod-medidas">Medidas *</label>
+                <input type="text" id="prod-medidas" name="medidas" required placeholder="18x19 cm">
+                <small class="error-campo" data-error="medidas"></small>
+              </div>
+            </div>
+
+            <label class="grupo-casilla" for="prod-multicolor">
+              <input type="checkbox" id="prod-multicolor" name="multicolor">
+              Impresión multicolor
+            </label>
+
+            <div class="grupo-formulario">
+              <label for="prod-imagen1">Imagen 1 (ruta o URL) *</label>
+              <input type="text" id="prod-imagen1" name="imagen1" required placeholder="img/prod1_1.jpg">
+              <small class="error-campo" data-error="imagen1"></small>
+            </div>
+
+            <div class="grupo-formulario">
+              <label for="prod-imagen2">Imagen 2 (ruta o URL) *</label>
+              <input type="text" id="prod-imagen2" name="imagen2" required placeholder="img/prod1_2.jpg">
+              <small class="error-campo" data-error="imagen2"></small>
+            </div>
+
+            <div class="grupo-formulario">
+              <label for="prod-stl">Enlace al STL (opcional)</label>
+              <input type="url" id="prod-stl" name="linkSTL" placeholder="https://…">
+              <small class="error-campo" data-error="linkSTL"></small>
+            </div>
+
+            <div class="acciones-formulario">
+              <button type="submit" class="boton-cta">Crear producto</button>
+              <button type="button" id="cancelar-edicion" class="boton-cta boton-secundario" hidden>Cancelar edición</button>
+            </div>
+          </form>
+
+          <!-- Tabla de productos con botones Editar / Eliminar -->
+          <div id="tabla-productos" class="tabla-responsiva" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- ===================== GESTIÓN DE PEDIDOS ===================== -->
+      <section class="bloque-admin" aria-labelledby="titulo-pedidos">
+        <h2 id="titulo-pedidos" class="titulo-seccion">Pedidos de clientes</h2>
+
+        <div class="filtros-pedidos">
+          <div class="grupo-formulario">
+            <label for="filtro-estado">Filtrar por estado</label>
+            <select id="filtro-estado">
+              <option value="">Todos</option>
+              <option value="En espera">En espera</option>
+              <option value="Imprimiendo">Imprimiendo</option>
+              <option value="Completado">Completado</option>
+            </select>
+          </div>
+          <div class="grupo-formulario">
+            <label for="buscar-pedido">Buscar cliente o producto</label>
+            <input type="search" id="buscar-pedido" placeholder="Nombre del cliente…" autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Tabla de pedidos con <select> para cambiar el estado -->
+        <div id="tabla-pedidos" class="tabla-responsiva" aria-live="polite"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===================== PIE DE PÁGINA ===================== -->
+  <footer class="pie-pagina">
+    <div class="contenedor pie-contenido">
+      <div>
+        <p><strong>TerraPrints 3D</strong></p>
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p>
+      </div>
+      <div>
+        <p>Síguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
