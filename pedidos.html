@@ -15,11 +15,17 @@
   <!-- ===================== ENCABEZADO Y MENÚ ===================== -->
   <header class="encabezado-principal">
     <div class="contenedor barra-navegacion">
-      <a href="index.html" class="logo-marca">
-        <img src="img/logo.jpg" alt="" width="45" height="45">
-        <span>TerraPrints 3D</span>
-      </a>
-      <nav aria-label="Navegación principal">
+      <details class="menu-desplegable">
+        <summary class="boton-menu" aria-label="Menú de navegación">
+          <span class="linea-menu" aria-hidden="true"></span>
+          <span class="linea-menu" aria-hidden="true"></span>
+          <span class="linea-menu" aria-hidden="true"></span>
+        </summary>
+        <nav aria-label="Navegación principal">
+          <div class="cabecera-menu-lateral">
+            <img src="img/logo.jpg" alt="" width="45" height="45">
+            <span>TerraPrints 3D</span>
+          </div>
         <ul class="menu-navegacion">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="catalogo.html">Catálogo</a></li>
@@ -27,7 +33,12 @@
           <li id="nav-admin" hidden><a href="admin.html">Panel admin</a></li>
           <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li>
         </ul>
-      </nav>
+        </nav>
+      </details>
+      <a href="index.html" class="logo-marca">
+        <img src="img/logo.jpg" alt="" width="45" height="45">
+        <span>TerraPrints 3D</span>
+      </a>
     </div>
   </header>
 
