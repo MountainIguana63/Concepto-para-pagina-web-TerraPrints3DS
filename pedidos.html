@@ -2,144 +2,156 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8"> <!-- Permite que se lean bien las tildes y la letra ñ -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la página para que se vea bien en celulares -->
-  
-  <title>Pedidos Personalizados | SV3DPrints</title> <!-- Es el texto que sale en la pestañita de arriba del navegador -->
-  
-  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta esta página con el archivo CSS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis pedidos | SV3DPrints</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/main.js"></script>
 </head>
 
-<body> 
+<!-- Página protegida: si no hay sesión, main.js redirige a login.html -->
+<body data-pagina="pedidos">
 
-  <!-- ========================================================================= -->
-  <!-- 2. ENCABEZADO Y MENÚ DE NAVEGACIÓN (BARRA SUPERIOR)                       -->
-  <!-- ========================================================================= -->
-  <header class="encabezado-principal"> <!-- Crea la franja de arriba de la página -->
-    <div class="contenedor barra-navegacion"> <!-- Agrupa el logo y el menú para que no se desordenen -->
-      
-      <!-- ZONA DEL LOGO -->
-      <a href="index.html" class="logo-marca"> <!-- Al dar clic aquí, te lleva a la página de inicio (index.html) -->
-        <img src="img/logo.jpg" alt="Logo SV3DPrints"> <!-- Carga la foto del logo -->
-        <span>TerraPrints 3D</span> <!-- Texto con el nombre de la empresa a la par del logo -->
+  <!-- ===================== ENCABEZADO Y MENÚ ===================== -->
+  <header class="encabezado-principal">
+    <div class="contenedor barra-navegacion">
+      <a href="index.html" class="logo-marca">
+        <img src="img/logo.jpg" alt="" width="45" height="45">
+        <span>TerraPrints 3D</span>
       </a>
-
-      <!-- ZONA DE LOS BOTONES DEL MENÚ -->
-      <nav aria-label="Navegación principal"> <!-- Avisa que esta es la zona para navegar por la página -->
-        <ul class="menu-navegacion"> <!-- Lista que contiene los botones -->
-          <li><a href="index.html">Inicio</a></li> <!-- Botón para ir al Inicio -->
-          <li><a href="catalogo.html">Catálogo</a></li> <!-- Botón para ir a ver los productos -->
-          <li><a href="pedidos.html" class="activo">Personaliza tu pedido</a></li> <!-- Botón actual. Dice "activo" para que se vea resaltado -->
-          <li><a href="checkout.html">Carrito</a></li> <!-- Botón para ir a pagar -->
-          <li><a href="login.html">Login</a></li> <!-- Botón para iniciar sesión -->
+      <nav aria-label="Navegación principal">
+        <ul class="menu-navegacion">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="pedidos.html" class="activo" aria-current="page">Mis pedidos</a></li>
+          <li id="nav-admin" hidden><a href="admin.html">Panel admin</a></li>
+          <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li>
         </ul>
       </nav>
-
-    </div> <!-- Cierra el grupo del encabezado -->
+    </div>
   </header>
 
-  <!-- ========================================================================= -->
-  <!-- 3. CONTENIDO PRINCIPAL: INSTRUCCIONES Y FORMULARIO DE PEDIDO              -->
-  <!-- ========================================================================= -->
-  <main class="contenedor seccion"> <!-- Envuelve todo el contenido central de la página -->
-    
-    <h1 class="titulo-seccion">Solicitud de Pedidos Personalizados</h1> <!-- Título gigante de la página -->
+  <main class="contenedor seccion">
+    <h1 class="titulo-seccion">Pedidos y cotizaciones</h1>
+    <p id="saludo-cliente" class="subtitulo-descriptivo">Verificando sesión…</p>
 
-    <!-- ======================================================== -->
-    <!-- SECCIÓN A: INSTRUCCIONES DE CÓMO PEDIR (TEXTO)           -->
-    <!-- ======================================================== -->
-    <section class="bloque-cta bloque-instrucciones"> <!-- Caja gris/destacada para las instrucciones -->
-      
-      <h3>¿Cómo cotizar un modelo 3D propio?</h3> <!-- Subtítulo de las instrucciones -->
-      
-      <!-- "ol" crea una lista enumerada (1, 2, 3...) -->
-      <ol class="lista-instrucciones">
-        <li>Completa el siguiente formulario especificando los detalles del servicio.</li> <!-- Paso 1 -->
-        
-        <li>Envíanos tu archivo en formato STL, OBJ o 3MF por mensaje directo a nuestro Instagram: <!-- Paso 2 -->
-          <!-- Enlace hacia Instagram. Si cambian de usuario, cambia el link que está adentro de href="..." -->
-          <a href="https://www.instagram.com/sv3dprints?stkn=MTZ2OW91MzltMXJtYg%3D%3D" target="_blank" rel="noopener noreferrer">@sv3dprints</a>
-        </li>
-        
-        <li>Te responderemos con la cotización del peso en gramos y el tiempo de impresión estimado.</li> <!-- Paso 3 -->
-      </ol>
-    </section>
+    <div class="grilla-pedidos">
 
-    <!-- ======================================================== -->
-    <!-- SECCIÓN B: FORMULARIO PARA LLENAR LOS DATOS              -->
-    <!-- ======================================================== -->
-    <!-- Al presionar Enviar, esto manda al cliente a la página "mensaje.html" -->
-    <form action="mensaje.html" method="GET" class="tarjeta-formulario">
+      <!-- ===================== PROCESO 1: SOLICITAR UN PEDIDO ===================== -->
+      <section aria-labelledby="titulo-nuevo-pedido">
+        <form id="form-pedido" class="tarjeta-formulario" novalidate>
+          <h2 id="titulo-nuevo-pedido">Nuevo pedido</h2>
+          <p class="texto-ayuda-formulario">
+            Elige un modelo del <a href="catalogo.html">catálogo</a> o describe una pieza personalizada.
+            Si tienes archivo STL/OBJ envíalo a nuestro Instagram
+            <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a>.
+          </p>
 
-      <!-- CAMPO 1: NOMBRE -->
-      <div class="grupo-formulario"> <!-- Agrupa la pregunta y su cajita de respuesta -->
-        <label for="nombre">Nombre Completo *</label> <!-- Texto que dice qué hay que escribir -->
-        <input type="text" id="nombre" name="nombre" required placeholder="Ej. Carolina Rauda"> <!-- Cajita de texto normal. Obligatoria ("required") -->
-      </div>
+          <!-- Producto elegido desde el catálogo (lo dibuja dom.js) -->
+          <div id="producto-seleccionado" class="producto-seleccionado" hidden></div>
 
-      <!-- CAMPO 2: CORREO -->
-      <div class="grupo-formulario">
-        <label for="correo">Correo Electrónico *</label> <!-- Pide el correo -->
-        <input type="email" id="correo" name="correo" required placeholder="ejemplo@gmail.com"> <!-- Cajita de correo. Verifica que lleve un "@" -->
-      </div>
+          <div class="grupo-formulario">
+            <label for="servicio">Tipo de servicio *</label>
+            <select id="servicio" name="servicio" required>
+              <option value="">Seleccione una opción…</option>
+              <option value="catalogo" disabled>Producto del catálogo</option>
+              <option value="impresion">Impresión de archivo STL/OBJ propio (+$2.00)</option>
+              <option value="modelado">Modelado 3D desde cero (+$15.00)</option>
+              <option value="modificacion">Modificación de archivo existente (+$8.00)</option>
+            </select>
+            <small class="error-campo" data-error="servicio"></small>
+          </div>
 
-      <!-- CAMPO 3: MENÚ DESPLEGABLE DE SERVICIOS -->
-      <div class="grupo-formulario">
-        <label for="tipo_servicio">Tipo de Servicio *</label> <!-- Pide elegir qué servicio quiere -->
-        <!-- "select" crea la cajita que al tocarla despliega varias opciones -->
-        <select id="tipo_servicio" name="tipo_servicio" required>
-          <option value="">Seleccione una opción...</option> <!-- Opción fantasma (solo dice "seleccione") -->
-          <!-- Si quieres agregar un nuevo servicio, solo copia una línea de "option" y pégala aquí abajo -->
-          <option value="impresion">Impresión de archivo STL/OBJ propio</option> <!-- Opción 1 -->
-          <option value="modelado">Modelado 3D desde cero</option> <!-- Opción 2 -->
-          <option value="modificacion">Modificación de archivo existente</option> <!-- Opción 3 -->
-        </select>
-      </div>
+          <div class="fila-campos">
+            <div class="grupo-formulario">
+              <label for="material">Material *</label>
+              <select id="material" name="material" required>
+                <option value="PLA+">PLA+ (estándar)</option>
+                <option value="PETG">PETG (+20 %)</option>
+                <option value="TPU">TPU flexible (+50 %)</option>
+              </select>
+              <small class="error-campo" data-error="material"></small>
+            </div>
 
-      <!-- CAMPO 4: NÚMERO DE RELLENO -->
-      <div class="grupo-formulario">
-        <label for="relleno">Porcentaje de Relleno Deseado (%) *</label> <!-- Pregunta de números -->
-        <!-- "type=number" obliga a escribir un número. "min=10" y "max=100" evita que pongan números locos. "value=20" es el número que sale por defecto -->
-        <input type="number" id="relleno" name="relleno" min="10" max="100" value="20" required>
-      </div>
+            <div class="grupo-formulario">
+              <label for="infill">Relleno (%) *</label>
+              <input type="number" id="infill" name="infill" min="10" max="100" step="1" value="20" required>
+              <small class="error-campo" data-error="infill"></small>
+            </div>
 
-      <!-- CAMPO 5: DESCRIPCIÓN GRANDE -->
-      <div class="grupo-formulario">
-        <label for="descripcion">Descripción detallada y medidas *</label> <!-- Pide los detalles -->
-        <!-- "textarea" es una cajita de texto mucho más grande (como un párrafo). "rows=4" indica qué tan alta es. -->
-        <textarea id="descripcion" name="descripcion" rows="4" required placeholder="Indica el uso de la pieza, color preferido y escala estimada en cm..."></textarea>
-      </div>
+            <div class="grupo-formulario">
+              <label for="cantidad">Cantidad *</label>
+              <input type="number" id="cantidad" name="cantidad" min="1" max="50" step="1" value="1" required>
+              <small class="error-campo" data-error="cantidad"></small>
+            </div>
+          </div>
 
-      <!-- BOTÓN DE ENVIAR -->
-      <button type="submit" class="boton-cta">Enviar Solicitud de Cotización</button> <!-- Botón final que envía todo -->
-      
-    </form> <!-- Termina el formulario -->
+          <!-- Medidas: se ocultan cuando el pedido es de un producto del catálogo -->
+          <fieldset id="grupo-medidas" class="grupo-medidas">
+            <legend>Medidas de la pieza (cm, máximo 25)</legend>
+            <div class="fila-campos">
+              <div class="grupo-formulario">
+                <label for="largo">Largo *</label>
+                <input type="number" id="largo" name="largo" min="1" max="25" step="0.5" placeholder="10">
+                <small class="error-campo" data-error="largo"></small>
+              </div>
+              <div class="grupo-formulario">
+                <label for="ancho">Ancho *</label>
+                <input type="number" id="ancho" name="ancho" min="1" max="25" step="0.5" placeholder="10">
+                <small class="error-campo" data-error="ancho"></small>
+              </div>
+              <div class="grupo-formulario">
+                <label for="alto">Alto *</label>
+                <input type="number" id="alto" name="alto" min="1" max="25" step="0.5" placeholder="10">
+                <small class="error-campo" data-error="alto"></small>
+              </div>
+            </div>
+          </fieldset>
 
-  </main> <!-- Termina todo el contenido central de la página -->
+          <div class="grupo-formulario">
+            <label for="descripcion">Descripción del pedido *</label>
+            <textarea id="descripcion" name="descripcion" rows="4" required minlength="15" maxlength="500"
+              placeholder="Uso de la pieza, color preferido, acabado…"></textarea>
+            <small class="error-campo" data-error="descripcion"></small>
+          </div>
 
+          <!-- Cotización calculada en vivo con JavaScript (logica.js → calcularCotizacion) -->
+          <p id="cotizacion" class="cotizacion" aria-live="polite"></p>
 
-  <!-- ========================================================================= -->
-  <!-- 4. PIE DE PÁGINA (PARTE FINAL DE ABAJO)                                   -->
-  <!-- ========================================================================= -->
-  <footer class="pie-pagina"> <!-- Franja oscura del final de la página web -->
-    <div class="contenedor pie-contenido"> <!-- Agrupa la información en dos columnas -->
-      
-      <!-- COLUMNA 1: INFO DE LA EMPRESA -->
+          <button type="submit" class="boton-cta boton-expandido">Enviar solicitud</button>
+        </form>
+      </section>
+
+      <!-- ===================== PROCESO 2: SEGUIMIENTO DE MIS PEDIDOS ===================== -->
+      <section aria-labelledby="titulo-mis-pedidos">
+        <div class="encabezado-seccion">
+          <h2 id="titulo-mis-pedidos">Mis pedidos</h2>
+          <button type="button" id="actualizar-pedidos" class="boton-cta boton-secundario">↻ Actualizar estado</button>
+        </div>
+
+        <!-- Resumen calculado con reduce(): total, en proceso, completados y monto -->
+        <div id="resumen-cliente" class="indicadores"></div>
+
+        <!-- Lista de pedidos del cliente (la llena dom.js) -->
+        <div id="mis-pedidos" class="lista-pedidos" aria-live="polite"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===================== PIE DE PÁGINA ===================== -->
+  <footer class="pie-pagina">
+    <div class="contenedor pie-contenido">
       <div>
-        <p><strong>TerraPrints 3D</strong></p> <!-- Nombre de la empresa en negrita -->
-        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- A qué se dedican -->
+        <p><strong>TerraPrints 3D</strong></p>
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p>
       </div>
-      
-      <!-- COLUMNA 2: REDES Y DERECHOS -->
       <div>
-        <!-- Texto con enlace a Instagram. Al darle clic, abre el perfil en una pestaña nueva -->
-        <p>Para productos personalizados, siguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
-        
-        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p> <!-- Mensaje de derechos de autor -->
+        <p>Síguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p>
       </div>
+    </div>
+  </footer>
 
-    </div> <!-- Cierra el grupo del pie de página -->
-  </footer> <!-- Termina la sección del pie de página -->
-
-</body> <!-- Termina la parte visual de la página -->
-</html> <!-- Fin de todo el documento -->
+</body>
+</html>
