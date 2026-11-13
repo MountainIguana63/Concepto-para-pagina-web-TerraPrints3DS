@@ -126,30 +126,175 @@ a:hover, a:focus-visible {
   box-shadow: 0 0 8px rgba(49, 130, 206, 0.4); /* Le pone un brillito celeste */
 }
 
+/* Menú hamburguesa a la izquierda en todos los tamaños de pantalla. */
+.encabezado-principal .barra-navegacion {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.menu-desplegable {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.boton-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 46px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.boton-menu::-webkit-details-marker { display: none; }
+
+.boton-menu:hover,
+.menu-desplegable[open] .boton-menu {
+  background-color: var(--color-secundario);
+}
+
+.boton-menu:focus-visible {
+  outline: 2px solid var(--color-acento);
+  outline-offset: 3px;
+}
+
+.linea-menu {
+  display: block;
+  width: 23px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* El mismo botón sirve para cerrar el panel cuando está abierto. */
+.menu-desplegable[open] .boton-menu {
+  position: fixed;
+  top: 19px;
+  left: calc(min(320px, 85vw) - 57px);
+  z-index: 130;
+}
+
+.menu-desplegable[open] .linea-menu:first-child {
+  transform: translateY(7px) rotate(45deg);
+}
+.menu-desplegable[open] .linea-menu:nth-child(2) { opacity: 0; }
+.menu-desplegable[open] .linea-menu:last-child {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Panel lateral fijo, no desplegable sobre el borde derecho. */
+.menu-desplegable nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 120;
+  width: min(320px, 85vw);
+  padding: 0;
+  overflow-y: auto;
+  background-color: var(--color-principal);
+  border-right: 1px solid var(--color-acento);
+  box-shadow: 4px 0 18px rgba(15, 23, 42, 0.18);
+}
+
+.cabecera-menu-lateral {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 84px;
+  padding: 0.85rem 65px 0.85rem 1rem;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: bold;
+  border-bottom: 1px solid var(--color-acento);
+}
+
+.cabecera-menu-lateral img {
+  flex: 0 0 auto;
+  width: 45px;
+  height: 45px;
+  border: 2px solid var(--color-acento);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.menu-desplegable .menu-navegacion {
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: 0;
+}
+
+.menu-desplegable .menu-navegacion li:not([hidden]) {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.menu-desplegable .menu-navegacion a {
+  display: block;
+  padding: 0.9rem 1.25rem;
+  border-radius: 0;
+}
+
+/* El saludo y cerrar sesión siguen visibles dentro del menú lateral. */
+.menu-desplegable #nav-sesion {
+  padding: 0.6rem 0.4rem;
+}
+.menu-desplegable #nav-sesion:has(> a) { padding: 0; }
+
 /* ==========================================================================
    4. EL BANNER (Animación de las fotos grandes en la página de Inicio)
    ========================================================================== */
 .carrusel-contenedor {
   position: relative;
   width: 100%;
-  height: 380px; /* Qué tan alta es la zona de las fotos gigantes */
-  overflow: hidden; /* Esconde cualquier cosa de las fotos que intente salirse de la caja */
-  border-radius: 12px; /* Esquinas bien redondeadas */
-  margin: 1.5rem 0; /* Separación por arriba y por abajo */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Sombrita elegante */
+  height: clamp(320px, 38vw, 590px);
+  overflow: hidden;
+  border-radius: 0;
+  margin: 0 0 1.5rem;
+  box-shadow: none;
+  background-color: var(--color-principal);
 }
 
 .carrusel-slide {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  opacity: 0; /* Empieza totalmente invisible */
-  animation: carruselAnimacion 15s infinite; /* Corre la animación por 15 segundos y se repite infinito */
+  inset: 0;
+  opacity: 0;
+  animation: carruselAnimacion 15s infinite;
 }
 
-/* Temporizador para que las fotos salgan una después de la otra */
-.carrusel-slide:nth-child(1) { animation-delay: 0s; } /* La primera foto arranca de inmediato */
-.carrusel-slide:nth-child(2) { animation-delay: 5s; } /* La segunda foto espera 5 segundos */
-.carrusel-slide:nth-child(3) { animation-delay: 10s; } /* La tercera foto espera 10 segundos */
+.carrusel-slide:nth-child(1) { animation-delay: 0s; }
+.carrusel-slide:nth-child(2) { animation-delay: 5s; }
+.carrusel-slide:nth-child(3) { animation-delay: 10s; }
+
+/* Capa suave detrás de las frases, sin crear un recuadro adicional. */
+.carrusel-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.25) 40%, transparent 70%);
+}
+
+/* Se usa la misma foto como fondo difuminado para llenar todo el ancho. */
+.carrusel-slide::before {
+  content: "";
+  position: absolute;
+  inset: -15px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px) brightness(0.6);
+}
+.carrusel-slide:nth-child(1)::before { background-image: url('../img/banner1.jpg'); }
+.carrusel-slide:nth-child(2)::before { background-image: url('../img/banner2.jpg'); }
+.carrusel-slide:nth-child(3)::before { background-image: url('../img/banner3.jpg'); }
 
 .carrusel-slide img {
   position: absolute;
@@ -179,16 +324,31 @@ a:hover, a:focus-visible {
   );
 }
 
+/* Texto HTML por delante de la imagen, legible sin salir del banner. */
 .carrusel-texto {
   position: absolute;
-  bottom: 0; /* Pega el cuadrito negro con letras blancas abajo de la foto */
-  left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(15, 23, 42, 0.9)); /* Crea un degradado de transparente a oscuro para que se lean las letras */
-  padding: 2.5rem 1.5rem 1.25rem;
+  top: 50%;
+  left: max(5%, calc(50% - 600px));
+  right: auto;
+  bottom: auto;
+  transform: translateY(-50%);
+  width: min(42%, 510px);
+  z-index: 1;
+  padding: 1rem 1.25rem;
+  background: none;
   color: #ffffff;
 }
 
-/* Los pasos matemáticos de la animación de las fotos (aparecer y desaparecer suavemente) */
+.carrusel-texto h2 {
+  font-size: clamp(1.25rem, 2.2vw, 2.15rem);
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+.carrusel-texto p {
+  font-size: clamp(0.9rem, 1.05vw, 1.15rem);
+  line-height: 1.5;
+}
+
 @keyframes carruselAnimacion {
   0% { opacity: 0; }
   6% { opacity: 1; }
@@ -510,9 +670,25 @@ a:hover, a:focus-visible {
     gap: 0.5rem; /* Los pega un poquito más para que quepan todos */
   }
 
-  .carrusel-contenedor {
-    height: 240px; /* Hace que las fotos del inicio sean más chaparritas para no tapar toda la pantalla del teléfono */
+  .carrusel-contenedor { height: clamp(300px, 65vw, 400px); }
+
+  .carrusel-texto {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    padding: 1.1rem 5%;
+    background: none;
   }
+
+  .carrusel-slide::after {
+    background: linear-gradient(transparent 35%, rgba(15, 23, 42, 0.95));
+  }
+
+  .carrusel-texto h2 { font-size: clamp(1rem, 4.5vw, 1.35rem); margin-bottom: 0.3rem; }
+  .carrusel-texto p { font-size: clamp(0.75rem, 3.2vw, 0.95rem); }
 
   .bloque-cta {
     padding: 1.5rem; /* Le quita relleno al cuadro de pedidos porque en celular hay menos espacio */
