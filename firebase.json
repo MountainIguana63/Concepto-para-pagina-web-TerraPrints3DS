@@ -6,6 +6,8 @@
       "firestore.rules",
       "README.md",
       "**/.*",
+      ".git/**",
+      ".firebase/**",
       "**/node_modules/**",
       "Indicaciones y ppts/**"
     ]
