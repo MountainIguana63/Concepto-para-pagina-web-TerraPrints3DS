@@ -3,7 +3,7 @@
    Aquí guardamos los colores. Si alguien te pide cambiar el azul por rojo, 
    solo cambias el código aquí y mágicamente se actualizará en TODA la página web.
    ========================================================================== */
-:root {
+:root { /* Variables de CSS reutilizables (colores y fuente); se usan con var(--nombre) */
   --color-principal: #0f172a;     /* Color de la barra de arriba y textos importantes (Azul muy oscuro) */
   --color-secundario: #2a4365;    /* Color de los botones y detalles (Azul medio) */
   --color-acento: #3182ce;        /* Color llamativo para resaltar cositas y bordes (Celeste) */
@@ -20,57 +20,57 @@
    2. LIMPIEZA INICIAL
    Esto borra los márgenes y espacios feos que traen los navegadores por defecto.
    ========================================================================== */
-* {
+* { /* Selector universal: aplica a TODOS los elementos */
   box-sizing: border-box; /* Evita que las cajas se deformen si les pones bordes */
   margin: 0; /* Quita el margen invisible de afuera */
   padding: 0; /* Quita el espacio de adentro */
 }
 
-body {
+body { /* Cuerpo de la página: fondo, letra y estructura general */
   background-color: var(--color-fondo); /* Pinta el fondo de la página entera */
   color: var(--color-texto); /* Pinta todas las letras */
   font-family: var(--fuente-principal); /* Aplica el tipo de letra */
   line-height: 1.6; /* Separa un poquito los renglones de texto para que se lea mejor */
 
-  display: flex;
-  flex-direction: column;
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  flex-direction: column; /* Pone los hijos uno debajo del otro */
   min-height: 100vh; /* Obliga a la página a medir por lo menos el 100% de la pantalla */
 
 }
 
-main {
+main { /* Contenido principal de cada página */
   flex: 1; /* Esto hace que el centro se estire y empuje el footer hacia el fondo */
 }
 
-.contenedor {
+.contenedor { /* Caja que centra el contenido y limita su ancho */
   width: 90%; /* Hace que el contenido no quede pegado a las orillas de la pantalla */
   max-width: 1200px; /* Evita que la página se estire exageradamente en monitores gigantes */
   margin: 0 auto; /* Centra todo en medio de la pantalla */
 }
 
-img {
+img { /* Todas las imágenes */
   max-width: 100%; /* Las fotos nunca se van a desbordar de sus cajas */
   height: auto; /* Mantiene la proporción de las fotos para que no se vean aplastadas */
-  display: block;
+  display: block; /* Ocupa su propia línea de ancho completo */
 }
 
-a {
+a { /* Todos los enlaces */
   color: var(--color-acento); /* Pinta los enlaces o links */
   text-decoration: none; /* Le quita la rayita de subrayado a los links */
   font-weight: 600; /* Pone las letras de los links un poco gorditas (negrita suave) */
   transition: color 0.3s ease; /* Hace que el cambio de color al pasar el mouse sea suavecito */
 }
 
-a:hover, a:focus-visible {
+a:hover, a:focus-visible { /* Enlace cuando pasa el mouse o se enfoca con teclado */
   color: var(--color-hover); /* Pinta el link cuando le pasas el mouse por encima */
 }
 
 /* ==========================================================================
    3. LA BARRA DE ARRIBA (Menú y Logo)
    ========================================================================== */
-.encabezado-principal {
+.encabezado-principal { /* Franja oscura de arriba (header) */
   position: sticky; /* Hace que el menú se quede pegado arriba del navegador aunque bajes en la página */
-  top: 0;
+  top: 0; /* Distancia desde arriba */
   z-index: 100; /* Asegura que el menú flote por encima de las fotos o textos */
   background-color: var(--color-principal); /* Pinta la barra de azul oscuro */
   border-bottom: 3px solid var(--color-acento); /* Le dibuja una rayita celeste abajo de adorno */
@@ -78,236 +78,236 @@ a:hover, a:focus-visible {
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15); /* Le pone una sombrita difuminada */
 }
 
-.barra-navegacion {
+.barra-navegacion { /* Fila con el botón del menú y el logo */
   display: flex; /* Pone el logo y los botones del menú en la misma línea horizontal */
   justify-content: space-between; /* Empuja el logo a la izquierda y el menú a la derecha */
   align-items: center; /* Centra el logo y los botones verticalmente */
   flex-wrap: wrap; /* Si la pantalla es pequeña, baja el menú en vez de cortarlo o aplastarlo */
-  gap: 1rem;
+  gap: 1rem; /* Separación entre los elementos hijos */
 }
 
-.logo-marca {
-  display: flex;
-  align-items: center;
+.logo-marca { /* Logo + nombre de la marca */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  align-items: center; /* Centra a los hijos en vertical */
   gap: 0.75rem; /* Espacito entre la foto del logo y el nombre de la empresa */
-  font-weight: bold;
-  font-size: 1.25rem;
+  font-weight: bold; /* Letra en negrita */
+  font-size: 1.25rem; /* Tamaño de letra */
   color: #ffffff; /* Nombre de la empresa en letras blancas */
 }
 
-.logo-marca img {
+.logo-marca img { /* Foto del logo */
   width: 45px; /* Ancho de la foto del logo */
   height: 45px; /* Alto de la foto del logo */
   border-radius: 50%; /* Hace que la foto del logo se vea en forma de círculo perfecto */
-  object-fit: cover;
+  object-fit: cover; /* La foto llena el espacio recortándose, sin deformarse */
   border: 2px solid var(--color-acento); /* Bordecito celeste alrededor del círculo del logo */
 }
 
-.menu-navegacion {
+.menu-navegacion { /* Lista de enlaces del menú */
   display: flex; /* Pone los botones uno a la par del otro */
   list-style: none; /* Le quita los puntitos negros de lista a los botones */
   gap: 1.25rem; /* Separación entre cada botón del menú */
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Si no caben, pasan a la siguiente línea */
 }
 
-.menu-navegacion a {
+.menu-navegacion a { /* Cada enlace del menú */
   color: #ffffff; /* Letras de los botones del menú en blanco */
-  font-weight: 600;
+  font-weight: 600; /* Letra en negrita */
   padding: 0.5rem 0.85rem; /* Hace que el "área pellizcable" del botón sea más grande */
   border-radius: 6px; /* Redondea las esquinas del fondo del botón */
   transition: all 0.3s ease; /* Transición suave de colores */
 }
 
 /* Efecto cuando pasas el mouse por el menú o cuando estás en esa página (activo) */
-.menu-navegacion a:hover,
-.menu-navegacion a.activo {
+.menu-navegacion a:hover, /* Enlace del menú al pasar el mouse... */
+.menu-navegacion a.activo { /* ...y el enlace de la página actual (clase activo) */
   background-color: var(--color-secundario); /* Le pone un fondito azul medio */
-  color: #ffffff;
+  color: #ffffff; /* Letras blancas */
   box-shadow: 0 0 8px rgba(49, 130, 206, 0.4); /* Le pone un brillito celeste */
 }
 
 /* Menú hamburguesa a la izquierda en todos los tamaños de pantalla. */
-.encabezado-principal .barra-navegacion {
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  text-align: left;
+.encabezado-principal .barra-navegacion { /* Botón del menú a la izquierda en todos los tamaños de pantalla */
+  flex-direction: row; /* Pone los hijos uno al lado del otro */
+  flex-wrap: nowrap; /* No deja que pasen de línea */
+  justify-content: flex-start; /* Distribución horizontal de los hijos */
+  text-align: left; /* Alineación del texto: left */
 }
 
-.menu-desplegable {
-  position: relative;
-  flex: 0 0 auto;
+.menu-desplegable { /* Etiqueta <details> que funciona como menú desplegable */
+  position: relative; /* Sirve de referencia para hijos con position absolute */
+  flex: 0 0 auto; /* Cómo crece o se encoge dentro de flex */
 }
 
-.boton-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: 46px;
-  height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  cursor: pointer;
-  list-style: none;
+.boton-menu { /* Botón de tres rayas (<summary>) */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  flex-direction: column; /* Pone los hijos uno debajo del otro */
+  align-items: center; /* Centra a los hijos en horizontal (porque van en columna) */
+  justify-content: center; /* Centra a los hijos en vertical (porque van en columna) */
+  gap: 5px; /* Separación entre los elementos hijos */
+  width: 46px; /* Ancho */
+  height: 44px; /* Alto */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Borde: grosor, estilo y color */
+  border-radius: 8px; /* Redondea las esquinas */
+  cursor: pointer; /* Muestra la manito al pasar el mouse */
+  list-style: none; /* Quita las viñetas de la lista */
 }
 
-.boton-menu::-webkit-details-marker { display: none; }
+.boton-menu::-webkit-details-marker { display: none; } /* Quita el triangulito que Safari/Chrome ponen por defecto en <summary> */
 
-.boton-menu:hover,
-.menu-desplegable[open] .boton-menu {
-  background-color: var(--color-secundario);
+.boton-menu:hover, /* Botón del menú al pasar el mouse... */
+.menu-desplegable[open] .boton-menu { /* Botón del menú cuando el menú está abierto ([open] lo pone el navegador) */
+  background-color: var(--color-secundario); /* Color de fondo (usa la variable --color-secundario) */
 }
 
-.boton-menu:focus-visible {
-  outline: 2px solid var(--color-acento);
-  outline-offset: 3px;
+.boton-menu:focus-visible { /* Botón del menú enfocado con teclado (accesibilidad) */
+  outline: 2px solid var(--color-acento); /* Contorno visible al enfocar con teclado (accesibilidad) */
+  outline-offset: 3px; /* Separa el contorno del elemento */
 }
 
-.linea-menu {
-  display: block;
-  width: 23px;
-  height: 2px;
-  border-radius: 2px;
-  background-color: #ffffff;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+.linea-menu { /* Cada una de las tres rayitas del botón */
+  display: block; /* Ocupa su propia línea de ancho completo */
+  width: 23px; /* Ancho */
+  height: 2px; /* Alto */
+  border-radius: 2px; /* Redondea las esquinas */
+  background-color: #ffffff; /* Color de fondo */
+  transition: transform 0.2s ease, opacity 0.2s ease; /* Hace que los cambios (por ejemplo al pasar el mouse) sean suaves */
 }
 
 /* El mismo botón sirve para cerrar el panel cuando está abierto. */
-.menu-desplegable[open] .boton-menu {
-  position: fixed;
-  top: 19px;
-  left: calc(min(320px, 85vw) - 57px);
-  z-index: 130;
+.menu-desplegable[open] .boton-menu { /* Botón del menú cuando el menú está abierto ([open] lo pone el navegador) */
+  position: fixed; /* Queda fijo en la pantalla aunque se haga scroll */
+  top: 19px; /* Distancia desde arriba */
+  left: calc(min(320px, 85vw) - 57px); /* Distancia desde la izquierda */
+  z-index: 130; /* Orden de capas: el número mayor queda encima */
 }
 
-.menu-desplegable[open] .linea-menu:first-child {
-  transform: translateY(7px) rotate(45deg);
+.menu-desplegable[open] .linea-menu:first-child { /* Raya de arriba con el menú abierto: gira para formar la X */
+  transform: translateY(7px) rotate(45deg); /* Gira el elemento */
 }
-.menu-desplegable[open] .linea-menu:nth-child(2) { opacity: 0; }
-.menu-desplegable[open] .linea-menu:last-child {
-  transform: translateY(-7px) rotate(-45deg);
+.menu-desplegable[open] .linea-menu:nth-child(2) { opacity: 0; } /* Con el menú abierto, la raya del medio desaparece (queda la X) */
+.menu-desplegable[open] .linea-menu:last-child { /* Raya de abajo con el menú abierto: gira al otro lado para formar la X */
+  transform: translateY(-7px) rotate(-45deg); /* Gira el elemento */
 }
 
 /* Panel lateral fijo, no desplegable sobre el borde derecho. */
-.menu-desplegable nav {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 120;
-  width: min(320px, 85vw);
-  padding: 0;
-  overflow-y: auto;
-  background-color: var(--color-principal);
-  border-right: 1px solid var(--color-acento);
-  box-shadow: 4px 0 18px rgba(15, 23, 42, 0.18);
+.menu-desplegable nav { /* Panel lateral que aparece al abrir el menú */
+  position: fixed; /* Queda fijo en la pantalla aunque se haga scroll */
+  top: 0; /* Distancia desde arriba */
+  bottom: 0; /* Distancia desde abajo */
+  left: 0; /* Distancia desde la izquierda */
+  z-index: 120; /* Orden de capas: el número mayor queda encima */
+  width: min(320px, 85vw); /* Ancho */
+  padding: 0; /* Relleno interno: espacio entre el borde y el contenido */
+  overflow-y: auto; /* Scroll vertical si el contenido no cabe */
+  background-color: var(--color-principal); /* Color de fondo (usa la variable --color-principal) */
+  border-right: 1px solid var(--color-acento); /* Línea a la derecha */
+  box-shadow: 4px 0 18px rgba(15, 23, 42, 0.18); /* Sombra para dar profundidad */
 }
 
-.cabecera-menu-lateral {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  min-height: 84px;
-  padding: 0.85rem 65px 0.85rem 1rem;
-  color: #ffffff;
-  font-size: 1.05rem;
-  font-weight: bold;
-  border-bottom: 1px solid var(--color-acento);
+.cabecera-menu-lateral { /* Parte de arriba del panel lateral (logo y nombre) */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  align-items: center; /* Centra a los hijos en vertical */
+  gap: 0.75rem; /* Separación entre los elementos hijos */
+  min-height: 84px; /* Alto mínimo */
+  padding: 0.85rem 65px 0.85rem 1rem; /* Relleno interno: espacio entre el borde y el contenido */
+  color: #ffffff; /* Letras blancas */
+  font-size: 1.05rem; /* Tamaño de letra */
+  font-weight: bold; /* Letra en negrita */
+  border-bottom: 1px solid var(--color-acento); /* Línea de abajo */
 }
 
-.cabecera-menu-lateral img {
-  flex: 0 0 auto;
-  width: 45px;
-  height: 45px;
-  border: 2px solid var(--color-acento);
-  border-radius: 50%;
-  object-fit: cover;
+.cabecera-menu-lateral img { /* Logo dentro del panel lateral */
+  flex: 0 0 auto; /* Cómo crece o se encoge dentro de flex */
+  width: 45px; /* Ancho */
+  height: 45px; /* Alto */
+  border: 2px solid var(--color-acento); /* Borde: grosor, estilo y color (usa la variable --color-acento) */
+  border-radius: 50%; /* Lo vuelve un círculo */
+  object-fit: cover; /* La foto llena el espacio recortándose, sin deformarse */
 }
 
-.menu-desplegable .menu-navegacion {
-  flex-direction: column;
-  align-items: stretch;
-  flex-wrap: nowrap;
-  gap: 0;
+.menu-desplegable .menu-navegacion { /* Enlaces del panel lateral, uno debajo del otro */
+  flex-direction: column; /* Pone los hijos uno debajo del otro */
+  align-items: stretch; /* Alineación horizontal de los hijos */
+  flex-wrap: nowrap; /* No deja que pasen de línea */
+  gap: 0; /* Separación entre los elementos hijos */
 }
 
-.menu-desplegable .menu-navegacion li:not([hidden]) {
-  width: 100%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+.menu-desplegable .menu-navegacion li:not([hidden]) { /* Cada opción visible del panel (las ocultas con hidden no llevan línea) */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Línea de abajo */
 }
 
-.menu-desplegable .menu-navegacion a {
-  display: block;
-  padding: 0.9rem 1.25rem;
-  border-radius: 0;
+.menu-desplegable .menu-navegacion a { /* Enlaces del panel lateral */
+  display: block; /* Ocupa su propia línea de ancho completo */
+  padding: 0.9rem 1.25rem; /* Relleno interno: espacio entre el borde y el contenido */
+  border-radius: 0; /* Esquinas rectas */
 }
 
 /* El saludo y cerrar sesión siguen visibles dentro del menú lateral. */
-.menu-desplegable #nav-sesion {
-  padding: 0.6rem 0.4rem;
+.menu-desplegable #nav-sesion { /* Zona del saludo y Cerrar sesión dentro del panel */
+  padding: 0.6rem 0.4rem; /* Relleno interno: espacio entre el borde y el contenido */
 }
-.menu-desplegable #nav-sesion:has(> a) { padding: 0; }
+.menu-desplegable #nav-sesion:has(> a) { padding: 0; } /* Si dentro solo está el enlace "Iniciar sesión" (no hay sesión), no lleva relleno extra */
 
 /* ==========================================================================
    4. EL BANNER (Animación de las fotos grandes en la página de Inicio)
    ========================================================================== */
-.carrusel-contenedor {
-  position: relative;
-  width: 100%;
-  height: clamp(320px, 38vw, 590px);
-  overflow: hidden;
-  border-radius: 0;
-  margin: 0 0 1.5rem;
-  box-shadow: none;
-  background-color: var(--color-principal);
+.carrusel-contenedor { /* Marco del carrusel de la portada */
+  position: relative; /* Sirve de referencia para hijos con position absolute */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  height: clamp(320px, 38vw, 590px); /* Alto */
+  overflow: hidden; /* Esconde lo que se salga de la caja */
+  border-radius: 0; /* Esquinas rectas */
+  margin: 0 0 1.5rem; /* Espacio por fuera del elemento */
+  box-shadow: none; /* Sin sombra */
+  background-color: var(--color-principal); /* Color de fondo (usa la variable --color-principal) */
 }
 
-.carrusel-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  animation: carruselAnimacion 15s infinite;
+.carrusel-slide { /* Cada diapositiva del carrusel (encimadas, se turnan con animación) */
+  position: absolute; /* Se coloca encima, respecto al padre con position relative */
+  inset: 0; /* Ocupa todo el padre (arriba, derecha, abajo e izquierda en 0) */
+  opacity: 0; /* Transparencia: 0 invisible, 1 visible */
+  animation: carruselAnimacion 15s infinite; /* Aplica una animación creada con @keyframes */
 }
 
-.carrusel-slide:nth-child(1) { animation-delay: 0s; }
-.carrusel-slide:nth-child(2) { animation-delay: 5s; }
-.carrusel-slide:nth-child(3) { animation-delay: 10s; }
+.carrusel-slide:nth-child(1) { animation-delay: 0s; } /* La diapositiva 1 empieza a los 0 s: así se turnan */
+.carrusel-slide:nth-child(2) { animation-delay: 5s; } /* La diapositiva 2 empieza a los 5 s: así se turnan */
+.carrusel-slide:nth-child(3) { animation-delay: 10s; } /* La diapositiva 3 empieza a los 10 s: así se turnan */
 
 /* Capa suave detrás de las frases, sin crear un recuadro adicional. */
-.carrusel-slide::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.25) 40%, transparent 70%);
+.carrusel-slide::after { /* Capa oscura degradada para que el texto se lea sobre la foto */
+  content: ""; /* Pseudo-elemento vacío: solo sirve para decorar */
+  position: absolute; /* Se coloca encima, respecto al padre con position relative */
+  inset: 0; /* Ocupa todo el padre (arriba, derecha, abajo e izquierda en 0) */
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.25) 40%, transparent 70%); /* Fondo en degradado */
 }
 
 /* Se usa la misma foto como fondo difuminado para llenar todo el ancho. */
-.carrusel-slide::before {
-  content: "";
-  position: absolute;
-  inset: -15px;
-  background-size: cover;
-  background-position: center;
-  filter: blur(15px) brightness(0.6);
+.carrusel-slide::before { /* Copia difuminada de la foto como fondo */
+  content: ""; /* Pseudo-elemento vacío: solo sirve para decorar */
+  position: absolute; /* Se coloca encima, respecto al padre con position relative */
+  inset: -15px; /* Se extiende un poco más que el padre */
+  background-size: cover; /* La imagen de fondo cubre todo el espacio */
+  background-position: center; /* Centra la imagen de fondo */
+  filter: blur(15px) brightness(0.6); /* Desenfoca y oscurece la imagen */
 }
-.carrusel-slide:nth-child(1)::before { background-image: url('../img/banner1.jpg'); }
-.carrusel-slide:nth-child(2)::before { background-image: url('../img/banner2.jpg'); }
-.carrusel-slide:nth-child(3)::before { background-image: url('../img/banner3.jpg'); }
+.carrusel-slide:nth-child(1)::before { background-image: url('../img/banner1.jpg'); } /* Fondo difuminado de la diapositiva 1 (la misma foto) */
+.carrusel-slide:nth-child(2)::before { background-image: url('../img/banner2.jpg'); } /* Fondo difuminado de la diapositiva 2 (la misma foto) */
+.carrusel-slide:nth-child(3)::before { background-image: url('../img/banner3.jpg'); } /* Fondo difuminado de la diapositiva 3 (la misma foto) */
 
-.carrusel-slide img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  transform: translate(-50%, -50%);
-  object-fit: contain;
+.carrusel-slide img { /* Foto principal de la diapositiva */
+  position: absolute; /* Se coloca encima, respecto al padre con position relative */
+  top: 50%; /* Distancia desde arriba */
+  left: 50%; /* Distancia desde la izquierda */
+  width: auto; /* Ancho */
+  height: auto; /* Alto automático según el contenido */
+  max-width: 100%; /* Ancho máximo: no crece más que esto */
+  max-height: 100%; /* Alto máximo */
+  transform: translate(-50%, -50%); /* Centra exactamente moviéndolo la mitad de su tamaño */
+  object-fit: contain; /* La foto se ve completa, sin deformarse */
 
-  -webkit-mask-image: linear-gradient(
+  -webkit-mask-image: linear-gradient( /* Difumina los bordes izquierdo y derecho de la foto (versión para Safari) */
     to right,
     transparent 0%,
     black 6%,
@@ -315,7 +315,7 @@ a:hover, a:focus-visible {
     transparent 100%
   );
 
-  mask-image: linear-gradient(
+  mask-image: linear-gradient( /* Difumina los bordes izquierdo y derecho de la foto */
     to right,
     transparent 0%,
     black 6%,
@@ -325,186 +325,186 @@ a:hover, a:focus-visible {
 }
 
 /* Texto HTML por delante de la imagen, legible sin salir del banner. */
-.carrusel-texto {
-  position: absolute;
-  top: 50%;
-  left: max(5%, calc(50% - 600px));
-  right: auto;
-  bottom: auto;
-  transform: translateY(-50%);
-  width: min(42%, 510px);
-  z-index: 1;
-  padding: 1rem 1.25rem;
-  background: none;
-  color: #ffffff;
+.carrusel-texto { /* Título y frase encima de la foto */
+  position: absolute; /* Se coloca encima, respecto al padre con position relative */
+  top: 50%; /* Distancia desde arriba */
+  left: max(5%, calc(50% - 600px)); /* Distancia desde la izquierda */
+  right: auto; /* Distancia desde la derecha */
+  bottom: auto; /* Distancia desde abajo */
+  transform: translateY(-50%); /* Lo mueve en vertical */
+  width: min(42%, 510px); /* Ancho */
+  z-index: 1; /* Orden de capas: el número mayor queda encima */
+  padding: 1rem 1.25rem; /* Relleno interno: espacio entre el borde y el contenido */
+  background: none; /* Sin fondo */
+  color: #ffffff; /* Letras blancas */
 }
 
-.carrusel-texto h2 {
-  font-size: clamp(1.25rem, 2.2vw, 2.15rem);
-  line-height: 1.2;
-  margin-bottom: 0.8rem;
+.carrusel-texto h2 { /* Título de la diapositiva */
+  font-size: clamp(1.25rem, 2.2vw, 2.15rem); /* Tamaño de letra que crece con la pantalla, entre un mínimo y un máximo */
+  line-height: 1.2; /* Espacio entre renglones */
+  margin-bottom: 0.8rem; /* Espacio por debajo */
 }
-.carrusel-texto p {
-  font-size: clamp(0.9rem, 1.05vw, 1.15rem);
-  line-height: 1.5;
+.carrusel-texto p { /* Frase de la diapositiva */
+  font-size: clamp(0.9rem, 1.05vw, 1.15rem); /* Tamaño de letra que crece con la pantalla, entre un mínimo y un máximo */
+  line-height: 1.5; /* Espacio entre renglones */
 }
 
-@keyframes carruselAnimacion {
-  0% { opacity: 0; }
-  6% { opacity: 1; }
-  33% { opacity: 1; }
-  39% { opacity: 0; }
-  100% { opacity: 0; }
+@keyframes carruselAnimacion { /* Animación que hace aparecer y desaparecer cada diapositiva */
+  0% { opacity: 0; } /* Al 0% del ciclo: invisible */
+  6% { opacity: 1; } /* Al 6% del ciclo: visible */
+  33% { opacity: 1; } /* Al 33% del ciclo: visible */
+  39% { opacity: 0; } /* Al 39% del ciclo: invisible */
+  100% { opacity: 0; } /* Al 100% del ciclo: invisible */
 }
 
 /* ==========================================================================
    5. SECCIONES Y ORGANIZACIÓN (Ejemplo: Catálogo de productos)
    ========================================================================== */
-.seccion {
+.seccion { /* Espaciado general de las secciones */
   padding: 2.5rem 0; /* Espacio gigante arriba y abajo de cada gran bloque de contenido */
 }
 
-.titulo-seccion {
+.titulo-seccion { /* Títulos grandes de cada sección */
   font-size: 1.8rem; /* Tamaño de los títulos principales como "Catálogo" o "Productos" */
-  color: var(--color-principal);
-  margin-bottom: 1.5rem;
+  color: var(--color-principal); /* Color de las letras (usa la variable --color-principal) */
+  margin-bottom: 1.5rem; /* Espacio por debajo */
   border-bottom: 3px solid var(--color-secundario); /* Le pone una rayita subrayada al título */
-  display: inline-block;
-  padding-bottom: 0.25rem;
+  display: inline-block; /* Se comporta como texto pero acepta ancho y alto */
+  padding-bottom: 0.25rem; /* Relleno interno: espacio entre el borde y el contenido */
 }
 
-.grilla-productos {
+.grilla-productos { /* Cuadrícula de tarjetas del catálogo y destacados (la llena dom.js) */
   display: grid; /* Activa la cuadrícula automática */
   /* Esto acomoda las tarjetitas: si la pantalla es ancha mete varias, si es celular mete una por fila */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas automáticas: caben tantas como permita el ancho (adaptable sin media query) */
   gap: 1.5rem; /* Separación entre cada cuadrito de producto */
 }
 
-.tarjeta-producto {
+.tarjeta-producto { /* Tarjeta de un producto creada por dom.js → crearTarjetaProducto() (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
   background-color: var(--color-superficie); /* La tarjeta del producto es blanca */
   border: 1px solid var(--color-borde); /* Un borde gris suavecito */
   border-radius: 10px; /* Esquinas de la tarjeta redonditas */
   overflow: hidden; /* Corta la foto del producto si se sale del marco de la tarjeta */
-  display: flex;
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
   flex-direction: column; /* Apila la foto arriba, luego textos, luego botón hasta abajo */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03); /* Sombra para dar profundidad */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Hace que los cambios (por ejemplo al pasar el mouse) sean suaves */
 }
 
 /* El efecto especial de "saltito" cuando pasas el mouse por encima de un producto */
-.tarjeta-producto:hover {
+.tarjeta-producto:hover { /* Tarjeta al pasar el mouse */
   transform: translateY(-6px); /* Eleva la tarjeta */
   border-color: var(--color-acento); /* Pinta el borde de la tarjeta de celeste */
   box-shadow: 0 10px 20px rgba(42, 67, 101, 0.12); /* Sombra más pronunciada */
 }
 
-.tarjeta-galeria-dos {
-  display: grid;
+.tarjeta-galeria-dos { /* Fila con las dos fotos del producto */
+  display: grid; /* Grid: acomoda los hijos en cuadrícula */
   grid-template-columns: 1fr 1fr; /* Divide la zona superior del producto en dos fotos iguales */
   height: 180px; /* Altura de las fotos en el catálogo */
   gap: 2px; /* Un hilito de separación entre foto 1 y foto 2 */
-  background-color: var(--color-borde);
+  background-color: var(--color-borde); /* Color de fondo (usa la variable --color-borde) */
 }
 
-.tarjeta-galeria-dos img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.tarjeta-galeria-dos img { /* Cada foto del producto */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  height: 100%; /* Alto */
+  object-fit: cover; /* La foto llena el espacio recortándose, sin deformarse */
 }
 
-.tarjeta-cuerpo {
+.tarjeta-cuerpo { /* Parte de la tarjeta con los datos */
   padding: 1.25rem; /* Espacio adentro del cuadrito de texto del producto */
-  display: flex;
-  flex-direction: column;
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  flex-direction: column; /* Pone los hijos uno debajo del otro */
   flex-grow: 1; /* Hace que el cuadro de texto se estire para llenar lo que falte de la tarjeta */
 }
 
-.tarjeta-titulo {
+.tarjeta-titulo { /* Nombre del producto */
   font-size: 1.15rem; /* Letra del nombre del producto */
-  margin-bottom: 0.5rem;
-  color: var(--color-principal);
+  margin-bottom: 0.5rem; /* Espacio por debajo */
+  color: var(--color-principal); /* Color de las letras (usa la variable --color-principal) */
 }
 
-.tarjeta-detalles {
+.tarjeta-detalles { /* Lista de detalles (tiempo, relleno, medidas) */
   font-size: 0.85rem; /* Letra chiquita para los detalles técnicos de impresión */
-  color: var(--color-texto-mutado);
-  margin-bottom: 1rem;
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
+  margin-bottom: 1rem; /* Espacio por debajo */
   list-style: none; /* Quita viñetas o puntitos de lista */
 }
 
-.tarjeta-detalles li {
-  margin-bottom: 0.25rem;
+.tarjeta-detalles li { /* Cada renglón de detalles */
+  margin-bottom: 0.25rem; /* Espacio por debajo */
 }
 
-.tarjeta-precio {
+.tarjeta-precio { /* Precio del producto */
   font-size: 1.3rem; /* Precio en tamaño grande y llamativo */
-  font-weight: bold;
-  color: var(--color-secundario);
+  font-weight: bold; /* Letra en negrita */
+  color: var(--color-secundario); /* Color de las letras (usa la variable --color-secundario) */
   margin-top: auto; /* Empuja el precio y botón hasta el final de la tarjeta para que todo quede ordenado */
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.75rem; /* Espacio por debajo */
 }
 
 /* ==========================================================================
    6. BOTONES (El diseño de los botones "Añadir al carrito", etc.)
    ========================================================================== */
-.boton-cta {
-  display: inline-block;
+.boton-cta { /* Botón principal azul ("Solicitar este modelo", "Enviar"...) */
+  display: inline-block; /* Se comporta como texto pero acepta ancho y alto */
   background-color: var(--color-secundario); /* Botón de color azul normal */
   color: #ffffff !important; /* Forza letras blancas, '!important' significa que NADIE puede cambiar esta regla */
   padding: 0.7rem 1.25rem; /* Lo hace rellenito (ancho y alto) */
-  font-weight: bold;
+  font-weight: bold; /* Letra en negrita */
   border-radius: 6px; /* Esquinas redondeadas */
   text-align: center; /* Texto centrado en el botón */
-  border: none;
+  border: none; /* Sin borde */
   cursor: pointer; /* Convierte la flechita del mouse en la mano que señala al tocar el botón */
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; /* Hace que los cambios (por ejemplo al pasar el mouse) sean suaves */
 }
 
-.boton-cta:hover {
+.boton-cta:hover { /* Botón principal al pasar el mouse */
   background-color: var(--color-hover); /* Pinta el botón azul brillante al pasar el mouse */
-  color: #ffffff !important;
+  color: #ffffff !important; /* Color de las letras */
   box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3); /* Le pone un resplandor azulito */
 }
 
 /* ==========================================================================
    7. CAJA DE ANUNCIO / PEDIDOS (La franja oscura en la pantalla principal)
    ========================================================================== */
-.bloque-cta {
+.bloque-cta { /* Bloque llamativo de la portada que invita a pedir algo personalizado */
   background: linear-gradient(135deg, var(--color-principal), var(--color-secundario)); /* Fondo que cambia suave de azul oscuro a azul medio */
   color: #ffffff !important; /* Fuerza todo el texto a blanco */
   padding: 2.5rem; /* La hace una caja súper grande con mucho espacio adentro */
-  border-radius: 12px;
-  text-align: center;
-  margin: 2rem 0;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+  border-radius: 12px; /* Redondea las esquinas */
+  text-align: center; /* Centra el texto */
+  margin: 2rem 0; /* Espacio por fuera del elemento */
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15); /* Sombra para dar profundidad */
 }
 
-.bloque-cta h2, 
-.bloque-cta h3 {
+.bloque-cta h2, /* Títulos dentro del bloque... */
+.bloque-cta h3 { /* ...(h2 y h3) */
   color: #ffffff !important; /* Los títulos de esta caja son blancos 100% */
 }
 
-.bloque-cta p, 
-.bloque-cta ol, 
-.bloque-cta li {
+.bloque-cta p, /* Textos dentro del bloque... */
+.bloque-cta ol, /* ...listas... */
+.bloque-cta li { /* ...y elementos de lista */
   color: #e2e8f0 !important; /* Los párrafos o listas son de color blanco-grisáceo para descansar la vista */
 }
 
-.bloque-cta a {
+.bloque-cta a { /* Enlaces dentro del bloque */
   color: #63b3ed !important; /* El link de Instagram adentro de la caja oscura es celeste brillante */
 }
 
-.bloque-cta a:hover {
-  color: #ffffff !important;
+.bloque-cta a:hover { /* Enlaces del bloque al pasar el mouse */
+  color: #ffffff !important; /* Color de las letras */
 }
 
 /* Diseño del botón pero cuando está metido adentro de esta caja oscura */
-.bloque-cta a.boton-cta {
+.bloque-cta a.boton-cta { /* Botón dentro del bloque */
   background-color: var(--color-acento); /* Pinta el botón celeste brillante */
-  color: #ffffff !important;
+  color: #ffffff !important; /* Color de las letras */
 }
 
-.bloque-cta a.boton-cta:hover {
+.bloque-cta a.boton-cta:hover { /* Botón del bloque al pasar el mouse */
   background-color: #ffffff; /* Al pasarle el mouse se vuelve blanco el botón... */
   color: var(--color-principal) !important; /* ...y las letras se vuelven oscuras */
 }
@@ -512,56 +512,56 @@ a:hover, a:focus-visible {
 /* ==========================================================================
    8. SECCIÓN SOBRE NOSOTROS (La historia en la pantalla de Inicio)
    ========================================================================== */
-.sobre-nosotros-contenido {
-  display: flex;
+.sobre-nosotros-contenido { /* Fila de "Sobre nosotros" con imagen y texto */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
   gap: 2rem; /* Separa la foto del bloque de texto */
   align-items: center; /* Alinea los textos a la altura del centro de la foto */
   flex-wrap: wrap; /* Si la pantalla es pequeña, pone el texto debajo de la foto */
 }
 
-.sobre-nosotros-imagen {
+.sobre-nosotros-imagen { /* Columna de la imagen */
   flex: 1 1 300px; /* La foto intenta ocupar un ancho base de 300px */
 }
 
-.sobre-nosotros-imagen img {
-  border-radius: 10px;
+.sobre-nosotros-imagen img { /* Logo grande de "Sobre nosotros" */
+  border-radius: 10px; /* Redondea las esquinas */
   border: 3px solid var(--color-secundario); /* Le dibuja un marco azul a la foto */
 }
 
-.sobre-nosotros-texto {
+.sobre-nosotros-texto { /* Columna del texto */
   flex: 2 1 400px; /* El texto intenta ser más ancho que la foto (el doble aproximadamente) */
 }
 
 /* ==========================================================================
    9. FORMULARIOS (Donde llenas tu nombre, correo o inicias sesión)
    ========================================================================== */
-.grupo-formulario {
+.grupo-formulario { /* Grupo de etiqueta + campo + error en todos los formularios */
   margin-bottom: 1.25rem; /* Espacio hacia abajo para que no se peguen las preguntas */
-  display: flex;
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
   flex-direction: column; /* Apila el título de la pregunta y la caja donde escribes (una encima de otra) */
 }
 
-.grupo-formulario label {
-  margin-bottom: 0.4rem;
+.grupo-formulario label { /* Etiquetas de los campos */
+  margin-bottom: 0.4rem; /* Espacio por debajo */
   font-weight: 600; /* Letrita gruesa para el título de la pregunta */
-  color: var(--color-principal);
+  color: var(--color-principal); /* Color de las letras (usa la variable --color-principal) */
 }
 
-.grupo-formulario input,
-.grupo-formulario select,
-.grupo-formulario textarea {
+.grupo-formulario input, /* Cajas de texto... */
+.grupo-formulario select, /* ...listas desplegables... */
+.grupo-formulario textarea { /* ...y áreas de texto */
   padding: 0.75rem; /* Hace que las cajas de texto sean amplias y cómodas de presionar en el celular */
-  border-radius: 6px;
+  border-radius: 6px; /* Redondea las esquinas */
   border: 1px solid var(--color-borde); /* Borde gris normal para las cajitas */
-  background-color: #ffffff;
-  color: var(--color-texto);
+  background-color: #ffffff; /* Color de fondo */
+  color: var(--color-texto); /* Color de las letras (usa la variable --color-texto) */
   font-family: inherit; /* Usa exactamente el mismo tipo de letra de la página */
 }
 
 /* Qué pasa cuando le das clic a una caja de texto para empezar a escribir */
-.grupo-formulario input:focus,
-.grupo-formulario textarea:focus,
-.grupo-formulario select:focus {
+.grupo-formulario input:focus, /* Campo de texto seleccionado... */
+.grupo-formulario textarea:focus, /* ...área de texto seleccionada... */
+.grupo-formulario select:focus { /* ...y lista seleccionada: se resalta el borde */
   outline: 2px solid var(--color-acento); /* Le pinta un borde celeste fuerte para que sepas dónde estás escribiendo */
 }
 
@@ -569,13 +569,13 @@ a:hover, a:focus-visible {
    10. PÁGINA DE CHECKOUT
    ========================================================================== */
 /* Seccion principal del checkout que ajusta el espaciado vertical y la altura minima */
-.seccion-checkout {
+.seccion-checkout { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
   padding: 2.5rem 0; /* Espaciado superior e inferior para despejar la barra y el pie de pagina */
   min-height: calc(100vh - 220px); /* Garantiza que la pagina ocupe el alto completo de la pantalla */
 }
 
 /* Grilla principal responsiva para organizar las dos tarjetas principales */
-.grilla-checkout {
+.grilla-checkout { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
   display: grid; /* Activa el modelo CSS Grid */
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Crea columnas adaptables de minimo 350px */
   gap: 3rem; /* Espacio de separacion generoso entre la tarjeta del resumen y el formulario */
@@ -583,56 +583,56 @@ a:hover, a:focus-visible {
 }
 
 /* Espaciado interno generoso para las tarjetas blancas contenedoras */
-.tarjeta-checkout {
+.tarjeta-checkout { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
   padding: 1.75rem !important; /* Margen interno para que el contenido no toque las orillas blancas */
 }
 
 /* Cada elemento o producto listado individualmente en el resumen */
-.item-carrito {
+.item-carrito { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
   margin-bottom: 1.25rem; /* Margen inferior para separar de la siguiente tarjeta o producto */
   border-bottom: 1px solid var(--color-borde); /* Linea divisoria discreta entre items */
   padding-bottom: 0.85rem; /* Espacio interno inferior sobre la linea divisoria */
 }
 
 /* Titulo del producto individual */
-.item-carrito h4 {
+.item-carrito h4 { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
   margin-bottom: 0.25rem; /* Separacion ligera con las especificaciones del producto */
-  color: var(--color-principal); 
+  color: var(--color-principal); /* Color de las letras (usa la variable --color-principal) */
 }
 
 /* Texto de especificaciones tecnicas o variaciones del producto */
-.detalles-item {
-  font-size: 0.85rem;
-  color: var(--color-texto-mutado); 
-  margin-bottom: 0.25rem;
+.detalles-item { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  font-size: 0.85rem; /* Tamaño de letra */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
+  margin-bottom: 0.25rem; /* Espacio por debajo */
 }
 
 /* Precio destacado por unidad del producto */
-.precio-item {
-  color: var(--color-acento); 
+.precio-item { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  color: var(--color-acento); /* Color de las letras (usa la variable --color-acento) */
   font-weight: bold; /* Resaltado en negrita */
 }
 
 /* Fila de resumen de monto total con Flexbox */
-.total-carrito {
+.total-carrito { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
   display: flex; /* Activa Flexbox para alineacion horizontal */
   justify-content: space-between; /* Empuja el texto 'Total:' a la izquierda y el precio a la derecha */
   align-items: center; /* Centra los dos textos verticalmente */
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.2rem; /* Tamaño de letra */
+  font-weight: bold; /* Letra en negrita */
   margin-top: 1.5rem; /* Margen superior para despejar del ultimo producto */
-  padding-top: 0.5rem;
+  padding-top: 0.5rem; /* Relleno interno: espacio entre el borde y el contenido */
 }
 
 /* Formato para el monto final en dinero */
-.monto-total {
-  color: var(--color-acento); 
+.monto-total { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  color: var(--color-acento); /* Color de las letras (usa la variable --color-acento) */
   font-size: 1.3rem; /* Tamaño de fuente*/
 }
 /* ==========================================================================
    11. PIE DE PÁGINA (La cinta oscura de hasta abajo)
    ========================================================================== */
-.pie-pagina {
+.pie-pagina { /* Pie de página */
   background-color: var(--color-principal); /* Pinta el fondo azul muy oscuro */
   color: #ffffff; /* Letras blancas */
   border-top: 3px solid var(--color-acento); /* Pone una rayita separadora celeste */
@@ -641,16 +641,16 @@ a:hover, a:focus-visible {
   font-size: 0.9rem; /* Letras chiquitas */
 }
 
-.pie-pagina a {
+.pie-pagina a { /* Enlace a Instagram del pie */
   color: var(--color-acento); /* Links en celeste */
 }
 
-.pie-contenido {
-  display: flex;
+.pie-contenido { /* Columnas del pie de página */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
   justify-content: space-between; /* Manda un pedacito de texto a la izquierda y el otro a la derecha */
-  align-items: center;
+  align-items: center; /* Centra a los hijos en vertical */
   flex-wrap: wrap; /* En celular empuja un texto abajo del otro */
-  gap: 1rem;
+  gap: 1rem; /* Separación entre los elementos hijos */
 }
 
 /* ==========================================================================
@@ -658,39 +658,39 @@ a:hover, a:focus-visible {
    OJO: Todo lo que está aquí abajo SOLO se aplica cuando la pantalla es chiquita.
    Si se abre en una laptop, la compu ignora esto.
    ========================================================================== */
-@media (max-width: 768px) {
+@media (max-width: 768px) { /* DISEÑO ADAPTABLE: estas reglas solo aplican en pantallas de 768px o menos (celulares y tablets) */
   
-  .barra-navegacion {
+  .barra-navegacion { /* Fila con el botón del menú y el logo */
     flex-direction: column; /* Pone el logo arriba y los botones de menú abajo */
     text-align: center; /* Centra el texto */
   }
 
-  .menu-navegacion {
+  .menu-navegacion { /* Lista de enlaces del menú */
     justify-content: center; /* Junta todos los botones de menú al medio */
     gap: 0.5rem; /* Los pega un poquito más para que quepan todos */
   }
 
-  .carrusel-contenedor { height: clamp(300px, 65vw, 400px); }
+  .carrusel-contenedor { height: clamp(300px, 65vw, 400px); } /* En celular el carrusel es más bajo */
 
-  .carrusel-texto {
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transform: none;
-    width: 100%;
-    padding: 1.1rem 5%;
-    background: none;
+  .carrusel-texto { /* Título y frase encima de la foto */
+    top: auto; /* Distancia desde arriba */
+    bottom: 0; /* Distancia desde abajo */
+    left: 0; /* Distancia desde la izquierda */
+    right: 0; /* Distancia desde la derecha */
+    transform: none; /* Mueve el elemento */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 1.1rem 5%; /* Relleno interno: espacio entre el borde y el contenido */
+    background: none; /* Sin fondo */
   }
 
-  .carrusel-slide::after {
-    background: linear-gradient(transparent 35%, rgba(15, 23, 42, 0.95));
+  .carrusel-slide::after { /* Capa oscura degradada para que el texto se lea sobre la foto */
+    background: linear-gradient(transparent 35%, rgba(15, 23, 42, 0.95)); /* Fondo en degradado */
   }
 
-  .carrusel-texto h2 { font-size: clamp(1rem, 4.5vw, 1.35rem); margin-bottom: 0.3rem; }
-  .carrusel-texto p { font-size: clamp(0.75rem, 3.2vw, 0.95rem); }
+  .carrusel-texto h2 { font-size: clamp(1rem, 4.5vw, 1.35rem); margin-bottom: 0.3rem; } /* En celular el título del carrusel es más pequeño */
+  .carrusel-texto p { font-size: clamp(0.75rem, 3.2vw, 0.95rem); } /* En celular la frase del carrusel es más pequeña */
 
-  .bloque-cta {
+  .bloque-cta { /* Bloque llamativo de la portada que invita a pedir algo personalizado */
     padding: 1.5rem; /* Le quita relleno al cuadro de pedidos porque en celular hay menos espacio */
   }
 }
@@ -699,113 +699,113 @@ a:hover, a:focus-visible {
 /* ==========================================================================
    DISEÑO ADICIONAL PARA LA PÁGINA DE INICIO (Limpiando los "style")
    ========================================================================== */
-.subtitulo-descriptivo {
-  margin-bottom: 1.5rem; 
-  color: var(--color-texto-mutado);
+.subtitulo-descriptivo { /* Texto gris debajo de los títulos */
+  margin-bottom: 1.5rem; /* Espacio por debajo */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
 }
 
-.centro-boton {
-  text-align: center; 
-  margin-top: 2rem;
+.centro-boton { /* Centra un botón */
+  text-align: center; /* Centra el texto */
+  margin-top: 2rem; /* Espacio por arriba */
 }
 
-.boton-contorno {
-  background-color: var(--color-secundario); 
-  border: 1px solid var(--color-acento);
+.boton-contorno { /* Variante del botón: solo borde */
+  background-color: var(--color-secundario); /* Color de fondo (usa la variable --color-secundario) */
+  border: 1px solid var(--color-acento); /* Borde: grosor, estilo y color (usa la variable --color-acento) */
   /* Nota: No forzamos el color del texto aquí porque tu CSS ya obliga a que sea blanco (!important) */
 }
 
-.margen-cta {
-  margin: 1rem 0 1.5rem;
+.margen-cta { /* Margen del párrafo del bloque llamativo */
+  margin: 1rem 0 1.5rem; /* Espacio por fuera del elemento */
   /* Nota: El color blanco del texto ya lo maneja automáticamente la regla .bloque-cta p */
 }
 
-.margen-parrafo {
-  margin-top: 1rem;
+.margen-parrafo { /* Margen entre párrafos */
+  margin-top: 1rem; /* Espacio por arriba */
 }
 /* ==========================================================================
    DISEÑO PARA LA PÁGINA DE LOGIN Y REGISTRO (Limpieza de estilos)
    ========================================================================== */
-.seccion-auth {
-  min-height: calc(100vh - 220px);
+.seccion-auth { /* Página de login */
+  min-height: calc(100vh - 220px); /* Alto mínimo */
 }
 
-.grilla-login {
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-  gap: 2rem; 
-  max-width: 900px; 
-  margin: 0 auto;
+.grilla-login { /* Dos columnas: iniciar sesión y crear cuenta */
+  display: grid; /* Grid: acomoda los hijos en cuadrícula */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas automáticas: caben tantas como permita el ancho (adaptable sin media query) */
+  gap: 2rem; /* Separación entre los elementos hijos */
+  max-width: 900px; /* Ancho máximo: no crece más que esto */
+  margin: 0 auto; /* Centra horizontalmente */
 }
 
-.tarjeta-formulario {
-  background-color: var(--color-superficie); 
-  padding: 2rem; 
-  border-radius: 8px; 
-  border: 1px solid var(--color-borde);
+.tarjeta-formulario { /* ...y tarjetas de formulario con menos relleno en celular */
+  background-color: var(--color-superficie); /* Color de fondo (usa la variable --color-superficie) */
+  padding: 2rem; /* Relleno interno: espacio entre el borde y el contenido */
+  border-radius: 8px; /* Redondea las esquinas */
+  border: 1px solid var(--color-borde); /* Borde: grosor, estilo y color (usa la variable --color-borde) */
 }
 
-.texto-ayuda-formulario {
-  font-size: 0.85rem; 
-  color: var(--color-texto-mutado); 
-  margin-bottom: 1.5rem;
+.texto-ayuda-formulario { /* Texto de ayuda debajo del título del formulario */
+  font-size: 0.85rem; /* Tamaño de letra */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
+  margin-bottom: 1.5rem; /* Espacio por debajo */
 }
 
-.boton-expandido {
-  width: 100%;
+.boton-expandido { /* Botón que ocupa todo el ancho */
+  width: 100%; /* Ocupa todo el ancho disponible */
 }
 
 /* ==========================================================================
    DISEÑO PARA LA PÁGINA DE PEDIDOS PERSONALIZADOS
    ========================================================================== */
-.bloque-instrucciones {
-  text-align: left; 
-  margin-bottom: 2rem;
+.bloque-instrucciones { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  text-align: left; /* Alineación del texto: left */
+  margin-bottom: 2rem; /* Espacio por debajo */
 }
 
-.lista-instrucciones {
-  margin-left: 1.5rem; 
-  margin-top: 0.5rem; 
-  color: var(--color-texto-mutado);
+.lista-instrucciones { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  margin-left: 1.5rem; /* Espacio a la izquierda */
+  margin-top: 0.5rem; /* Espacio por arriba */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
 }
 
 /* ==========================================================================
    DISEÑO PARA LAS PÁGINAS DE MENSAJE (ÉXITO / CONFIRMACIÓN)
    ========================================================================== */
-.seccion-mensaje {
-  text-align: center; 
-  padding: 4rem 1rem; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center;
+.seccion-mensaje { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  text-align: center; /* Centra el texto */
+  padding: 4rem 1rem; /* Relleno interno: espacio entre el borde y el contenido */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  flex-direction: column; /* Pone los hijos uno debajo del otro */
+  justify-content: center; /* Centra a los hijos en vertical (porque van en columna) */
+  align-items: center; /* Centra a los hijos en horizontal (porque van en columna) */
 }
 
-.icono-exito {
-  font-size: 4rem; 
-  color: #28a745; 
-  margin-bottom: 1rem;
+.icono-exito { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  font-size: 4rem; /* Tamaño de letra */
+  color: #28a745; /* Color de las letras */
+  margin-bottom: 1rem; /* Espacio por debajo */
 }
 
-.titulo-mensaje {
-  margin-bottom: 1rem;
+.titulo-mensaje { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  margin-bottom: 1rem; /* Espacio por debajo */
 }
 
-.texto-mensaje {
-  font-size: 1.1rem; 
-  max-width: 600px; 
-  margin: 0 auto 2rem auto; 
-  color: var(--color-texto-mutado);
+.texto-mensaje { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  font-size: 1.1rem; /* Tamaño de letra */
+  max-width: 600px; /* Ancho máximo: no crece más que esto */
+  margin: 0 auto 2rem auto; /* Centra horizontalmente */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
 }
 
-.enlace-instagram {
-  font-weight: bold; 
-  font-size: 1.2rem;
+.enlace-instagram { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  font-weight: bold; /* Letra en negrita */
+  font-size: 1.2rem; /* Tamaño de letra */
 }
 
-.boton-enlace {
-  display: inline-block;
-  text-decoration: none;
+.boton-enlace { /* Estilo heredado del DP1 (página de carrito o de mensajes que ya no existe): hoy no lo usa ninguna página */
+  display: inline-block; /* Se comporta como texto pero acepta ancho y alto */
+  text-decoration: none; /* Quita el subrayado */
 }
 
 
@@ -817,615 +817,615 @@ a:hover, a:focus-visible {
    ========================================================================== */
 
 /* Colores extra para los estados y mensajes */
-:root {
+:root { /* Variables de CSS reutilizables (colores y fuente); se usan con var(--nombre) */
   --color-exito: #15803d;        /* Verde: completado / operación exitosa */
-  --color-exito-fondo: #dcfce7;
+  --color-exito-fondo: #dcfce7; /* Variable de color o fuente; se usa con var(--color-exito-fondo) */
   --color-alerta: #a16207;       /* Ámbar: en espera */
-  --color-alerta-fondo: #fef9c3;
+  --color-alerta-fondo: #fef9c3; /* Variable de color o fuente; se usa con var(--color-alerta-fondo) */
   --color-info: #1d4ed8;         /* Azul: imprimiendo / información */
-  --color-info-fondo: #dbeafe;
+  --color-info-fondo: #dbeafe; /* Variable de color o fuente; se usa con var(--color-info-fondo) */
   --color-error: #b91c1c;        /* Rojo: errores y eliminar */
-  --color-error-fondo: #fee2e2;
+  --color-error-fondo: #fee2e2; /* Variable de color o fuente; se usa con var(--color-error-fondo) */
 }
 
 /* El atributo hidden siempre oculta, aunque otra regla ponga display */
-[hidden] {
-  display: none !important;
+[hidden] { /* Todo elemento con el atributo hidden queda oculto; JavaScript lo usa para mostrar/ocultar (Clase 14 DOM · atributos) */
+  display: none !important; /* Oculta el elemento */
 }
 
 /* Enfoque visible para quien navega con teclado (accesibilidad) */
-button:focus-visible,
-select:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--color-acento);
-  outline-offset: 2px;
+button:focus-visible, /* Botones enfocados con teclado... */
+select:focus-visible, /* ...listas enfocadas... */
+input:focus-visible { /* ...y campos enfocados: contorno visible (accesibilidad) */
+  outline: 2px solid var(--color-acento); /* Contorno visible al enfocar con teclado (accesibilidad) */
+  outline-offset: 2px; /* Separa el contorno del elemento */
 }
 
 /* --------------------------------------------------------------------------
    A. MENÚ: saludo del usuario y botón "Cerrar sesión"
    -------------------------------------------------------------------------- */
-#nav-sesion {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+#nav-sesion { /* Zona del menú donde dom.js → actualizarNavegacion() pone el saludo y Cerrar sesión */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  align-items: center; /* Centra a los hijos en vertical */
+  gap: 0.5rem; /* Separación entre los elementos hijos */
+  flex-wrap: wrap; /* Si no caben, pasan a la siguiente línea */
 }
 
-.saludo-usuario {
-  color: #ffffff;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
+.saludo-usuario { /* Texto "Hola, nombre" que crea dom.js (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  color: #ffffff; /* Letras blancas */
+  font-weight: 600; /* Letra en negrita */
+  display: inline-flex; /* Flexbox: acomoda los hijos en fila o columna */
+  align-items: center; /* Centra a los hijos en vertical */
+  gap: 0.35rem; /* Separación entre los elementos hijos */
 }
 
-.insignia-rol {
-  background-color: var(--color-acento);
-  color: #ffffff;
-  font-size: 0.7rem;
-  padding: 0.1rem 0.45rem;
-  border-radius: 999px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.insignia-rol { /* Etiquetita "admin" junto al saludo (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  background-color: var(--color-acento); /* Color de fondo (usa la variable --color-acento) */
+  color: #ffffff; /* Letras blancas */
+  font-size: 0.7rem; /* Tamaño de letra */
+  padding: 0.1rem 0.45rem; /* Relleno interno: espacio entre el borde y el contenido */
+  border-radius: 999px; /* Forma de píldora */
+  text-transform: uppercase; /* Pone el texto en mayúsculas */
+  letter-spacing: 0.05em; /* Separación entre letras */
 }
 
-.boton-salir {
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid var(--color-acento);
-  border-radius: 6px;
-  padding: 0.4rem 0.75rem;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.boton-salir { /* Botón "Cerrar sesión" creado por dom.js */
+  background: transparent; /* Sin fondo */
+  color: #ffffff; /* Letras blancas */
+  border: 1px solid var(--color-acento); /* Borde: grosor, estilo y color (usa la variable --color-acento) */
+  border-radius: 6px; /* Redondea las esquinas */
+  padding: 0.4rem 0.75rem; /* Relleno interno: espacio entre el borde y el contenido */
+  font: inherit; /* Usa la misma fuente que el resto de la página */
+  font-weight: 600; /* Letra en negrita */
+  cursor: pointer; /* Muestra la manito al pasar el mouse */
+  transition: background-color 0.3s ease; /* Hace que los cambios (por ejemplo al pasar el mouse) sean suaves */
 }
 
-.boton-salir:hover {
-  background-color: var(--color-secundario);
+.boton-salir:hover { /* Botón Cerrar sesión al pasar el mouse */
+  background-color: var(--color-secundario); /* Color de fondo (usa la variable --color-secundario) */
 }
 
 /* Aviso superior cuando falta configurar Firebase */
-.aviso-configuracion {
-  background-color: var(--color-alerta-fondo);
-  color: var(--color-alerta);
-  text-align: center;
-  padding: 0.75rem 1rem;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-alerta);
+.aviso-configuracion { /* Barra amarilla si falta configurar Firebase (dom.js → mostrarAvisoConfiguracion) */
+  background-color: var(--color-alerta-fondo); /* Color de fondo (usa la variable --color-alerta-fondo) */
+  color: var(--color-alerta); /* Color de las letras (usa la variable --color-alerta) */
+  text-align: center; /* Centra el texto */
+  padding: 0.75rem 1rem; /* Relleno interno: espacio entre el borde y el contenido */
+  font-weight: 600; /* Letra en negrita */
+  border-bottom: 2px solid var(--color-alerta); /* Línea de abajo */
 }
 
 /* --------------------------------------------------------------------------
    B. BOTONES EXTRA
    -------------------------------------------------------------------------- */
-.boton-secundario {
-  background-color: transparent;
-  color: var(--color-secundario) !important;
-  border: 2px solid var(--color-secundario);
+.boton-secundario { /* Variante gris del botón (Limpiar, Actualizar, Cancelar edición) */
+  background-color: transparent; /* Sin fondo */
+  color: var(--color-secundario) !important; /* Color de las letras (usa la variable --color-secundario) */
+  border: 2px solid var(--color-secundario); /* Borde: grosor, estilo y color (usa la variable --color-secundario) */
 }
 
-.boton-secundario:hover {
-  background-color: var(--color-secundario);
-  color: #ffffff !important;
+.boton-secundario:hover { /* Botón secundario al pasar el mouse */
+  background-color: var(--color-secundario); /* Color de fondo (usa la variable --color-secundario) */
+  color: #ffffff !important; /* Color de las letras */
 }
 
-.boton-cta:disabled {
-  opacity: 0.6;
-  cursor: wait;
-  box-shadow: none;
+.boton-cta:disabled { /* Botón deshabilitado mientras espera a Firebase (dom.js → cambiarEstadoBoton pone disabled) */
+  opacity: 0.6; /* Transparencia: 0 invisible, 1 visible */
+  cursor: wait; /* Tipo de cursor */
+  box-shadow: none; /* Sin sombra */
 }
 
 /* Botón que parece enlace (Editar, Quitar, Cancelar) */
-.boton-texto {
-  background: none;
-  border: none;
-  color: var(--color-acento);
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.25rem 0.35rem;
-  border-radius: 4px;
+.boton-texto { /* Botón que parece enlace (Editar, Quitar, Cancelar pedido) */
+  background: none; /* Sin fondo */
+  border: none; /* Sin borde */
+  color: var(--color-acento); /* Color de las letras (usa la variable --color-acento) */
+  font: inherit; /* Usa la misma fuente que el resto de la página */
+  font-weight: 600; /* Letra en negrita */
+  cursor: pointer; /* Muestra la manito al pasar el mouse */
+  padding: 0.25rem 0.35rem; /* Relleno interno: espacio entre el borde y el contenido */
+  border-radius: 4px; /* Redondea las esquinas */
 }
 
-.boton-texto:hover {
-  text-decoration: underline;
+.boton-texto:hover { /* Botón de texto al pasar el mouse */
+  text-decoration: underline; /* Subrayado */
 }
 
-.boton-texto-peligro {
-  color: var(--color-error);
+.boton-texto-peligro { /* Variante roja para acciones peligrosas (Eliminar, Cancelar pedido) */
+  color: var(--color-error); /* Color de las letras (usa la variable --color-error) */
 }
 
-.boton-texto:disabled {
-  opacity: 0.6;
-  cursor: wait;
+.boton-texto:disabled { /* Botón de texto deshabilitado mientras espera */
+  opacity: 0.6; /* Transparencia: 0 invisible, 1 visible */
+  cursor: wait; /* Tipo de cursor */
 }
 
 /* --------------------------------------------------------------------------
    C. ESTADOS DE CARGA, VACÍO Y ERROR
    -------------------------------------------------------------------------- */
-.estado-carga,
-.estado-vacio,
-.estado-error {
+.estado-carga, /* ESTADOS DE RETROALIMENTACIÓN: caja de carga... */
+.estado-vacio, /* ...caja de "no hay datos"... */
+.estado-error { /* Caja de error (las tres las crea dom.js) (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
   grid-column: 1 / -1; /* Ocupa todo el ancho aunque esté dentro de una grilla */
-  text-align: center;
-  padding: 2.5rem 1rem;
-  color: var(--color-texto-mutado);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  text-align: center; /* Centra el texto */
+  padding: 2.5rem 1rem; /* Relleno interno: espacio entre el borde y el contenido */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  flex-direction: column; /* Pone los hijos uno debajo del otro */
+  align-items: center; /* Centra a los hijos en horizontal (porque van en columna) */
+  gap: 0.75rem; /* Separación entre los elementos hijos */
 }
 
-.estado-vacio-icono {
-  font-size: 2.5rem;
+.estado-vacio-icono { /* Ícono grande del estado vacío */
+  font-size: 2.5rem; /* Tamaño de letra */
 }
 
-.estado-error {
-  background-color: var(--color-error-fondo);
-  color: var(--color-error);
-  border-radius: 8px;
+.estado-error { /* Caja de error (las tres las crea dom.js) (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  background-color: var(--color-error-fondo); /* Color de fondo (usa la variable --color-error-fondo) */
+  color: var(--color-error); /* Color de las letras (usa la variable --color-error) */
+  border-radius: 8px; /* Redondea las esquinas */
 }
 
 /* Rueda que gira mientras se espera a Firebase */
-.spinner {
-  width: 42px;
-  height: 42px;
-  border: 4px solid var(--color-borde);
-  border-top-color: var(--color-acento);
-  border-radius: 50%;
-  animation: girar 0.8s linear infinite;
+.spinner { /* Circulito de carga de dom.js → mostrarCargando() (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  width: 42px; /* Ancho */
+  height: 42px; /* Alto */
+  border: 4px solid var(--color-borde); /* Borde: grosor, estilo y color (usa la variable --color-borde) */
+  border-top-color: var(--color-acento); /* Solo la parte de arriba con color: al girar se ve el spinner */
+  border-radius: 50%; /* Lo vuelve un círculo */
+  animation: girar 0.8s linear infinite; /* Aplica una animación creada con @keyframes */
 }
 
-@keyframes girar {
-  to {
-    transform: rotate(360deg);
+@keyframes girar { /* Animación que hace girar el spinner */
+  to { /* Final de la animación */
+    transform: rotate(360deg); /* Gira el elemento */
   }
 }
 
 /* --------------------------------------------------------------------------
    D. NOTIFICACIONES FLOTANTES
    -------------------------------------------------------------------------- */
-.zona-notificaciones {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 200;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  max-width: min(360px, calc(100vw - 2rem));
+.zona-notificaciones { /* Esquina donde aparecen los avisos de dom.js → mostrarNotificacion() */
+  position: fixed; /* Queda fijo en la pantalla aunque se haga scroll */
+  right: 1rem; /* Distancia desde la derecha */
+  bottom: 1rem; /* Distancia desde abajo */
+  z-index: 200; /* Orden de capas: el número mayor queda encima */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  flex-direction: column; /* Pone los hijos uno debajo del otro */
+  gap: 0.5rem; /* Separación entre los elementos hijos */
+  max-width: min(360px, calc(100vw - 2rem)); /* Ancho máximo: no crece más que esto */
 }
 
-.notificacion {
-  padding: 0.85rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
-  border-left: 5px solid;
-  animation: aparecer 0.3s ease;
+.notificacion { /* Cada aviso flotante (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  padding: 0.85rem 1rem; /* Relleno interno: espacio entre el borde y el contenido */
+  border-radius: 8px; /* Redondea las esquinas */
+  font-weight: 600; /* Letra en negrita */
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18); /* Sombra para dar profundidad */
+  border-left: 5px solid; /* Línea gruesa a la izquierda */
+  animation: aparecer 0.3s ease; /* Aplica una animación creada con @keyframes */
 }
 
-.notificacion-exito {
-  background-color: var(--color-exito-fondo);
-  color: var(--color-exito);
+.notificacion-exito { /* Aviso verde (operación exitosa) (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  background-color: var(--color-exito-fondo); /* Color de fondo (usa la variable --color-exito-fondo) */
+  color: var(--color-exito); /* Color de las letras (usa la variable --color-exito) */
 }
 
-.notificacion-error {
-  background-color: var(--color-error-fondo);
-  color: var(--color-error);
+.notificacion-error { /* Aviso rojo (error) (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  background-color: var(--color-error-fondo); /* Color de fondo (usa la variable --color-error-fondo) */
+  color: var(--color-error); /* Color de las letras (usa la variable --color-error) */
 }
 
-.notificacion-info {
-  background-color: var(--color-info-fondo);
-  color: var(--color-info);
+.notificacion-info { /* Aviso azul (información) (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  background-color: var(--color-info-fondo); /* Color de fondo (usa la variable --color-info-fondo) */
+  color: var(--color-info); /* Color de las letras (usa la variable --color-info) */
 }
 
-@keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+@keyframes aparecer { /* Animación de entrada de los avisos */
+  from { /* Inicio de la animación */
+    opacity: 0; /* Transparencia: 0 invisible, 1 visible */
+    transform: translateY(10px); /* Lo mueve en vertical */
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  to { /* Final de la animación */
+    opacity: 1; /* Transparencia: 0 invisible, 1 visible */
+    transform: translateY(0); /* Lo mueve en vertical */
   }
 }
 
 /* --------------------------------------------------------------------------
    E. FORMULARIOS: errores de validación, casillas y campos en fila
    -------------------------------------------------------------------------- */
-.error-campo {
-  color: var(--color-error);
-  font-size: 0.85rem;
-  min-height: 1.1em;
-  margin-top: 0.25rem;
+.error-campo { /* Texto rojo debajo de un campo con error (lo escribe dom.js → mostrarErrores) */
+  color: var(--color-error); /* Color de las letras (usa la variable --color-error) */
+  font-size: 0.85rem; /* Tamaño de letra */
+  min-height: 1.1em; /* Alto mínimo */
+  margin-top: 0.25rem; /* Espacio por arriba */
 }
 
-.grupo-formulario input[aria-invalid="true"],
-.grupo-formulario select[aria-invalid="true"],
-.grupo-formulario textarea[aria-invalid="true"] {
-  border-color: var(--color-error);
-  background-color: #fff7f7;
+.grupo-formulario input[aria-invalid="true"], /* Campo marcado como inválido por dom.js... */
+.grupo-formulario select[aria-invalid="true"], /* ...lista inválida... */
+.grupo-formulario textarea[aria-invalid="true"] { /* ...o área de texto inválida: borde rojo (selector de atributo) */
+  border-color: var(--color-error); /* Color del borde (usa la variable --color-error) */
+  background-color: #fff7f7; /* Color de fondo */
 }
 
-.grupo-casilla {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
-  font-weight: 600;
-  color: var(--color-principal);
+.grupo-casilla { /* Etiqueta con casilla (Solo multicolor, Impresión multicolor) */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  align-items: center; /* Centra a los hijos en vertical */
+  gap: 0.5rem; /* Separación entre los elementos hijos */
+  margin-bottom: 1.25rem; /* Espacio por debajo */
+  font-weight: 600; /* Letra en negrita */
+  color: var(--color-principal); /* Color de las letras (usa la variable --color-principal) */
 }
 
-.grupo-casilla input {
-  width: 1.15rem;
-  height: 1.15rem;
+.grupo-casilla input { /* La casilla en sí */
+  width: 1.15rem; /* Ancho */
+  height: 1.15rem; /* Alto */
 }
 
-.fila-campos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 0 1rem;
+.fila-campos { /* Varios campos lado a lado */
+  display: grid; /* Grid: acomoda los hijos en cuadrícula */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Columnas automáticas: caben tantas como permita el ancho (adaptable sin media query) */
+  gap: 0 1rem; /* Separación entre los elementos hijos */
 }
 
-fieldset.grupo-medidas {
-  border: 1px dashed var(--color-borde);
-  border-radius: 8px;
-  padding: 1rem 1rem 0;
-  margin-bottom: 1.25rem;
+fieldset.grupo-medidas { /* Grupo de medidas del pedido personalizado */
+  border: 1px dashed var(--color-borde); /* Borde: grosor, estilo y color (usa la variable --color-borde) */
+  border-radius: 8px; /* Redondea las esquinas */
+  padding: 1rem 1rem 0; /* Relleno interno: espacio entre el borde y el contenido */
+  margin-bottom: 1.25rem; /* Espacio por debajo */
 }
 
-fieldset.grupo-medidas legend {
-  font-weight: 600;
-  color: var(--color-principal);
-  padding: 0 0.4rem;
+fieldset.grupo-medidas legend { /* Título del grupo de medidas */
+  font-weight: 600; /* Letra en negrita */
+  color: var(--color-principal); /* Color de las letras (usa la variable --color-principal) */
+  padding: 0 0.4rem; /* Relleno interno: espacio entre el borde y el contenido */
 }
 
-.texto-ayuda {
-  font-size: 0.8rem;
-  color: var(--color-texto-mutado);
+.texto-ayuda { /* Texto pequeño de ayuda */
+  font-size: 0.8rem; /* Tamaño de letra */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
 }
 
 /* --------------------------------------------------------------------------
    F. CATÁLOGO: barra de filtros y tarjetas
    -------------------------------------------------------------------------- */
-.barra-filtros {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr auto auto;
-  gap: 1rem;
-  align-items: end;
-  background-color: var(--color-superficie);
-  border: 1px solid var(--color-borde);
-  border-radius: 10px;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
+.barra-filtros { /* Barra de búsqueda y filtros del catálogo */
+  display: grid; /* Grid: acomoda los hijos en cuadrícula */
+  grid-template-columns: 2fr 1fr 1fr auto auto; /* Define las columnas de la cuadrícula */
+  gap: 1rem; /* Separación entre los elementos hijos */
+  align-items: end; /* Alineación vertical de los hijos */
+  background-color: var(--color-superficie); /* Color de fondo (usa la variable --color-superficie) */
+  border: 1px solid var(--color-borde); /* Borde: grosor, estilo y color (usa la variable --color-borde) */
+  border-radius: 10px; /* Redondea las esquinas */
+  padding: 1.25rem; /* Relleno interno: espacio entre el borde y el contenido */
+  margin-bottom: 1rem; /* Espacio por debajo */
 }
 
-.barra-filtros .grupo-formulario,
-.barra-filtros .grupo-casilla {
-  margin-bottom: 0;
+.barra-filtros .grupo-formulario, /* Grupos de la barra de filtros... */
+.barra-filtros .grupo-casilla { /* Casilla dentro de la barra de filtros */
+  margin-bottom: 0; /* Espacio por debajo */
 }
 
-.barra-filtros .grupo-casilla {
-  min-height: 2.9rem;
+.barra-filtros .grupo-casilla { /* Casilla dentro de la barra de filtros */
+  min-height: 2.9rem; /* Alto mínimo */
 }
 
-.contador-resultados {
-  color: var(--color-texto-mutado);
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+.contador-resultados { /* Texto "Mostrando X de Y productos" */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
+  margin-bottom: 1rem; /* Espacio por debajo */
+  font-size: 0.9rem; /* Tamaño de letra */
 }
 
-.chip-categoria {
-  align-self: flex-start;
-  background-color: var(--color-info-fondo);
-  color: var(--color-secundario);
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.15rem 0.6rem;
-  border-radius: 999px;
-  margin-bottom: 0.5rem;
+.chip-categoria { /* Etiqueta de categoría en cada tarjeta (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  align-self: flex-start; /* Alineación propia dentro del contenedor */
+  background-color: var(--color-info-fondo); /* Color de fondo (usa la variable --color-info-fondo) */
+  color: var(--color-secundario); /* Color de las letras (usa la variable --color-secundario) */
+  font-size: 0.75rem; /* Tamaño de letra */
+  font-weight: 700; /* Letra en negrita */
+  padding: 0.15rem 0.6rem; /* Relleno interno: espacio entre el borde y el contenido */
+  border-radius: 999px; /* Forma de píldora */
+  margin-bottom: 0.5rem; /* Espacio por debajo */
 }
 
-.enlace-stl {
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
-  text-align: center;
+.enlace-stl { /* Enlace "Ver archivo STL" de la tarjeta */
+  margin-top: 0.6rem; /* Espacio por arriba */
+  font-size: 0.85rem; /* Tamaño de letra */
+  text-align: center; /* Centra el texto */
 }
 
 /* --------------------------------------------------------------------------
    G. PEDIDOS DEL CLIENTE
    -------------------------------------------------------------------------- */
-.grilla-pedidos {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 2rem;
-  align-items: start;
+.grilla-pedidos { /* Dos columnas de pedidos.html: formulario y Mis pedidos */
+  display: grid; /* Grid: acomoda los hijos en cuadrícula */
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); /* Define las columnas de la cuadrícula */
+  gap: 2rem; /* Separación entre los elementos hijos */
+  align-items: start; /* Alineación vertical de los hijos */
 }
 
-.encabezado-seccion {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
+.encabezado-seccion { /* Fila con título y botones */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  justify-content: space-between; /* Manda los hijos a los extremos */
+  align-items: center; /* Centra a los hijos en vertical */
+  gap: 1rem; /* Separación entre los elementos hijos */
+  flex-wrap: wrap; /* Si no caben, pasan a la siguiente línea */
+  margin-bottom: 1rem; /* Espacio por debajo */
 }
 
-.encabezado-seccion h2 {
-  color: var(--color-principal);
+.encabezado-seccion h2 { /* Título de esa fila */
+  color: var(--color-principal); /* Color de las letras (usa la variable --color-principal) */
 }
 
-.producto-seleccionado {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background-color: var(--color-info-fondo);
-  border: 1px solid var(--color-acento);
-  border-radius: 8px;
-  padding: 0.75rem;
-  margin-bottom: 1.25rem;
+.producto-seleccionado { /* Recuadro del producto elegido en pedidos.html (dom.js → mostrarProductoSeleccionado) */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  align-items: center; /* Centra a los hijos en vertical */
+  gap: 1rem; /* Separación entre los elementos hijos */
+  background-color: var(--color-info-fondo); /* Color de fondo (usa la variable --color-info-fondo) */
+  border: 1px solid var(--color-acento); /* Borde: grosor, estilo y color (usa la variable --color-acento) */
+  border-radius: 8px; /* Redondea las esquinas */
+  padding: 0.75rem; /* Relleno interno: espacio entre el borde y el contenido */
+  margin-bottom: 1.25rem; /* Espacio por debajo */
 }
 
-.producto-seleccionado img {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  border-radius: 6px;
+.producto-seleccionado img { /* Foto del producto elegido */
+  width: 64px; /* Ancho */
+  height: 64px; /* Alto */
+  object-fit: cover; /* La foto llena el espacio recortándose, sin deformarse */
+  border-radius: 6px; /* Redondea las esquinas */
 }
 
-.producto-seleccionado div {
-  flex: 1;
+.producto-seleccionado div { /* Texto del producto elegido */
+  flex: 1; /* Crece para ocupar el espacio que sobra */
 }
 
-.producto-seleccionado p {
-  font-size: 0.85rem;
-  color: var(--color-texto-mutado);
+.producto-seleccionado p { /* Detalle de precio y medidas */
+  font-size: 0.85rem; /* Tamaño de letra */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
 }
 
-.cotizacion {
-  background-color: var(--color-principal);
-  color: #ffffff;
-  border-radius: 8px;
-  padding: 0.9rem 1rem;
-  margin-bottom: 1.25rem;
+.cotizacion { /* Recuadro azul de la cotización en vivo (dom.js → mostrarCotizacion) */
+  background-color: var(--color-principal); /* Color de fondo (usa la variable --color-principal) */
+  color: #ffffff; /* Letras blancas */
+  border-radius: 8px; /* Redondea las esquinas */
+  padding: 0.9rem 1rem; /* Relleno interno: espacio entre el borde y el contenido */
+  margin-bottom: 1.25rem; /* Espacio por debajo */
 }
 
-.cotizacion strong {
-  color: #93c5fd;
-  font-size: 1.1rem;
+.cotizacion strong { /* Números en negrita de la cotización */
+  color: #93c5fd; /* Color de las letras */
+  font-size: 1.1rem; /* Tamaño de letra */
 }
 
-.lista-pedidos {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.lista-pedidos { /* Lista de "Mis pedidos" */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  flex-direction: column; /* Pone los hijos uno debajo del otro */
+  gap: 1rem; /* Separación entre los elementos hijos */
 }
 
-.tarjeta-pedido {
-  background-color: var(--color-superficie);
-  border: 1px solid var(--color-borde);
-  border-radius: 10px;
-  padding: 1.1rem 1.25rem;
+.tarjeta-pedido { /* Tarjeta de un pedido del cliente (dom.js → renderizarPedidosCliente) (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  background-color: var(--color-superficie); /* Color de fondo (usa la variable --color-superficie) */
+  border: 1px solid var(--color-borde); /* Borde: grosor, estilo y color (usa la variable --color-borde) */
+  border-radius: 10px; /* Redondea las esquinas */
+  padding: 1.1rem 1.25rem; /* Relleno interno: espacio entre el borde y el contenido */
 }
 
-.tarjeta-pedido-encabezado {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+.tarjeta-pedido-encabezado { /* Título y estado del pedido */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  justify-content: space-between; /* Manda los hijos a los extremos */
+  align-items: flex-start; /* Alineación vertical de los hijos */
+  gap: 0.75rem; /* Separación entre los elementos hijos */
+  margin-bottom: 0.5rem; /* Espacio por debajo */
 }
 
-.tarjeta-pedido-encabezado h3 {
-  font-size: 1.05rem;
-  color: var(--color-principal);
+.tarjeta-pedido-encabezado h3 { /* Título del pedido */
+  font-size: 1.05rem; /* Tamaño de letra */
+  color: var(--color-principal); /* Color de las letras (usa la variable --color-principal) */
 }
 
-.tarjeta-pedido .tarjeta-detalles {
-  margin-bottom: 0.75rem;
-  overflow-wrap: anywhere;
+.tarjeta-pedido .tarjeta-detalles { /* Detalles dentro de la tarjeta de pedido */
+  margin-bottom: 0.75rem; /* Espacio por debajo */
+  overflow-wrap: anywhere; /* Parte palabras muy largas para que no se salgan */
 }
 
-.tarjeta-pedido-pie {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1.25rem;
-  border-top: 1px solid var(--color-borde);
-  padding-top: 0.6rem;
-  font-size: 0.9rem;
+.tarjeta-pedido-pie { /* Fecha, tiempo, precio y botón Cancelar */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  flex-wrap: wrap; /* Si no caben, pasan a la siguiente línea */
+  align-items: center; /* Centra a los hijos en vertical */
+  gap: 0.5rem 1.25rem; /* Separación entre los elementos hijos */
+  border-top: 1px solid var(--color-borde); /* Línea de arriba */
+  padding-top: 0.6rem; /* Relleno interno: espacio entre el borde y el contenido */
+  font-size: 0.9rem; /* Tamaño de letra */
 }
 
-.tarjeta-pedido-pie strong {
-  color: var(--color-secundario);
-  margin-left: auto;
+.tarjeta-pedido-pie strong { /* Precio del pedido */
+  color: var(--color-secundario); /* Color de las letras (usa la variable --color-secundario) */
+  margin-left: auto; /* Empuja el elemento hacia la derecha */
 }
 
 /* Insignias de estado de fabricación */
-.insignia-estado {
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  white-space: nowrap;
+.insignia-estado { /* Etiqueta de estado de un pedido (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  font-size: 0.78rem; /* Tamaño de letra */
+  font-weight: 700; /* Letra en negrita */
+  padding: 0.2rem 0.65rem; /* Relleno interno: espacio entre el borde y el contenido */
+  border-radius: 999px; /* Forma de píldora */
+  white-space: nowrap; /* No parte el texto en varias líneas */
 }
 
-.estado-en-espera {
-  background-color: var(--color-alerta-fondo);
-  color: var(--color-alerta);
+.estado-en-espera { /* Color de "En espera": dom.js arma esta clase desde el texto del estado (toLowerCase + replace) */
+  background-color: var(--color-alerta-fondo); /* Color de fondo (usa la variable --color-alerta-fondo) */
+  color: var(--color-alerta); /* Color de las letras (usa la variable --color-alerta) */
 }
 
-.estado-imprimiendo {
-  background-color: var(--color-info-fondo);
-  color: var(--color-info);
+.estado-imprimiendo { /* Color de "Imprimiendo" */
+  background-color: var(--color-info-fondo); /* Color de fondo (usa la variable --color-info-fondo) */
+  color: var(--color-info); /* Color de las letras (usa la variable --color-info) */
 }
 
-.estado-completado {
-  background-color: var(--color-exito-fondo);
-  color: var(--color-exito);
+.estado-completado { /* Color de "Completado" */
+  background-color: var(--color-exito-fondo); /* Color de fondo (usa la variable --color-exito-fondo) */
+  color: var(--color-exito); /* Color de las letras (usa la variable --color-exito) */
 }
 
 /* --------------------------------------------------------------------------
    H. INDICADORES (resumen del cliente y del panel admin)
    -------------------------------------------------------------------------- */
-.indicadores {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.indicadores { /* Fila de tarjetas de números (cliente y admin) */
+  display: grid; /* Grid: acomoda los hijos en cuadrícula */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Columnas automáticas: caben tantas como permita el ancho (adaptable sin media query) */
+  gap: 1rem; /* Separación entre los elementos hijos */
+  margin-bottom: 1.5rem; /* Espacio por debajo */
 }
 
-.indicador {
-  background-color: var(--color-superficie);
-  border: 1px solid var(--color-borde);
-  border-top: 4px solid var(--color-acento);
-  border-radius: 8px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+.indicador { /* Tarjeta de un indicador (dom.js → crearIndicador) (Clase 14 DOM · Trabajar con clases CSS: dom.js agrega esta clase) */
+  background-color: var(--color-superficie); /* Color de fondo (usa la variable --color-superficie) */
+  border: 1px solid var(--color-borde); /* Borde: grosor, estilo y color (usa la variable --color-borde) */
+  border-top: 4px solid var(--color-acento); /* Línea de arriba */
+  border-radius: 8px; /* Redondea las esquinas */
+  padding: 1rem; /* Relleno interno: espacio entre el borde y el contenido */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  flex-direction: column; /* Pone los hijos uno debajo del otro */
+  gap: 0.2rem; /* Separación entre los elementos hijos */
 }
 
-.indicador-valor {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-principal);
+.indicador-valor { /* Número grande del indicador */
+  font-size: 1.5rem; /* Tamaño de letra */
+  font-weight: 700; /* Letra en negrita */
+  color: var(--color-principal); /* Color de las letras (usa la variable --color-principal) */
 }
 
-.indicador-titulo {
-  font-size: 0.85rem;
-  color: var(--color-texto-mutado);
+.indicador-titulo { /* Texto pequeño del indicador */
+  font-size: 0.85rem; /* Tamaño de letra */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
 }
 
 /* --------------------------------------------------------------------------
    I. PANEL DE ADMINISTRACIÓN
    -------------------------------------------------------------------------- */
-.bloque-admin {
-  background-color: var(--color-superficie);
-  border: 1px solid var(--color-borde);
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+.bloque-admin { /* Bloques blancos del panel admin */
+  background-color: var(--color-superficie); /* Color de fondo (usa la variable --color-superficie) */
+  border: 1px solid var(--color-borde); /* Borde: grosor, estilo y color (usa la variable --color-borde) */
+  border-radius: 10px; /* Redondea las esquinas */
+  padding: 1.5rem; /* Relleno interno: espacio entre el borde y el contenido */
+  margin-bottom: 2rem; /* Espacio por debajo */
 }
 
-.grilla-admin {
-  display: grid;
-  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
-  gap: 2rem;
-  align-items: start;
+.grilla-admin { /* ...y del admin se vuelven una sola columna */
+  display: grid; /* Grid: acomoda los hijos en cuadrícula */
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr); /* Define las columnas de la cuadrícula */
+  gap: 2rem; /* Separación entre los elementos hijos */
+  align-items: start; /* Alineación vertical de los hijos */
 }
 
-.acciones-formulario {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+.acciones-formulario { /* Fila de botones de un formulario */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  gap: 0.75rem; /* Separación entre los elementos hijos */
+  flex-wrap: wrap; /* Si no caben, pasan a la siguiente línea */
 }
 
-.filtros-pedidos {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
+.filtros-pedidos { /* Filtros de la tabla de pedidos del admin */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  gap: 1rem; /* Separación entre los elementos hijos */
+  flex-wrap: wrap; /* Si no caben, pasan a la siguiente línea */
+  margin-bottom: 1rem; /* Espacio por debajo */
 }
 
-.filtros-pedidos .grupo-formulario {
-  margin-bottom: 0;
-  flex: 1 1 200px;
+.filtros-pedidos .grupo-formulario { /* Cada filtro */
+  margin-bottom: 0; /* Espacio por debajo */
+  flex: 1 1 200px; /* Crece para ocupar el espacio que sobra */
 }
 
 /* Tablas: en pantallas pequeñas se desplazan horizontalmente */
-.tabla-responsiva {
-  width: 100%;
-  overflow-x: auto;
+.tabla-responsiva { /* Contenedor de las tablas: en celular permite scroll horizontal */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  overflow-x: auto; /* Scroll horizontal solo dentro de esta caja (tablas en celular) */
 }
 
-.tabla {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
+.tabla { /* Tablas del admin creadas por dom.js → crearTabla() */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  border-collapse: collapse; /* Une los bordes de celdas vecinas */
+  font-size: 0.9rem; /* Tamaño de letra */
 }
 
-.tabla th,
-.tabla td {
-  text-align: left;
-  padding: 0.65rem 0.6rem;
-  border-bottom: 1px solid var(--color-borde);
-  vertical-align: middle;
+.tabla th, /* Encabezados... */
+.tabla td { /* ...y celdas de la tabla */
+  text-align: left; /* Alineación del texto: left */
+  padding: 0.65rem 0.6rem; /* Relleno interno: espacio entre el borde y el contenido */
+  border-bottom: 1px solid var(--color-borde); /* Línea de abajo */
+  vertical-align: middle; /* Alineación vertical dentro de la celda */
 }
 
-.tabla th {
-  background-color: var(--color-fondo);
-  color: var(--color-principal);
-  white-space: nowrap;
+.tabla th { /* Encabezados de la tabla */
+  background-color: var(--color-fondo); /* Color de fondo (usa la variable --color-fondo) */
+  color: var(--color-principal); /* Color de las letras (usa la variable --color-principal) */
+  white-space: nowrap; /* No parte el texto en varias líneas */
 }
 
-.tabla tbody tr:hover {
-  background-color: #f1f5f9;
+.tabla tbody tr:hover { /* Fila de la tabla al pasar el mouse */
+  background-color: #f1f5f9; /* Color de fondo */
 }
 
-.miniatura {
-  width: 48px;
-  height: 48px;
-  object-fit: cover;
-  border-radius: 6px;
+.miniatura { /* Foto pequeña de la tabla de productos */
+  width: 48px; /* Ancho */
+  height: 48px; /* Alto */
+  object-fit: cover; /* La foto llena el espacio recortándose, sin deformarse */
+  border-radius: 6px; /* Redondea las esquinas */
 }
 
-.fila-acciones {
-  display: flex;
-  gap: 0.25rem;
-  flex-wrap: wrap;
+.fila-acciones { /* Botones Editar y Eliminar de cada fila */
+  display: flex; /* Flexbox: acomoda los hijos en fila o columna */
+  gap: 0.25rem; /* Separación entre los elementos hijos */
+  flex-wrap: wrap; /* Si no caben, pasan a la siguiente línea */
 }
 
-.texto-descripcion {
-  display: block;
-  color: var(--color-texto-mutado);
-  max-width: 260px;
+.texto-descripcion { /* Descripción en pequeño en la tabla de pedidos */
+  display: block; /* Ocupa su propia línea de ancho completo */
+  color: var(--color-texto-mutado); /* Color de las letras (usa la variable --color-texto-mutado) */
+  max-width: 260px; /* Ancho máximo: no crece más que esto */
 }
 
-.select-estado {
-  padding: 0.4rem;
-  border-radius: 6px;
-  border: 1px solid var(--color-borde);
-  font: inherit;
+.select-estado { /* <select> para cambiar el estado de un pedido */
+  padding: 0.4rem; /* Relleno interno: espacio entre el borde y el contenido */
+  border-radius: 6px; /* Redondea las esquinas */
+  border: 1px solid var(--color-borde); /* Borde: grosor, estilo y color (usa la variable --color-borde) */
+  font: inherit; /* Usa la misma fuente que el resto de la página */
 }
 
-.acceso-denegado {
-  text-align: center;
-  padding: 3rem 1rem;
+.acceso-denegado { /* Aviso "Acceso restringido" para quien no es admin */
+  text-align: center; /* Centra el texto */
+  padding: 3rem 1rem; /* Relleno interno: espacio entre el borde y el contenido */
 }
 
 /* --------------------------------------------------------------------------
    J. ADAPTACIÓN A TABLETS Y CELULARES
    -------------------------------------------------------------------------- */
-@media (max-width: 900px) {
-  .barra-filtros {
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 900px) { /* DISEÑO ADAPTABLE: reglas para pantallas de 900px o menos */
+  .barra-filtros { /* Barra de búsqueda y filtros del catálogo */
+    grid-template-columns: 1fr 1fr; /* Define las columnas de la cuadrícula */
   }
 
-  .barra-filtros .grupo-buscador {
-    grid-column: 1 / -1;
+  .barra-filtros .grupo-buscador { /* Buscador ocupa toda la fila en pantallas medianas */
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
   }
 
-  .grilla-pedidos,
-  .grilla-admin {
-    grid-template-columns: 1fr;
+  .grilla-pedidos, /* Las dos columnas de pedidos... */
+  .grilla-admin { /* ...y del admin se vuelven una sola columna */
+    grid-template-columns: 1fr; /* Una sola columna */
   }
 }
 
-@media (max-width: 560px) {
-  .barra-filtros {
-    grid-template-columns: 1fr;
+@media (max-width: 560px) { /* DISEÑO ADAPTABLE: reglas para celulares (560px o menos) */
+  .barra-filtros { /* Barra de búsqueda y filtros del catálogo */
+    grid-template-columns: 1fr; /* Una sola columna */
   }
 
-  .bloque-admin,
-  .tarjeta-formulario {
-    padding: 1.1rem;
+  .bloque-admin, /* Bloques del admin... */
+  .tarjeta-formulario { /* ...y tarjetas de formulario con menos relleno en celular */
+    padding: 1.1rem; /* Relleno interno: espacio entre el borde y el contenido */
   }
 
-  .zona-notificaciones {
-    left: 1rem;
-    right: 1rem;
-    max-width: none;
+  .zona-notificaciones { /* Esquina donde aparecen los avisos de dom.js → mostrarNotificacion() */
+    left: 1rem; /* Distancia desde la izquierda */
+    right: 1rem; /* Distancia desde la derecha */
+    max-width: none; /* Ancho máximo: no crece más que esto */
   }
 }

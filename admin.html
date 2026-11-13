@@ -1,203 +1,203 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html> <!-- Indica al navegador que es un documento HTML5 -->
+<html lang="es"> <!-- Inicio del documento; lang="es" dice que está en español (ayuda a lectores de pantalla y traductores) -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de administración | SV3DPrints</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <script type="module" src="js/main.js"></script>
-</head>
+<head> <!-- Información de la página que no se ve: título, estilos y scripts -->
+  <meta charset="UTF-8"> <!-- Permite mostrar tildes, ñ y símbolos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página se ajuste al ancho del celular (diseño adaptable) -->
+  <title>Panel de administración | SV3DPrints</title> <!-- Texto que aparece en la pestaña del navegador -->
+  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta la hoja de estilos que comparten todas las páginas -->
+  <script type="module" src="js/main.js"></script> <!-- Carga main.js como MÓDULO: así puede usar import/export y se ejecuta cuando el HTML ya cargó (Clase 15 · Módulos en JS) -->
+</head> <!-- Fin del head -->
 
 <!-- Página exclusiva del rol "admin". El panel empieza oculto (hidden) y main.js
      lo muestra solo si el perfil tiene rol admin. Ocultarlo es solo comodidad:
      la seguridad real está en firestore.rules. -->
-<body data-pagina="admin">
+<body data-pagina="admin"> <!-- data-pagina="admin": main.js ejecuta iniciarPaginaAdmin(); sin sesión → login, sin rol admin → Acceso restringido -->
 
   <!-- ===================== ENCABEZADO Y MENÚ ===================== -->
-  <header class="encabezado-principal">
-    <div class="contenedor barra-navegacion">
-      <details class="menu-desplegable">
-        <summary class="boton-menu" aria-label="Menú de navegación">
-          <span class="linea-menu" aria-hidden="true"></span>
-          <span class="linea-menu" aria-hidden="true"></span>
-          <span class="linea-menu" aria-hidden="true"></span>
-        </summary>
-        <nav aria-label="Navegación principal">
-          <div class="cabecera-menu-lateral">
-            <img src="img/logo.jpg" alt="" width="45" height="45">
-            <span>TerraPrints 3D</span>
+  <header class="encabezado-principal"> <!-- Franja oscura de arriba con el menú y el logo -->
+    <div class="contenedor barra-navegacion"> <!-- Pone el botón del menú y el logo en una misma fila -->
+      <details class="menu-desplegable"> <!-- Menú desplegable: <details> se abre y se cierra solo al tocarlo, sin JavaScript -->
+        <summary class="boton-menu" aria-label="Menú de navegación"> <!-- Botón de tres rayas que abre y cierra el menú; aria-label le da nombre para lectores de pantalla -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+        </summary> <!-- Fin del botón del menú -->
+        <nav aria-label="Navegación principal"> <!-- Panel lateral con los enlaces para moverse entre páginas -->
+          <div class="cabecera-menu-lateral"> <!-- Parte de arriba del panel: logo y nombre -->
+            <img src="img/logo.jpg" alt="" width="45" height="45"> <!-- Logo; alt vacío porque es decorativo (el nombre ya está escrito al lado) -->
+            <span>TerraPrints 3D</span> <!-- Nombre de la marca -->
           </div>
-        <ul class="menu-navegacion">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="catalogo.html">Catálogo</a></li>
-          <li><a href="pedidos.html">Mis pedidos</a></li>
-          <li id="nav-admin" hidden><a href="admin.html" class="activo" aria-current="page">Panel admin</a></li>
-          <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li>
-        </ul>
-        </nav>
-      </details>
-      <a href="index.html" class="logo-marca">
-        <img src="img/logo.jpg" alt="" width="45" height="45">
-        <span>TerraPrints 3D</span>
+        <ul class="menu-navegacion"> <!-- Lista con los enlaces del menú -->
+          <li><a href="index.html">Inicio</a></li> <!-- Enlace "Inicio" a la página de inicio -->
+          <li><a href="catalogo.html">Catálogo</a></li> <!-- Enlace "Catálogo" a el catálogo -->
+          <li><a href="pedidos.html">Mis pedidos</a></li> <!-- Enlace "Mis pedidos" a los pedidos del cliente -->
+          <li id="nav-admin" hidden><a href="admin.html" class="activo" aria-current="page">Panel admin</a></li> <!-- Enlace al panel admin: empieza oculto (hidden) y dom.js → actualizarNavegacion() solo lo muestra al rol admin -->
+          <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li> <!-- Si hay sesión, dom.js → actualizarNavegacion() cambia este enlace por "Hola, nombre" y el botón "Cerrar sesión" (Clase 14 DOM) -->
+        </ul> <!-- Fin de la lista -->
+        </nav> <!-- Fin del panel de navegación -->
+      </details> <!-- Fin del menú desplegable -->
+      <a href="index.html" class="logo-marca"> <!-- Logo y nombre: al tocarlos vuelve a la página de inicio -->
+        <img src="img/logo.jpg" alt="" width="45" height="45"> <!-- Logo; alt vacío porque es decorativo (el nombre ya está escrito al lado) -->
+        <span>TerraPrints 3D</span> <!-- Nombre de la marca -->
       </a>
     </div>
-  </header>
+  </header> <!-- Fin del encabezado -->
 
-  <main class="contenedor seccion">
-    <h1 class="titulo-seccion">Panel de administración</h1>
+  <main class="contenedor seccion"> <!-- Contenido principal con márgenes -->
+    <h1 class="titulo-seccion">Panel de administración</h1> <!-- Título principal de la página -->
 
     <!-- Mensaje para usuarios que no son admin -->
-    <section id="acceso-denegado" class="bloque-admin acceso-denegado" hidden>
-      <h2>Acceso restringido</h2>
-      <p class="subtitulo-descriptivo">Esta sección es exclusiva para administradores de SV3DPrints.</p>
-      <a href="index.html" class="boton-cta">Volver al inicio</a>
-    </section>
+    <section id="acceso-denegado" class="bloque-admin acceso-denegado" hidden> <!-- Mensaje "Acceso restringido": empieza oculto y main.js lo muestra si quien entra NO es admin -->
+      <h2>Acceso restringido</h2> <!-- Título del aviso -->
+      <p class="subtitulo-descriptivo">Esta sección es exclusiva para administradores de SV3DPrints.</p> <!-- Explicación del aviso -->
+      <a href="index.html" class="boton-cta">Volver al inicio</a> <!-- Botón para volver al inicio -->
+    </section> <!-- Fin de la sección -->
 
-    <div id="panel-admin" hidden>
+    <div id="panel-admin" hidden> <!-- Todo el panel empieza OCULTO (hidden); main.js lo muestra solo al admin. La seguridad real está en firestore.rules -->
 
       <!-- ===================== INDICADORES ===================== -->
-      <section aria-labelledby="titulo-indicadores">
-        <div class="encabezado-seccion">
-          <h2 id="titulo-indicadores">Resumen del negocio</h2>
-          <div class="acciones-formulario">
-            <button type="button" id="actualizar-panel" class="boton-cta boton-secundario">↻ Actualizar</button>
-            <button type="button" id="cargar-datos" class="boton-cta boton-secundario">Cargar datos iniciales</button>
+      <section aria-labelledby="titulo-indicadores"> <!-- Sección de indicadores del negocio -->
+        <div class="encabezado-seccion"> <!-- Título y botones en una fila -->
+          <h2 id="titulo-indicadores">Resumen del negocio</h2> <!-- Título de la sección -->
+          <div class="acciones-formulario"> <!-- Grupo de botones -->
+            <button type="button" id="actualizar-panel" class="boton-cta boton-secundario">↻ Actualizar</button> <!-- Evento click: main.js → cargarPanel() vuelve a consultar Firestore -->
+            <button type="button" id="cargar-datos" class="boton-cta boton-secundario">Cargar datos iniciales</button> <!-- Evento click: sube 8 productos y 3 pedidos demo (db.js → cargarDatosIniciales) -->
           </div>
         </div>
         <!-- Indicadores calculados en logica.js (resumirPedidos / resumirCatalogo) -->
-        <div id="indicadores" class="indicadores" aria-live="polite"></div>
-      </section>
+        <div id="indicadores" class="indicadores" aria-live="polite"></div> <!-- VACÍO: dom.js → mostrarIndicadores() dibuja 7 tarjetas de números (calculados con reduce en logica.js) -->
+      </section> <!-- Fin de la sección -->
 
       <!-- ===================== CRUD DE PRODUCTOS ===================== -->
-      <section class="bloque-admin" aria-labelledby="titulo-productos">
-        <h2 id="titulo-productos" class="titulo-seccion">Productos del catálogo</h2>
+      <section class="bloque-admin" aria-labelledby="titulo-productos"> <!-- Sección del CRUD de productos -->
+        <h2 id="titulo-productos" class="titulo-seccion">Productos del catálogo</h2> <!-- Título de la sección -->
 
-        <div class="grilla-admin">
+        <div class="grilla-admin"> <!-- Dos columnas: formulario y tabla -->
 
           <!-- Formulario para CREAR y EDITAR (mismo formulario; el campo oculto "id" decide) -->
-          <form id="form-producto" novalidate>
-            <h3 id="titulo-form-producto">Nuevo producto</h3>
-            <input type="hidden" name="productoId">
+          <form id="form-producto" novalidate> <!-- Formulario de producto (CREATE y UPDATE); novalidate porque valida logica.js → validarProducto() -->
+            <h3 id="titulo-form-producto">Nuevo producto</h3> <!-- main.js cambia este título a "Editar producto: ..." al editar (textContent) -->
+            <input type="hidden" name="productoId"> <!-- Campo oculto: vacío = crear, con id = editar (lo llena dom.js → llenarFormularioProducto) -->
 
-            <div class="grupo-formulario">
-              <label for="prod-nombre">Nombre *</label>
-              <input type="text" id="prod-nombre" name="nombre" required minlength="3" maxlength="80">
-              <small class="error-campo" data-error="nombre"></small>
+            <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+              <label for="prod-nombre">Nombre *</label> <!-- Texto del campo; for="prod-nombre" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+              <input type="text" id="prod-nombre" name="nombre" required minlength="3" maxlength="80"> <!-- Nombre del producto (3 a 80 caracteres, igual que en firestore.rules) -->
+              <small class="error-campo" data-error="nombre"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "nombre" (Clase 14 DOM · atributos data-*) -->
             </div>
 
-            <div class="grupo-formulario">
-              <label for="prod-categoria">Categoría *</label>
-              <input type="text" id="prod-categoria" name="categoria" list="lista-categorias" required placeholder="Llaveros, Figuras…">
-              <datalist id="lista-categorias">
-                <option value="Llaveros"></option>
-                <option value="Figuras"></option>
-                <option value="Hogar y funcional"></option>
-                <option value="Prototipos"></option>
-              </datalist>
-              <small class="error-campo" data-error="categoria"></small>
+            <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+              <label for="prod-categoria">Categoría *</label> <!-- Texto del campo; for="prod-categoria" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+              <input type="text" id="prod-categoria" name="categoria" list="lista-categorias" required placeholder="Llaveros, Figuras…"> <!-- Categoría: list="lista-categorias" muestra sugerencias mientras se escribe -->
+              <datalist id="lista-categorias"> <!-- Lista de sugerencias para el campo categoría -->
+                <option value="Llaveros"></option> <!-- Sugerencia "Llaveros" para el campo categoría -->
+                <option value="Figuras"></option> <!-- Sugerencia "Figuras" para el campo categoría -->
+                <option value="Hogar y funcional"></option> <!-- Sugerencia "Hogar y funcional" para el campo categoría -->
+                <option value="Prototipos"></option> <!-- Sugerencia "Prototipos" para el campo categoría -->
+              </datalist> <!-- Fin de las sugerencias -->
+              <small class="error-campo" data-error="categoria"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "categoria" (Clase 14 DOM · atributos data-*) -->
             </div>
 
-            <div class="fila-campos">
-              <div class="grupo-formulario">
-                <label for="prod-precio">Precio (USD) *</label>
-                <input type="number" id="prod-precio" name="precio" min="0.01" max="500" step="0.01" required>
-                <small class="error-campo" data-error="precio"></small>
+            <div class="fila-campos"> <!-- Pone varios campos lado a lado (en celular se apilan) -->
+              <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+                <label for="prod-precio">Precio (USD) *</label> <!-- Texto del campo; for="prod-precio" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+                <input type="number" id="prod-precio" name="precio" min="0.01" max="500" step="0.01" required> <!-- Precio en dólares: mayor que 0 y máximo 500 -->
+                <small class="error-campo" data-error="precio"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "precio" (Clase 14 DOM · atributos data-*) -->
               </div>
-              <div class="grupo-formulario">
-                <label for="prod-tiempo">Tiempo (minutos) *</label>
-                <input type="number" id="prod-tiempo" name="tiempo" min="1" step="1" required>
-                <small class="error-campo" data-error="tiempo"></small>
-              </div>
-            </div>
-
-            <div class="fila-campos">
-              <div class="grupo-formulario">
-                <label for="prod-infill">Relleno (%) *</label>
-                <input type="number" id="prod-infill" name="infill" min="10" max="100" step="1" required>
-                <small class="error-campo" data-error="infill"></small>
-              </div>
-              <div class="grupo-formulario">
-                <label for="prod-medidas">Medidas *</label>
-                <input type="text" id="prod-medidas" name="medidas" required placeholder="18x19 cm">
-                <small class="error-campo" data-error="medidas"></small>
+              <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+                <label for="prod-tiempo">Tiempo (minutos) *</label> <!-- Texto del campo; for="prod-tiempo" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+                <input type="number" id="prod-tiempo" name="tiempo" min="1" step="1" required> <!-- Tiempo de impresión en minutos (entero) -->
+                <small class="error-campo" data-error="tiempo"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "tiempo" (Clase 14 DOM · atributos data-*) -->
               </div>
             </div>
 
-            <label class="grupo-casilla" for="prod-multicolor">
-              <input type="checkbox" id="prod-multicolor" name="multicolor">
-              Impresión multicolor
+            <div class="fila-campos"> <!-- Pone varios campos lado a lado (en celular se apilan) -->
+              <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+                <label for="prod-infill">Relleno (%) *</label> <!-- Texto del campo; for="prod-infill" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+                <input type="number" id="prod-infill" name="infill" min="10" max="100" step="1" required> <!-- Relleno 10-100 % -->
+                <small class="error-campo" data-error="infill"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "infill" (Clase 14 DOM · atributos data-*) -->
+              </div>
+              <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+                <label for="prod-medidas">Medidas *</label> <!-- Texto del campo; for="prod-medidas" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+                <input type="text" id="prod-medidas" name="medidas" required placeholder="18x19 cm"> <!-- Medidas con formato "18x19 cm" (se revisa con una expresión regular) -->
+                <small class="error-campo" data-error="medidas"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "medidas" (Clase 14 DOM · atributos data-*) -->
+              </div>
+            </div>
+
+            <label class="grupo-casilla" for="prod-multicolor"> <!-- Etiqueta que envuelve la casilla -->
+              <input type="checkbox" id="prod-multicolor" name="multicolor"> <!-- Casilla multicolor: main.js lee .checked (true o false) -->
+              Impresión multicolor <!-- Texto visible de la casilla -->
             </label>
 
-            <div class="grupo-formulario">
-              <label for="prod-imagen1">Imagen 1 (ruta o URL) *</label>
-              <input type="text" id="prod-imagen1" name="imagen1" required placeholder="img/prod1_1.jpg">
-              <small class="error-campo" data-error="imagen1"></small>
+            <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+              <label for="prod-imagen1">Imagen 1 (ruta o URL) *</label> <!-- Texto del campo; for="prod-imagen1" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+              <input type="text" id="prod-imagen1" name="imagen1" required placeholder="img/prod1_1.jpg"> <!-- Ruta de la foto 1 (obligatoria) -->
+              <small class="error-campo" data-error="imagen1"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "imagen1" (Clase 14 DOM · atributos data-*) -->
             </div>
 
-            <div class="grupo-formulario">
-              <label for="prod-imagen2">Imagen 2 (ruta o URL) *</label>
-              <input type="text" id="prod-imagen2" name="imagen2" required placeholder="img/prod1_2.jpg">
-              <small class="error-campo" data-error="imagen2"></small>
+            <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+              <label for="prod-imagen2">Imagen 2 (ruta o URL) *</label> <!-- Texto del campo; for="prod-imagen2" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+              <input type="text" id="prod-imagen2" name="imagen2" required placeholder="img/prod1_2.jpg"> <!-- Ruta de la foto 2 (obligatoria) -->
+              <small class="error-campo" data-error="imagen2"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "imagen2" (Clase 14 DOM · atributos data-*) -->
             </div>
 
-            <div class="grupo-formulario">
-              <label for="prod-stl">Enlace al STL (opcional)</label>
-              <input type="url" id="prod-stl" name="linkSTL" placeholder="https://…">
-              <small class="error-campo" data-error="linkSTL"></small>
+            <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+              <label for="prod-stl">Enlace al STL (opcional)</label> <!-- Texto del campo; for="prod-stl" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+              <input type="url" id="prod-stl" name="linkSTL" placeholder="https://…"> <!-- Enlace opcional al archivo 3D; si se escribe debe empezar con https:// -->
+              <small class="error-campo" data-error="linkSTL"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "linkSTL" (Clase 14 DOM · atributos data-*) -->
             </div>
 
-            <div class="acciones-formulario">
-              <button type="submit" class="boton-cta">Crear producto</button>
-              <button type="button" id="cancelar-edicion" class="boton-cta boton-secundario" hidden>Cancelar edición</button>
+            <div class="acciones-formulario"> <!-- Botones del formulario -->
+              <button type="submit" class="boton-cta">Crear producto</button> <!-- Evento submit: main.js decide si crea o actualiza; al editar su texto cambia a "Guardar cambios" -->
+              <button type="button" id="cancelar-edicion" class="boton-cta boton-secundario" hidden>Cancelar edición</button> <!-- Empieza oculto; aparece al editar y main.js → salirDeEdicion() limpia el formulario -->
             </div>
-          </form>
+          </form> <!-- Fin del formulario -->
 
           <!-- Tabla de productos con botones Editar / Eliminar -->
-          <div id="tabla-productos" class="tabla-responsiva" aria-live="polite"></div>
-        </div>
-      </section>
+          <div id="tabla-productos" class="tabla-responsiva" aria-live="polite"></div> <!-- VACÍO: dom.js → renderizarTablaProductos() dibuja la tabla con botones Editar y Eliminar -->
+        </div> <!-- Fin de las dos columnas -->
+      </section> <!-- Fin de la sección -->
 
       <!-- ===================== GESTIÓN DE PEDIDOS ===================== -->
-      <section class="bloque-admin" aria-labelledby="titulo-pedidos">
-        <h2 id="titulo-pedidos" class="titulo-seccion">Pedidos de clientes</h2>
+      <section class="bloque-admin" aria-labelledby="titulo-pedidos"> <!-- Sección de gestión de pedidos -->
+        <h2 id="titulo-pedidos" class="titulo-seccion">Pedidos de clientes</h2> <!-- Título de la sección -->
 
-        <div class="filtros-pedidos">
-          <div class="grupo-formulario">
-            <label for="filtro-estado">Filtrar por estado</label>
-            <select id="filtro-estado">
-              <option value="">Todos</option>
-              <option value="En espera">En espera</option>
-              <option value="Imprimiendo">Imprimiendo</option>
-              <option value="Completado">Completado</option>
-            </select>
+        <div class="filtros-pedidos"> <!-- Filtros de la tabla de pedidos -->
+          <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+            <label for="filtro-estado">Filtrar por estado</label> <!-- Texto del campo; for="filtro-estado" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+            <select id="filtro-estado"> <!-- Evento change: main.js → dibujarPedidos() filtra con logica.js → filtrarPedidos() -->
+              <option value="">Todos</option> <!-- Opción "Todos"; JavaScript lee su value: "" -->
+              <option value="En espera">En espera</option> <!-- Opción "En espera"; JavaScript lee su value: "En espera" -->
+              <option value="Imprimiendo">Imprimiendo</option> <!-- Opción "Imprimiendo"; JavaScript lee su value: "Imprimiendo" -->
+              <option value="Completado">Completado</option> <!-- Opción "Completado"; JavaScript lee su value: "Completado" -->
+            </select> <!-- Fin de la lista de opciones -->
           </div>
-          <div class="grupo-formulario">
-            <label for="buscar-pedido">Buscar cliente o producto</label>
-            <input type="search" id="buscar-pedido" placeholder="Nombre del cliente…" autocomplete="off">
+          <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+            <label for="buscar-pedido">Buscar cliente o producto</label> <!-- Texto del campo; for="buscar-pedido" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+            <input type="search" id="buscar-pedido" placeholder="Nombre del cliente…" autocomplete="off"> <!-- Evento input: filtra la tabla con cada letra -->
           </div>
         </div>
 
         <!-- Tabla de pedidos con <select> para cambiar el estado -->
-        <div id="tabla-pedidos" class="tabla-responsiva" aria-live="polite"></div>
-      </section>
+        <div id="tabla-pedidos" class="tabla-responsiva" aria-live="polite"></div> <!-- VACÍO: dom.js → renderizarTablaPedidos() dibuja la tabla con el <select> de estado y el botón Eliminar -->
+      </section> <!-- Fin de la sección -->
 
-    </div>
-  </main>
+    </div> <!-- Fin del panel (oculto para quien no es admin) -->
+  </main> <!-- Fin del contenido principal -->
 
   <!-- ===================== PIE DE PÁGINA ===================== -->
-  <footer class="pie-pagina">
-    <div class="contenedor pie-contenido">
+  <footer class="pie-pagina"> <!-- Pie de página, igual en todas las páginas -->
+    <div class="contenedor pie-contenido"> <!-- Dos columnas de información del negocio -->
       <div>
-        <p><strong>TerraPrints 3D</strong></p>
-        <p>Servicios de Impresión y Modelado 3D Profesional.</p>
+        <p><strong>TerraPrints 3D</strong></p> <!-- Nombre del negocio en negrita -->
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- Descripción corta del negocio -->
       </div>
       <div>
-        <p>Síguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
-        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p>
+        <p>Síguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p> <!-- Enlace a Instagram: target="_blank" abre otra pestaña y rel="noopener" impide que esa pestaña controle la nuestra -->
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p> <!-- Derechos de autor (&copy; dibuja el símbolo ©) -->
       </div>
     </div>
-  </footer>
+  </footer> <!-- Fin del pie de página -->
 
-</body>
-</html>
+</body> <!-- Fin del contenido visible -->
+</html> <!-- Fin del documento -->

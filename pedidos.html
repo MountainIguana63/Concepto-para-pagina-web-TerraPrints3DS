@@ -1,168 +1,168 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html> <!-- Indica al navegador que es un documento HTML5 -->
+<html lang="es"> <!-- Inicio del documento; lang="es" dice que está en español (ayuda a lectores de pantalla y traductores) -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mis pedidos | SV3DPrints</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <script type="module" src="js/main.js"></script>
-</head>
+<head> <!-- Información de la página que no se ve: título, estilos y scripts -->
+  <meta charset="UTF-8"> <!-- Permite mostrar tildes, ñ y símbolos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página se ajuste al ancho del celular (diseño adaptable) -->
+  <title>Mis pedidos | SV3DPrints</title> <!-- Texto que aparece en la pestaña del navegador -->
+  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta la hoja de estilos que comparten todas las páginas -->
+  <script type="module" src="js/main.js"></script> <!-- Carga main.js como MÓDULO: así puede usar import/export y se ejecuta cuando el HTML ya cargó (Clase 15 · Módulos en JS) -->
+</head> <!-- Fin del head -->
 
 <!-- Página protegida: si no hay sesión, main.js redirige a login.html -->
-<body data-pagina="pedidos">
+<body data-pagina="pedidos"> <!-- data-pagina="pedidos": main.js ejecuta iniciarPaginaPedidos(); si no hay sesión, manda al login -->
 
   <!-- ===================== ENCABEZADO Y MENÚ ===================== -->
-  <header class="encabezado-principal">
-    <div class="contenedor barra-navegacion">
-      <details class="menu-desplegable">
-        <summary class="boton-menu" aria-label="Menú de navegación">
-          <span class="linea-menu" aria-hidden="true"></span>
-          <span class="linea-menu" aria-hidden="true"></span>
-          <span class="linea-menu" aria-hidden="true"></span>
-        </summary>
-        <nav aria-label="Navegación principal">
-          <div class="cabecera-menu-lateral">
-            <img src="img/logo.jpg" alt="" width="45" height="45">
-            <span>TerraPrints 3D</span>
+  <header class="encabezado-principal"> <!-- Franja oscura de arriba con el menú y el logo -->
+    <div class="contenedor barra-navegacion"> <!-- Pone el botón del menú y el logo en una misma fila -->
+      <details class="menu-desplegable"> <!-- Menú desplegable: <details> se abre y se cierra solo al tocarlo, sin JavaScript -->
+        <summary class="boton-menu" aria-label="Menú de navegación"> <!-- Botón de tres rayas que abre y cierra el menú; aria-label le da nombre para lectores de pantalla -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+        </summary> <!-- Fin del botón del menú -->
+        <nav aria-label="Navegación principal"> <!-- Panel lateral con los enlaces para moverse entre páginas -->
+          <div class="cabecera-menu-lateral"> <!-- Parte de arriba del panel: logo y nombre -->
+            <img src="img/logo.jpg" alt="" width="45" height="45"> <!-- Logo; alt vacío porque es decorativo (el nombre ya está escrito al lado) -->
+            <span>TerraPrints 3D</span> <!-- Nombre de la marca -->
           </div>
-        <ul class="menu-navegacion">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="catalogo.html">Catálogo</a></li>
-          <li><a href="pedidos.html" class="activo" aria-current="page">Mis pedidos</a></li>
-          <li id="nav-admin" hidden><a href="admin.html">Panel admin</a></li>
-          <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li>
-        </ul>
-        </nav>
-      </details>
-      <a href="index.html" class="logo-marca">
-        <img src="img/logo.jpg" alt="" width="45" height="45">
-        <span>TerraPrints 3D</span>
+        <ul class="menu-navegacion"> <!-- Lista con los enlaces del menú -->
+          <li><a href="index.html">Inicio</a></li> <!-- Enlace "Inicio" a la página de inicio -->
+          <li><a href="catalogo.html">Catálogo</a></li> <!-- Enlace "Catálogo" a el catálogo -->
+          <li><a href="pedidos.html" class="activo" aria-current="page">Mis pedidos</a></li> <!-- Enlace "Mis pedidos" a los pedidos del cliente; class="activo" lo resalta y aria-current avisa que es la página actual -->
+          <li id="nav-admin" hidden><a href="admin.html">Panel admin</a></li> <!-- Enlace al panel admin: empieza oculto (hidden) y dom.js → actualizarNavegacion() solo lo muestra al rol admin -->
+          <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li> <!-- Si hay sesión, dom.js → actualizarNavegacion() cambia este enlace por "Hola, nombre" y el botón "Cerrar sesión" (Clase 14 DOM) -->
+        </ul> <!-- Fin de la lista -->
+        </nav> <!-- Fin del panel de navegación -->
+      </details> <!-- Fin del menú desplegable -->
+      <a href="index.html" class="logo-marca"> <!-- Logo y nombre: al tocarlos vuelve a la página de inicio -->
+        <img src="img/logo.jpg" alt="" width="45" height="45"> <!-- Logo; alt vacío porque es decorativo (el nombre ya está escrito al lado) -->
+        <span>TerraPrints 3D</span> <!-- Nombre de la marca -->
       </a>
     </div>
-  </header>
+  </header> <!-- Fin del encabezado -->
 
-  <main class="contenedor seccion">
-    <h1 class="titulo-seccion">Pedidos y cotizaciones</h1>
-    <p id="saludo-cliente" class="subtitulo-descriptivo">Verificando sesión…</p>
+  <main class="contenedor seccion"> <!-- Contenido principal con márgenes -->
+    <h1 class="titulo-seccion">Pedidos y cotizaciones</h1> <!-- Título principal de la página -->
+    <p id="saludo-cliente" class="subtitulo-descriptivo">Verificando sesión…</p> <!-- main.js cambia este texto por "Sesión iniciada como ..." con textContent (Clase 14 DOM) -->
 
-    <div class="grilla-pedidos">
+    <div class="grilla-pedidos"> <!-- Dos columnas: formulario a la izquierda y "Mis pedidos" a la derecha -->
 
       <!-- ===================== PROCESO 1: SOLICITAR UN PEDIDO ===================== -->
-      <section aria-labelledby="titulo-nuevo-pedido">
-        <form id="form-pedido" class="tarjeta-formulario" novalidate>
-          <h2 id="titulo-nuevo-pedido">Nuevo pedido</h2>
-          <p class="texto-ayuda-formulario">
-            Elige un modelo del <a href="catalogo.html">catálogo</a> o describe una pieza personalizada.
-            Si tienes archivo STL/OBJ envíalo a nuestro Instagram
-            <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a>.
+      <section aria-labelledby="titulo-nuevo-pedido"> <!-- PROCESO 1 del cliente: hacer un pedido -->
+        <form id="form-pedido" class="tarjeta-formulario" novalidate> <!-- Formulario de pedido; novalidate apaga los globos del navegador porque validamos con logica.js → validarPedido() -->
+          <h2 id="titulo-nuevo-pedido">Nuevo pedido</h2> <!-- Título del formulario -->
+          <p class="texto-ayuda-formulario"> <!-- Instrucciones para el cliente -->
+            Elige un modelo del <a href="catalogo.html">catálogo</a> o describe una pieza personalizada. <!-- Enlace al catálogo dentro del texto -->
+            Si tienes archivo STL/OBJ envíalo a nuestro Instagram <!-- Los archivos 3D se mandan por Instagram (no se suben a la página) -->
+            <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a>. <!-- Enlace a Instagram en otra pestaña -->
           </p>
 
           <!-- Producto elegido desde el catálogo (lo dibuja dom.js) -->
-          <div id="producto-seleccionado" class="producto-seleccionado" hidden></div>
+          <div id="producto-seleccionado" class="producto-seleccionado" hidden></div> <!-- Empieza oculto: dom.js → mostrarProductoSeleccionado() pone aquí foto, nombre y botón Quitar del producto elegido -->
 
-          <div class="grupo-formulario">
-            <label for="servicio">Tipo de servicio *</label>
-            <select id="servicio" name="servicio" required>
-              <option value="">Seleccione una opción…</option>
-              <option value="catalogo" disabled>Producto del catálogo</option>
-              <option value="impresion">Impresión de archivo STL/OBJ propio (+$2.00)</option>
-              <option value="modelado">Modelado 3D desde cero (+$15.00)</option>
-              <option value="modificacion">Modificación de archivo existente (+$8.00)</option>
-            </select>
-            <small class="error-campo" data-error="servicio"></small>
+          <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+            <label for="servicio">Tipo de servicio *</label> <!-- Texto del campo; for="servicio" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+            <select id="servicio" name="servicio" required> <!-- Tipo de servicio: cambia el cargo fijo de la cotización (SERVICIOS en logica.js) -->
+              <option value="">Seleccione una opción…</option> <!-- Opción "Seleccione una opción…"; JavaScript lee su value: "" -->
+              <option value="catalogo" disabled>Producto del catálogo</option> <!-- Solo se habilita si llegaste desde "Solicitar este modelo" (main.js → aplicarProducto) -->
+              <option value="impresion">Impresión de archivo STL/OBJ propio (+$2.00)</option> <!-- Opción "Impresión de archivo STL/OBJ propio (+$2.00)"; JavaScript lee su value: "impresion" -->
+              <option value="modelado">Modelado 3D desde cero (+$15.00)</option> <!-- Opción "Modelado 3D desde cero (+$15.00)"; JavaScript lee su value: "modelado" -->
+              <option value="modificacion">Modificación de archivo existente (+$8.00)</option> <!-- Opción "Modificación de archivo existente (+$8.00)"; JavaScript lee su value: "modificacion" -->
+            </select> <!-- Fin de la lista de opciones -->
+            <small class="error-campo" data-error="servicio"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "servicio" (Clase 14 DOM · atributos data-*) -->
           </div>
 
-          <div class="fila-campos">
-            <div class="grupo-formulario">
-              <label for="material">Material *</label>
-              <select id="material" name="material" required>
-                <option value="PLA+">PLA+ (estándar)</option>
-                <option value="PETG">PETG (+20 %)</option>
-                <option value="TPU">TPU flexible (+50 %)</option>
-              </select>
-              <small class="error-campo" data-error="material"></small>
+          <div class="fila-campos"> <!-- Pone varios campos lado a lado (en celular se apilan) -->
+            <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+              <label for="material">Material *</label> <!-- Texto del campo; for="material" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+              <select id="material" name="material" required> <!-- Material: cambia el precio con el factor de MATERIALES (logica.js) -->
+                <option value="PLA+">PLA+ (estándar)</option> <!-- Opción "PLA+ (estándar)"; JavaScript lee su value: "PLA+" -->
+                <option value="PETG">PETG (+20 %)</option> <!-- Opción "PETG (+20 %)"; JavaScript lee su value: "PETG" -->
+                <option value="TPU">TPU flexible (+50 %)</option> <!-- Opción "TPU flexible (+50 %)"; JavaScript lee su value: "TPU" -->
+              </select> <!-- Fin de la lista de opciones -->
+              <small class="error-campo" data-error="material"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "material" (Clase 14 DOM · atributos data-*) -->
             </div>
 
-            <div class="grupo-formulario">
-              <label for="infill">Relleno (%) *</label>
-              <input type="number" id="infill" name="infill" min="10" max="100" step="1" value="20" required>
-              <small class="error-campo" data-error="infill"></small>
+            <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+              <label for="infill">Relleno (%) *</label> <!-- Texto del campo; for="infill" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+              <input type="number" id="infill" name="infill" min="10" max="100" step="1" value="20" required> <!-- Relleno 10-100: min/max ayudan al navegador, pero la regla real está en validarPedido() -->
+              <small class="error-campo" data-error="infill"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "infill" (Clase 14 DOM · atributos data-*) -->
             </div>
 
-            <div class="grupo-formulario">
-              <label for="cantidad">Cantidad *</label>
-              <input type="number" id="cantidad" name="cantidad" min="1" max="50" step="1" value="1" required>
-              <small class="error-campo" data-error="cantidad"></small>
+            <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+              <label for="cantidad">Cantidad *</label> <!-- Texto del campo; for="cantidad" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+              <input type="number" id="cantidad" name="cantidad" min="1" max="50" step="1" value="1" required> <!-- Cantidad 1-50: se multiplica en la cotización -->
+              <small class="error-campo" data-error="cantidad"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "cantidad" (Clase 14 DOM · atributos data-*) -->
             </div>
           </div>
 
           <!-- Medidas: se ocultan cuando el pedido es de un producto del catálogo -->
-          <fieldset id="grupo-medidas" class="grupo-medidas">
-            <legend>Medidas de la pieza (cm, máximo 25)</legend>
-            <div class="fila-campos">
-              <div class="grupo-formulario">
-                <label for="largo">Largo *</label>
-                <input type="number" id="largo" name="largo" min="1" max="25" step="0.5" placeholder="10">
-                <small class="error-campo" data-error="largo"></small>
+          <fieldset id="grupo-medidas" class="grupo-medidas"> <!-- Grupo de medidas: main.js lo oculta y lo desactiva cuando el pedido es del catálogo -->
+            <legend>Medidas de la pieza (cm, máximo 25)</legend> <!-- Título del grupo de medidas -->
+            <div class="fila-campos"> <!-- Pone varios campos lado a lado (en celular se apilan) -->
+              <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+                <label for="largo">Largo *</label> <!-- Texto del campo; for="largo" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+                <input type="number" id="largo" name="largo" min="1" max="25" step="0.5" placeholder="10"> <!-- Largo en cm (máximo 25 = tamaño de la impresora) -->
+                <small class="error-campo" data-error="largo"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "largo" (Clase 14 DOM · atributos data-*) -->
               </div>
-              <div class="grupo-formulario">
-                <label for="ancho">Ancho *</label>
-                <input type="number" id="ancho" name="ancho" min="1" max="25" step="0.5" placeholder="10">
-                <small class="error-campo" data-error="ancho"></small>
+              <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+                <label for="ancho">Ancho *</label> <!-- Texto del campo; for="ancho" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+                <input type="number" id="ancho" name="ancho" min="1" max="25" step="0.5" placeholder="10"> <!-- Ancho en cm -->
+                <small class="error-campo" data-error="ancho"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "ancho" (Clase 14 DOM · atributos data-*) -->
               </div>
-              <div class="grupo-formulario">
-                <label for="alto">Alto *</label>
-                <input type="number" id="alto" name="alto" min="1" max="25" step="0.5" placeholder="10">
-                <small class="error-campo" data-error="alto"></small>
+              <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+                <label for="alto">Alto *</label> <!-- Texto del campo; for="alto" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+                <input type="number" id="alto" name="alto" min="1" max="25" step="0.5" placeholder="10"> <!-- Alto en cm -->
+                <small class="error-campo" data-error="alto"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "alto" (Clase 14 DOM · atributos data-*) -->
               </div>
             </div>
-          </fieldset>
+          </fieldset> <!-- Fin del grupo de medidas -->
 
-          <div class="grupo-formulario">
-            <label for="descripcion">Descripción del pedido *</label>
+          <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+            <label for="descripcion">Descripción del pedido *</label> <!-- Texto del campo; for="descripcion" lo une con el input de ese id (tocar el texto enfoca el campo) -->
             <textarea id="descripcion" name="descripcion" rows="4" required minlength="15" maxlength="500"
-              placeholder="Uso de la pieza, color preferido, acabado…"></textarea>
-            <small class="error-campo" data-error="descripcion"></small>
+              placeholder="Uso de la pieza, color preferido, acabado…"></textarea> <!-- Descripción: mínimo 15 caracteres (validarPedido); el placeholder es el texto gris de ejemplo -->
+            <small class="error-campo" data-error="descripcion"></small> <!-- Vacío al inicio: dom.js → mostrarErrores() escribe aquí el error de "descripcion" (Clase 14 DOM · atributos data-*) -->
           </div>
 
           <!-- Cotización calculada en vivo con JavaScript (logica.js → calcularCotizacion) -->
-          <p id="cotizacion" class="cotizacion" aria-live="polite"></p>
+          <p id="cotizacion" class="cotizacion" aria-live="polite"></p> <!-- VACÍO: dom.js → mostrarCotizacion() escribe aquí precio y tiempo en vivo con cada evento input del formulario -->
 
-          <button type="submit" class="boton-cta boton-expandido">Enviar solicitud</button>
-        </form>
-      </section>
+          <button type="submit" class="boton-cta boton-expandido">Enviar solicitud</button> <!-- Dispara el evento submit: main.js valida, llama a db.js → crearPedido() y avisa (Clase 12 · Eventos; JS Asíncrono) -->
+        </form> <!-- Fin del formulario -->
+      </section> <!-- Fin de la sección -->
 
       <!-- ===================== PROCESO 2: SEGUIMIENTO DE MIS PEDIDOS ===================== -->
-      <section aria-labelledby="titulo-mis-pedidos">
-        <div class="encabezado-seccion">
-          <h2 id="titulo-mis-pedidos">Mis pedidos</h2>
-          <button type="button" id="actualizar-pedidos" class="boton-cta boton-secundario">↻ Actualizar estado</button>
+      <section aria-labelledby="titulo-mis-pedidos"> <!-- PROCESO 2 del cliente: seguimiento de sus pedidos -->
+        <div class="encabezado-seccion"> <!-- Título y botón en la misma fila -->
+          <h2 id="titulo-mis-pedidos">Mis pedidos</h2> <!-- Título de la sección -->
+          <button type="button" id="actualizar-pedidos" class="boton-cta boton-secundario">↻ Actualizar estado</button> <!-- Evento click: main.js vuelve a ejecutar cargarMisPedidos() para ver si cambió el estado -->
         </div>
 
         <!-- Resumen calculado con reduce(): total, en proceso, completados y monto -->
-        <div id="resumen-cliente" class="indicadores"></div>
+        <div id="resumen-cliente" class="indicadores"></div> <!-- VACÍO: dom.js → mostrarResumenCliente() dibuja 4 tarjetas con números (calculados con reduce) -->
 
         <!-- Lista de pedidos del cliente (la llena dom.js) -->
-        <div id="mis-pedidos" class="lista-pedidos" aria-live="polite"></div>
-      </section>
+        <div id="mis-pedidos" class="lista-pedidos" aria-live="polite"></div> <!-- VACÍO: dom.js → renderizarPedidosCliente() dibuja cada pedido con su estado y el botón Cancelar -->
+      </section> <!-- Fin de la sección -->
 
-    </div>
-  </main>
+    </div> <!-- Fin de las dos columnas -->
+  </main> <!-- Fin del contenido principal -->
 
   <!-- ===================== PIE DE PÁGINA ===================== -->
-  <footer class="pie-pagina">
-    <div class="contenedor pie-contenido">
+  <footer class="pie-pagina"> <!-- Pie de página, igual en todas las páginas -->
+    <div class="contenedor pie-contenido"> <!-- Dos columnas de información del negocio -->
       <div>
-        <p><strong>TerraPrints 3D</strong></p>
-        <p>Servicios de Impresión y Modelado 3D Profesional.</p>
+        <p><strong>TerraPrints 3D</strong></p> <!-- Nombre del negocio en negrita -->
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- Descripción corta del negocio -->
       </div>
       <div>
-        <p>Síguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
-        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p>
+        <p>Síguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p> <!-- Enlace a Instagram: target="_blank" abre otra pestaña y rel="noopener" impide que esa pestaña controle la nuestra -->
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p> <!-- Derechos de autor (&copy; dibuja el símbolo ©) -->
       </div>
     </div>
-  </footer>
+  </footer> <!-- Fin del pie de página -->
 
-</body>
-</html>
+</body> <!-- Fin del contenido visible -->
+</html> <!-- Fin del documento -->

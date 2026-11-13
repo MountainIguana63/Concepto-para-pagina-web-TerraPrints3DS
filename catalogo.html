@@ -1,104 +1,104 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html> <!-- Indica al navegador que es un documento HTML5 -->
+<html lang="es"> <!-- Inicio del documento; lang="es" dice que está en español (ayuda a lectores de pantalla y traductores) -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo Completo | SV3DPrints</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <script type="module" src="js/main.js"></script>
-</head>
+<head> <!-- Información de la página que no se ve: título, estilos y scripts -->
+  <meta charset="UTF-8"> <!-- Permite mostrar tildes, ñ y símbolos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página se ajuste al ancho del celular (diseño adaptable) -->
+  <title>Catálogo Completo | SV3DPrints</title> <!-- Texto que aparece en la pestaña del navegador -->
+  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta la hoja de estilos que comparten todas las páginas -->
+  <script type="module" src="js/main.js"></script> <!-- Carga main.js como MÓDULO: así puede usar import/export y se ejecuta cuando el HTML ya cargó (Clase 15 · Módulos en JS) -->
+</head> <!-- Fin del head -->
 
-<body data-pagina="catalogo">
+<body data-pagina="catalogo"> <!-- data-pagina="catalogo": main.js ejecuta iniciarPaginaCatalogo() (Clase 14 DOM · atributos data-*) -->
 
   <!-- ===================== ENCABEZADO Y MENÚ ===================== -->
-  <header class="encabezado-principal">
-    <div class="contenedor barra-navegacion">
-      <details class="menu-desplegable">
-        <summary class="boton-menu" aria-label="Menú de navegación">
-          <span class="linea-menu" aria-hidden="true"></span>
-          <span class="linea-menu" aria-hidden="true"></span>
-          <span class="linea-menu" aria-hidden="true"></span>
-        </summary>
-        <nav aria-label="Navegación principal">
-          <div class="cabecera-menu-lateral">
-            <img src="img/logo.jpg" alt="" width="45" height="45">
-            <span>TerraPrints 3D</span>
+  <header class="encabezado-principal"> <!-- Franja oscura de arriba con el menú y el logo -->
+    <div class="contenedor barra-navegacion"> <!-- Pone el botón del menú y el logo en una misma fila -->
+      <details class="menu-desplegable"> <!-- Menú desplegable: <details> se abre y se cierra solo al tocarlo, sin JavaScript -->
+        <summary class="boton-menu" aria-label="Menú de navegación"> <!-- Botón de tres rayas que abre y cierra el menú; aria-label le da nombre para lectores de pantalla -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+        </summary> <!-- Fin del botón del menú -->
+        <nav aria-label="Navegación principal"> <!-- Panel lateral con los enlaces para moverse entre páginas -->
+          <div class="cabecera-menu-lateral"> <!-- Parte de arriba del panel: logo y nombre -->
+            <img src="img/logo.jpg" alt="" width="45" height="45"> <!-- Logo; alt vacío porque es decorativo (el nombre ya está escrito al lado) -->
+            <span>TerraPrints 3D</span> <!-- Nombre de la marca -->
           </div>
-        <ul class="menu-navegacion">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="catalogo.html" class="activo" aria-current="page">Catálogo</a></li>
-          <li><a href="pedidos.html">Mis pedidos</a></li>
-          <li id="nav-admin" hidden><a href="admin.html">Panel admin</a></li>
-          <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li>
-        </ul>
-        </nav>
-      </details>
-      <a href="index.html" class="logo-marca">
-        <img src="img/logo.jpg" alt="" width="45" height="45">
-        <span>TerraPrints 3D</span>
+        <ul class="menu-navegacion"> <!-- Lista con los enlaces del menú -->
+          <li><a href="index.html">Inicio</a></li> <!-- Enlace "Inicio" a la página de inicio -->
+          <li><a href="catalogo.html" class="activo" aria-current="page">Catálogo</a></li> <!-- Enlace "Catálogo" a el catálogo; class="activo" lo resalta y aria-current avisa que es la página actual -->
+          <li><a href="pedidos.html">Mis pedidos</a></li> <!-- Enlace "Mis pedidos" a los pedidos del cliente -->
+          <li id="nav-admin" hidden><a href="admin.html">Panel admin</a></li> <!-- Enlace al panel admin: empieza oculto (hidden) y dom.js → actualizarNavegacion() solo lo muestra al rol admin -->
+          <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li> <!-- Si hay sesión, dom.js → actualizarNavegacion() cambia este enlace por "Hola, nombre" y el botón "Cerrar sesión" (Clase 14 DOM) -->
+        </ul> <!-- Fin de la lista -->
+        </nav> <!-- Fin del panel de navegación -->
+      </details> <!-- Fin del menú desplegable -->
+      <a href="index.html" class="logo-marca"> <!-- Logo y nombre: al tocarlos vuelve a la página de inicio -->
+        <img src="img/logo.jpg" alt="" width="45" height="45"> <!-- Logo; alt vacío porque es decorativo (el nombre ya está escrito al lado) -->
+        <span>TerraPrints 3D</span> <!-- Nombre de la marca -->
       </a>
     </div>
-  </header>
+  </header> <!-- Fin del encabezado -->
 
-  <main class="contenedor seccion">
-    <h1 class="titulo-seccion">Catálogo</h1>
+  <main class="contenedor seccion"> <!-- Contenido principal con márgenes -->
+    <h1 class="titulo-seccion">Catálogo</h1> <!-- Título principal de la página -->
 
     <!-- ===================== BÚSQUEDA, FILTROS Y ORDEN =====================
          main.js escucha los eventos "input" y "change" de este formulario y
          vuelve a dibujar las tarjetas sin recargar la página. -->
-    <form id="form-filtros" class="barra-filtros" role="search" aria-label="Filtrar catálogo">
-      <div class="grupo-formulario grupo-buscador">
-        <label for="buscador">Buscar por nombre o tipo</label>
-        <input type="search" id="buscador" name="texto" placeholder="Ej. llavero, figura, búho…" autocomplete="off">
+    <form id="form-filtros" class="barra-filtros" role="search" aria-label="Filtrar catálogo"> <!-- Formulario de filtros: main.js escucha sus eventos input, change, submit y reset (Clase 12 · Eventos de formulario) -->
+      <div class="grupo-formulario grupo-buscador"> <!-- Grupo del buscador (más ancho que los demás) -->
+        <label for="buscador">Buscar por nombre o tipo</label> <!-- Texto del campo; for="buscador" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+        <input type="search" id="buscador" name="texto" placeholder="Ej. llavero, figura, búho…" autocomplete="off"> <!-- Buscador: name="texto" lo lee main.js → aplicarFiltros(); cada letra dispara el evento input -->
       </div>
 
-      <div class="grupo-formulario">
-        <label for="filtro-categoria">Categoría</label>
+      <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+        <label for="filtro-categoria">Categoría</label> <!-- Texto del campo; for="filtro-categoria" lo une con el input de ese id (tocar el texto enfoca el campo) -->
         <!-- Las opciones de categoría se agregan desde JavaScript -->
-        <select id="filtro-categoria" name="categoria">
-          <option value="">Todas</option>
-        </select>
+        <select id="filtro-categoria" name="categoria"> <!-- Select de categorías: dom.js → llenarSelectCategorias() le agrega las opciones reales desde Firestore -->
+          <option value="">Todas</option> <!-- Opción fija: value vacío significa "no filtrar por categoría" -->
+        </select> <!-- Fin de la lista de opciones -->
       </div>
 
-      <div class="grupo-formulario">
-        <label for="orden">Ordenar por</label>
-        <select id="orden" name="orden">
-          <option value="nombre">Nombre (A-Z)</option>
-          <option value="precio-asc">Precio: menor a mayor</option>
-          <option value="precio-desc">Precio: mayor a menor</option>
-          <option value="tiempo-asc">Tiempo de impresión</option>
-        </select>
+      <div class="grupo-formulario"> <!-- Agrupa etiqueta + campo + mensaje de error -->
+        <label for="orden">Ordenar por</label> <!-- Texto del campo; for="orden" lo une con el input de ese id (tocar el texto enfoca el campo) -->
+        <select id="orden" name="orden"> <!-- Select de orden: su value elige el case del switch en logica.js → ordenarProductos() -->
+          <option value="nombre">Nombre (A-Z)</option> <!-- Opción "Nombre (A-Z)"; JavaScript lee su value: "nombre" -->
+          <option value="precio-asc">Precio: menor a mayor</option> <!-- Opción "Precio: menor a mayor"; JavaScript lee su value: "precio-asc" -->
+          <option value="precio-desc">Precio: mayor a menor</option> <!-- Opción "Precio: mayor a menor"; JavaScript lee su value: "precio-desc" -->
+          <option value="tiempo-asc">Tiempo de impresión</option> <!-- Opción "Tiempo de impresión"; JavaScript lee su value: "tiempo-asc" -->
+        </select> <!-- Fin de la lista de opciones -->
       </div>
 
-      <label class="grupo-casilla" for="filtro-multicolor">
-        <input type="checkbox" id="filtro-multicolor" name="multicolor">
-        Solo multicolor
+      <label class="grupo-casilla" for="filtro-multicolor"> <!-- Etiqueta que envuelve la casilla (tocar el texto también la marca) -->
+        <input type="checkbox" id="filtro-multicolor" name="multicolor"> <!-- Casilla "Solo multicolor": main.js lee .checked (true o false) -->
+        Solo multicolor <!-- Texto visible de la casilla -->
       </label>
 
-      <button type="reset" class="boton-cta boton-secundario">Limpiar</button>
-    </form>
+      <button type="reset" class="boton-cta boton-secundario">Limpiar</button> <!-- type="reset" limpia el formulario; main.js escucha el evento reset y vuelve a dibujar todo -->
+    </form> <!-- Fin del formulario -->
 
     <!-- Contador: "Mostrando X de Y productos" -->
-    <p id="contador-resultados" class="contador-resultados" aria-live="polite"></p>
+    <p id="contador-resultados" class="contador-resultados" aria-live="polite"></p> <!-- VACÍO: dom.js → actualizarContador() escribe "Mostrando X de Y productos" -->
 
     <!-- Contenedor de tarjetas: se llena con los productos de Firestore -->
-    <div class="grilla-productos" id="catalogo"></div>
-  </main>
+    <div class="grilla-productos" id="catalogo"></div> <!-- VACÍO: aquí dom.js → renderizarProductos() dibuja las tarjetas que vienen de Firestore (Clase 14 DOM) -->
+  </main> <!-- Fin del contenido principal -->
 
   <!-- ===================== PIE DE PÁGINA ===================== -->
-  <footer class="pie-pagina">
-    <div class="contenedor pie-contenido">
+  <footer class="pie-pagina"> <!-- Pie de página, igual en todas las páginas -->
+    <div class="contenedor pie-contenido"> <!-- Dos columnas de información del negocio -->
       <div>
-        <p><strong>TerraPrints 3D</strong></p>
-        <p>Servicios de Impresión y Modelado 3D Profesional.</p>
+        <p><strong>TerraPrints 3D</strong></p> <!-- Nombre del negocio en negrita -->
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- Descripción corta del negocio -->
       </div>
       <div>
-        <p>Síguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
-        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p>
+        <p>Síguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p> <!-- Enlace a Instagram: target="_blank" abre otra pestaña y rel="noopener" impide que esa pestaña controle la nuestra -->
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p> <!-- Derechos de autor (&copy; dibuja el símbolo ©) -->
       </div>
     </div>
-  </footer>
+  </footer> <!-- Fin del pie de página -->
 
-</body>
-</html>
+</body> <!-- Fin del contenido visible -->
+</html> <!-- Fin del documento -->

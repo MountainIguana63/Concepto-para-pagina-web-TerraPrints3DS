@@ -1,139 +1,139 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html> <!-- Indica al navegador que es un documento HTML5 -->
+<html lang="es"> <!-- Inicio del documento; lang="es" dice que está en español (ayuda a lectores de pantalla y traductores) -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SV3DPrints - Tienda de Impresión y Modelado 3D en El Salvador">
-  <title>SV3DPrints | Impresión 3D Profesional</title>
-  <link rel="stylesheet" href="css/styles.css">
+<head> <!-- Información de la página que no se ve: título, estilos y scripts -->
+  <meta charset="UTF-8"> <!-- Permite mostrar tildes, ñ y símbolos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página se ajuste al ancho del celular (diseño adaptable) -->
+  <meta name="description" content="SV3DPrints - Tienda de Impresión y Modelado 3D en El Salvador"> <!-- Descripción que muestran buscadores como Google -->
+  <title>SV3DPrints | Impresión 3D Profesional</title> <!-- Texto que aparece en la pestaña del navegador -->
+  <link rel="stylesheet" href="css/styles.css"> <!-- Conecta la hoja de estilos que comparten todas las páginas -->
   <!-- type="module" permite usar import/export (ES Modules). Los módulos se cargan en diferido. -->
-  <script type="module" src="js/main.js"></script>
-</head>
+  <script type="module" src="js/main.js"></script> <!-- Carga main.js como MÓDULO: así puede usar import/export y se ejecuta cuando el HTML ya cargó (Clase 15 · Módulos en JS) -->
+</head> <!-- Fin del head -->
 
 <!-- data-pagina le dice a main.js qué funciones ejecutar en esta página -->
-<body data-pagina="inicio">
+<body data-pagina="inicio"> <!-- data-pagina="inicio": main.js lo lee con document.body.dataset.pagina y ejecuta iniciarPaginaInicio() (Clase 14 DOM · atributos data-*) -->
 
   <!-- ===================== ENCABEZADO Y MENÚ ===================== -->
-  <header class="encabezado-principal">
-    <div class="contenedor barra-navegacion">
-      <details class="menu-desplegable">
-        <summary class="boton-menu" aria-label="Menú de navegación">
-          <span class="linea-menu" aria-hidden="true"></span>
-          <span class="linea-menu" aria-hidden="true"></span>
-          <span class="linea-menu" aria-hidden="true"></span>
-        </summary>
-        <nav aria-label="Navegación principal">
-          <div class="cabecera-menu-lateral">
-            <img src="img/logo.jpg" alt="" width="45" height="45">
-            <span>TerraPrints 3D</span>
+  <header class="encabezado-principal"> <!-- Franja oscura de arriba con el menú y el logo -->
+    <div class="contenedor barra-navegacion"> <!-- Pone el botón del menú y el logo en una misma fila -->
+      <details class="menu-desplegable"> <!-- Menú desplegable: <details> se abre y se cierra solo al tocarlo, sin JavaScript -->
+        <summary class="boton-menu" aria-label="Menú de navegación"> <!-- Botón de tres rayas que abre y cierra el menú; aria-label le da nombre para lectores de pantalla -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+          <span class="linea-menu" aria-hidden="true"></span> <!-- Una de las 3 rayitas del botón (decorativa: aria-hidden la oculta a lectores de pantalla) -->
+        </summary> <!-- Fin del botón del menú -->
+        <nav aria-label="Navegación principal"> <!-- Panel lateral con los enlaces para moverse entre páginas -->
+          <div class="cabecera-menu-lateral"> <!-- Parte de arriba del panel: logo y nombre -->
+            <img src="img/logo.jpg" alt="" width="45" height="45"> <!-- Logo; alt vacío porque es decorativo (el nombre ya está escrito al lado) -->
+            <span>TerraPrints 3D</span> <!-- Nombre de la marca -->
           </div>
-        <ul class="menu-navegacion">
-          <li><a href="index.html" class="activo" aria-current="page">Inicio</a></li>
-          <li><a href="catalogo.html">Catálogo</a></li>
-          <li><a href="pedidos.html">Mis pedidos</a></li>
+        <ul class="menu-navegacion"> <!-- Lista con los enlaces del menú -->
+          <li><a href="index.html" class="activo" aria-current="page">Inicio</a></li> <!-- Enlace "Inicio" a la página de inicio; class="activo" lo resalta y aria-current avisa que es la página actual -->
+          <li><a href="catalogo.html">Catálogo</a></li> <!-- Enlace "Catálogo" a el catálogo -->
+          <li><a href="pedidos.html">Mis pedidos</a></li> <!-- Enlace "Mis pedidos" a los pedidos del cliente -->
           <!-- Solo visible para el rol admin (lo controla dom.js) -->
-          <li id="nav-admin" hidden><a href="admin.html">Panel admin</a></li>
+          <li id="nav-admin" hidden><a href="admin.html">Panel admin</a></li> <!-- Enlace al panel admin: empieza oculto (hidden) y dom.js → actualizarNavegacion() solo lo muestra al rol admin -->
           <!-- dom.js reemplaza este enlace por "Hola, nombre" + "Cerrar sesión" -->
-          <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li>
-        </ul>
-        </nav>
-      </details>
-      <a href="index.html" class="logo-marca">
-        <img src="img/logo.jpg" alt="" width="45" height="45">
-        <span>TerraPrints 3D</span>
+          <li id="nav-sesion"><a href="login.html">Iniciar sesión</a></li> <!-- Si hay sesión, dom.js → actualizarNavegacion() cambia este enlace por "Hola, nombre" y el botón "Cerrar sesión" (Clase 14 DOM) -->
+        </ul> <!-- Fin de la lista -->
+        </nav> <!-- Fin del panel de navegación -->
+      </details> <!-- Fin del menú desplegable -->
+      <a href="index.html" class="logo-marca"> <!-- Logo y nombre: al tocarlos vuelve a la página de inicio -->
+        <img src="img/logo.jpg" alt="" width="45" height="45"> <!-- Logo; alt vacío porque es decorativo (el nombre ya está escrito al lado) -->
+        <span>TerraPrints 3D</span> <!-- Nombre de la marca -->
       </a>
     </div>
-  </header>
+  </header> <!-- Fin del encabezado -->
 
-  <main>
+  <main> <!-- Contenido principal de la página -->
 
     <!-- ===================== CARRUSEL (solo CSS) ===================== -->
-    <section class="carrusel-contenedor" aria-label="Novedades de impresión 3D">
-      <div class="carrusel-slide">
-        <img src="img/banner1.jpg" alt="Impresión 3D multicolor de alta precisión">
-        <div class="carrusel-texto">
-          <h2>Impresiones Multicolor de Alta Calidad</h2>
-          <p>Piezas detalladas con acabados profesionales e insumos Premium.</p>
+    <section class="carrusel-contenedor" aria-label="Novedades de impresión 3D"> <!-- Carrusel de fotos hecho solo con CSS (la animación está en styles.css, no usa JavaScript) -->
+      <div class="carrusel-slide"> <!-- Diapositiva 1 -->
+        <img src="img/banner1.jpg" alt="Impresión 3D multicolor de alta precisión"> <!-- Foto de la diapositiva; alt la describe para lectores de pantalla -->
+        <div class="carrusel-texto"> <!-- Texto que va encima de la foto -->
+          <h2>Impresiones Multicolor de Alta Calidad</h2> <!-- Título de la diapositiva -->
+          <p>Piezas detalladas con acabados profesionales e insumos Premium.</p> <!-- Frase de la diapositiva -->
         </div>
       </div>
-      <div class="carrusel-slide">
-        <img src="img/banner2.jpg" alt="Figuras coleccionables personalizadas">
-        <div class="carrusel-texto">
-          <h2>Coleccionables y Modelado Custom</h2>
-          <p>Transformamos tus ideas e imágenes en figuras tridimensionales reales.</p>
+      <div class="carrusel-slide"> <!-- Diapositiva 2 -->
+        <img src="img/banner2.jpg" alt="Figuras coleccionables personalizadas"> <!-- Foto de la diapositiva 2 -->
+        <div class="carrusel-texto"> <!-- Texto encima de la foto -->
+          <h2>Coleccionables y Modelado Custom</h2> <!-- Título de la diapositiva 2 -->
+          <p>Transformamos tus ideas e imágenes en figuras tridimensionales reales.</p> <!-- Frase de la diapositiva 2 -->
         </div>
       </div>
-      <div class="carrusel-slide">
-        <img src="img/banner3.jpg" alt="Prototipado funcional industrial">
-        <div class="carrusel-texto">
-          <h2>Prototipado Rápido y Repuestos</h2>
-          <p>Resistencia estructural optimizada con porcentajes de relleno a medida.</p>
+      <div class="carrusel-slide"> <!-- Diapositiva 3 -->
+        <img src="img/banner3.jpg" alt="Prototipado funcional industrial"> <!-- Foto de la diapositiva 3 -->
+        <div class="carrusel-texto"> <!-- Texto encima de la foto -->
+          <h2>Prototipado Rápido y Repuestos</h2> <!-- Título de la diapositiva 3 -->
+          <p>Resistencia estructural optimizada con porcentajes de relleno a medida.</p> <!-- Frase de la diapositiva 3 -->
         </div>
       </div>
-    </section>
+    </section> <!-- Fin de la sección -->
 
-    <div class="contenedor">
+    <div class="contenedor"> <!-- Limita el ancho y centra el resto del contenido (el carrusel queda fuera para ocupar toda la pantalla) -->
 
     <!-- ===================== PRODUCTOS DESTACADOS (dinámicos) ===================== -->
-    <section class="seccion" aria-labelledby="titulo-destacados">
-      <h2 class="titulo-seccion" id="titulo-destacados">Productos Destacados</h2>
-      <p class="subtitulo-descriptivo">Nuestros modelos más accesibles, cargados en vivo desde la base de datos.</p>
+    <section class="seccion" aria-labelledby="titulo-destacados"> <!-- Sección de productos destacados; aria-labelledby la nombra con su título -->
+      <h2 class="titulo-seccion" id="titulo-destacados">Productos Destacados</h2> <!-- Título de la sección -->
+      <p class="subtitulo-descriptivo">Nuestros modelos más accesibles, cargados en vivo desde la base de datos.</p> <!-- Aclara que los productos vienen de la base de datos -->
 
       <!-- Contenedor vacío: main.js lo llena con tarjetas obtenidas de Firestore -->
-      <div class="grilla-productos" id="productos-destacados" aria-live="polite"></div>
+      <div class="grilla-productos" id="productos-destacados" aria-live="polite"></div> <!-- VACÍO en el HTML: main.js → iniciarPaginaInicio() lo llena con 4 tarjetas de Firestore usando dom.js → renderizarProductos() (Clase 14 DOM); aria-live anuncia los cambios -->
 
-      <div class="centro-boton">
-        <a href="catalogo.html" class="boton-cta boton-contorno">Ver catálogo completo →</a>
+      <div class="centro-boton"> <!-- Centra el botón -->
+        <a href="catalogo.html" class="boton-cta boton-contorno">Ver catálogo completo →</a> <!-- Botón que lleva al catálogo completo -->
       </div>
-    </section>
+    </section> <!-- Fin de la sección -->
 
     <!-- ===================== LLAMADO A LA ACCIÓN ===================== -->
-    <section class="bloque-cta">
-      <h2>¿Tienes un modelo personal o un diseño propio?</h2>
-      <p class="margen-cta">
-        Cotiza al instante: calculamos precio y tiempo de impresión según material, relleno y medidas.
+    <section class="bloque-cta"> <!-- Bloque llamativo que invita a pedir algo personalizado -->
+      <h2>¿Tienes un modelo personal o un diseño propio?</h2> <!-- Pregunta para el cliente -->
+      <p class="margen-cta"> <!-- Párrafo con margen -->
+        Cotiza al instante: calculamos precio y tiempo de impresión según material, relleno y medidas. <!-- Menciona la cotización automática que hace logica.js → calcularCotizacion() -->
       </p>
-      <a href="pedidos.html" class="boton-cta">Solicitar Pedido Personalizado</a>
-    </section>
+      <a href="pedidos.html" class="boton-cta">Solicitar Pedido Personalizado</a> <!-- Botón que lleva al formulario de pedidos -->
+    </section> <!-- Fin de la sección -->
 
     <!-- ===================== SOBRE NOSOTROS ===================== -->
-    <section class="seccion">
-      <h2 class="titulo-seccion">Sobre TerraPrints 3D</h2>
-      <div class="sobre-nosotros-contenido">
-        <div class="sobre-nosotros-imagen">
-          <img src="img/logo.jpg" alt="Logo de SV3DPrints El Salvador">
+    <section class="seccion"> <!-- Sección "Sobre nosotros" (contenido fijo) -->
+      <h2 class="titulo-seccion">Sobre TerraPrints 3D</h2> <!-- Título de la sección -->
+      <div class="sobre-nosotros-contenido"> <!-- Fila con imagen y texto -->
+        <div class="sobre-nosotros-imagen"> <!-- Columna de la imagen -->
+          <img src="img/logo.jpg" alt="Logo de SV3DPrints El Salvador"> <!-- Logo con texto alternativo que lo describe -->
         </div>
-        <div class="sobre-nosotros-texto">
-          <p>
+        <div class="sobre-nosotros-texto"> <!-- Columna del texto -->
+          <p> <!-- Primer párrafo -->
             TerraPrints 3D nació en El Salvador con la meta de ofrecer servicios accesibles de manufactura
             aditiva y prototipado 3D de alta definición.
           </p>
-          <p class="margen-parrafo">
+          <p class="margen-parrafo"> <!-- Segundo párrafo -->
             Nos especializamos en convertir modelos digitales STL/OBJ en realidades físicas utilizando
             filamentos PLA+, PETG y TPU. Atendemos proyectos estudiantiles, repuestos técnicos y artículos
             coleccionables.
           </p>
         </div>
       </div>
-    </section>
+    </section> <!-- Fin de la sección -->
 
-    </div>
-  </main>
+    </div> <!-- Fin del contenedor centrado -->
+  </main> <!-- Fin del contenido principal -->
 
   <!-- ===================== PIE DE PÁGINA ===================== -->
-  <footer class="pie-pagina">
-    <div class="contenedor pie-contenido">
+  <footer class="pie-pagina"> <!-- Pie de página, igual en todas las páginas -->
+    <div class="contenedor pie-contenido"> <!-- Dos columnas de información del negocio -->
       <div>
-        <p><strong>TerraPrints 3D</strong></p>
-        <p>Servicios de Impresión y Modelado 3D Profesional.</p>
+        <p><strong>TerraPrints 3D</strong></p> <!-- Nombre del negocio en negrita -->
+        <p>Servicios de Impresión y Modelado 3D Profesional.</p> <!-- Descripción corta del negocio -->
       </div>
       <div>
-        <p>Síguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p>
-        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p>
+        <p>Síguenos en Instagram: <a href="https://www.instagram.com/sv3dprints" target="_blank" rel="noopener noreferrer">@sv3dprints</a></p> <!-- Enlace a Instagram: target="_blank" abre otra pestaña y rel="noopener" impide que esa pestaña controle la nuestra -->
+        <p>&copy; 2026 TerraPrints 3D. Todos los derechos reservados.</p> <!-- Derechos de autor (&copy; dibuja el símbolo ©) -->
       </div>
     </div>
-  </footer>
+  </footer> <!-- Fin del pie de página -->
 
-</body>
-</html>
+</body> <!-- Fin del contenido visible -->
+</html> <!-- Fin del documento -->

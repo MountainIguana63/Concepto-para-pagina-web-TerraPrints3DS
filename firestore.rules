@@ -1,4 +1,4 @@
-rules_version = '2';
+rules_version = '2'; // Versión 2 del lenguaje de reglas (Intro a Firebase · Reglas de seguridad en Cloud Firestore)
 
 // =============================================================================
 // REGLAS DE SEGURIDAD DE CLOUD FIRESTORE — SV3DPrints
@@ -18,111 +18,111 @@ rules_version = '2';
 // o con la CLI: firebase deploy --only firestore:rules
 // =============================================================================
 
-service cloud.firestore {
-  match /databases/{database}/documents {
+service cloud.firestore { // Estas reglas aplican a Cloud Firestore
+  match /databases/{database}/documents { // Aplica a todos los documentos de nuestra base de datos
 
     // ---------------------------------------------------------------------
     // FUNCIONES DE AYUDA
     // ---------------------------------------------------------------------
 
     // ¿El usuario inició sesión?
-    function estaAutenticado() {
-      return request.auth != null;
-    }
+    function estaAutenticado() { // Función reutilizable: ¿la persona inició sesión?
+      return request.auth != null; // request.auth es null si nadie inició sesión (como un visitante)
+    } // Fin de estaAutenticado
 
     // ¿El usuario tiene rol "admin" en su documento usuarios/{uid}?
-    function esAdmin() {
-      return estaAutenticado()
-        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
-        && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.rol == 'admin';
-    }
+    function esAdmin() { // Función reutilizable: ¿quien hace la petición es admin? Aquí está la seguridad REAL de los roles
+      return estaAutenticado() // Primero debe haber iniciado sesión...
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid)) // ...debe existir su documento usuarios/{uid}...
+        && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.rol == 'admin'; // ...y ese documento debe decir rol == 'admin' (lo lee en el servidor; no se puede falsificar desde el navegador)
+    } // Fin de esAdmin
 
     // Estados válidos de fabricación de un pedido.
-    function estadoValido(estado) {
-      return estado in ['En espera', 'Imprimiendo', 'Completado'];
-    }
+    function estadoValido(estado) { // ¿El estado es uno de los 3 permitidos?
+      return estado in ['En espera', 'Imprimiendo', 'Completado']; // in revisa si el valor está en la lista
+    } // Fin de estadoValido
 
     // Validación de los datos de un producto (mismas reglas que logica.js).
-    function productoValido(p) {
-      return p.nombre is string && p.nombre.size() >= 3 && p.nombre.size() <= 80
-        && p.categoria is string && p.categoria.size() > 0
-        && p.precio is number && p.precio > 0 && p.precio <= 500
-        && p.tiempo is int && p.tiempo > 0
-        && p.infill is int && p.infill >= 10 && p.infill <= 100
-        && p.medidas is string
-        && p.multicolor is bool
-        && p.imagen1 is string && p.imagen1.size() > 0
-        && p.imagen2 is string && p.imagen2.size() > 0;
-    }
+    function productoValido(p) { // Valida un producto en el servidor: las mismas reglas que logica.js → validarProducto()
+      return p.nombre is string && p.nombre.size() >= 3 && p.nombre.size() <= 80 // Nombre: texto de 3 a 80 caracteres
+        && p.categoria is string && p.categoria.size() > 0 // Categoría: texto no vacío
+        && p.precio is number && p.precio > 0 && p.precio <= 500 // Precio: número mayor que 0 y máximo 500
+        && p.tiempo is int && p.tiempo > 0 // Tiempo: entero mayor que 0
+        && p.infill is int && p.infill >= 10 && p.infill <= 100 // Relleno: entero entre 10 y 100
+        && p.medidas is string // Medidas: texto
+        && p.multicolor is bool // Multicolor: true o false
+        && p.imagen1 is string && p.imagen1.size() > 0 // Imagen 1 obligatoria
+        && p.imagen2 is string && p.imagen2.size() > 0; // Imagen 2 obligatoria
+    } // Fin de productoValido
 
     // Validación de un pedido nuevo.
-    function pedidoValido(p) {
+    function pedidoValido(p) { // Valida un pedido nuevo en el servidor: las mismas reglas que logica.js → validarPedido()
       return p.clienteId == request.auth.uid           // solo a nombre propio
-        && p.clienteNombre is string
-        && p.servicio in ['catalogo', 'impresion', 'modelado', 'modificacion']
-        && p.material in ['PLA+', 'PETG', 'TPU']
-        && p.infill is int && p.infill >= 10 && p.infill <= 100
-        && p.cantidad is int && p.cantidad >= 1 && p.cantidad <= 50
-        && p.descripcion is string && p.descripcion.size() >= 15 && p.descripcion.size() <= 500
-        && p.precioEstimado is number && p.precioEstimado >= 0
-        && estadoValido(p.estado)
+        && p.clienteNombre is string // Nombre del cliente: texto
+        && p.servicio in ['catalogo', 'impresion', 'modelado', 'modificacion'] // Servicio: uno de los 4 existentes
+        && p.material in ['PLA+', 'PETG', 'TPU'] // Material: uno de los 3 existentes
+        && p.infill is int && p.infill >= 10 && p.infill <= 100 // Relleno: entero entre 10 y 100
+        && p.cantidad is int && p.cantidad >= 1 && p.cantidad <= 50 // Cantidad: entera entre 1 y 50
+        && p.descripcion is string && p.descripcion.size() >= 15 && p.descripcion.size() <= 500 // Descripción: de 15 a 500 caracteres
+        && p.precioEstimado is number && p.precioEstimado >= 0 // Precio estimado: número no negativo
+        && estadoValido(p.estado) // Estado válido
         && p.fecha == request.time;                    // fecha puesta por el servidor
-    }
+    } // Fin de pedidoValido
 
     // ---------------------------------------------------------------------
     // USUARIOS (perfil + rol)
     // ---------------------------------------------------------------------
-    match /usuarios/{uid} {
+    match /usuarios/{uid} { // Reglas de la colección usuarios (perfil y rol)
       // Cada quien lee su propio perfil; el admin puede leer todos.
-      allow read: if estaAutenticado() && (request.auth.uid == uid || esAdmin());
+      allow read: if estaAutenticado() && (request.auth.uid == uid || esAdmin()); // LEER perfil: el tuyo, o cualquiera si sos admin
 
       // Al registrarse solo se puede crear el PROPIO perfil y SIEMPRE como
       // "cliente". Así nadie se convierte en admin por su propia elección.
-      allow create: if estaAutenticado()
-        && request.auth.uid == uid
-        && request.resource.data.rol == 'cliente';
+      allow create: if estaAutenticado() // CREAR perfil (al registrarse): solo con sesión...
+        && request.auth.uid == uid // ...solo el propio documento (uid igual)...
+        && request.resource.data.rol == 'cliente'; // ...y SIEMPRE con rol cliente: así nadie se registra como admin
 
       // Cambiar roles o borrar perfiles: solo el admin.
-      allow update, delete: if esAdmin();
-    }
+      allow update, delete: if esAdmin(); // MODIFICAR o BORRAR perfiles (por ejemplo, cambiar el rol): solo el admin. Por eso un cliente no puede hacerse admin
+    } // Fin de usuarios
 
     // ---------------------------------------------------------------------
     // PRODUCTOS (catálogo)
     // ---------------------------------------------------------------------
-    match /productos/{productoId} {
+    match /productos/{productoId} { // Reglas de la colección productos (catálogo)
       // El catálogo es público: cualquiera puede verlo, incluso sin cuenta.
-      allow read: if true;
+      allow read: if true; // LEER: cualquiera, incluso sin cuenta (el catálogo es público)
 
       // Crear, editar y eliminar: SOLO el administrador, con datos válidos.
-      allow create, update: if esAdmin() && productoValido(request.resource.data);
-      allow delete: if esAdmin();
-    }
+      allow create, update: if esAdmin() && productoValido(request.resource.data); // CREAR y EDITAR: solo admin y con datos válidos
+      allow delete: if esAdmin(); // BORRAR: solo admin
+    } // Fin de productos
 
     // ---------------------------------------------------------------------
     // PEDIDOS
     // ---------------------------------------------------------------------
-    match /pedidos/{pedidoId} {
+    match /pedidos/{pedidoId} { // Reglas de la colección pedidos
       // El cliente solo ve SUS pedidos; el admin ve todos.
-      allow read: if esAdmin()
-        || (estaAutenticado() && resource.data.clienteId == request.auth.uid);
+      allow read: if esAdmin() // LEER: el admin ve todos...
+        || (estaAutenticado() && resource.data.clienteId == request.auth.uid); // ...y el cliente solo los suyos (por eso db.js usa where clienteId == uid)
 
       // Un cliente crea pedidos a su nombre y siempre "En espera".
       // (El admin puede crear pedidos de demostración con otro estado.)
-      allow create: if estaAutenticado()
-        && pedidoValido(request.resource.data)
-        && (request.resource.data.estado == 'En espera' || esAdmin());
+      allow create: if estaAutenticado() // CREAR pedido: con sesión...
+        && pedidoValido(request.resource.data) // ...con datos válidos y a nombre propio...
+        && (request.resource.data.estado == 'En espera' || esAdmin()); // ...y empezando "En espera" (el admin puede crear pedidos demo con otro estado)
 
       // Solo el admin cambia el estado, y SOLO puede tocar estado/actualizado.
-      allow update: if esAdmin()
-        && estadoValido(request.resource.data.estado)
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado', 'actualizado']);
+      allow update: if esAdmin() // CAMBIAR ESTADO: solo el admin...
+        && estadoValido(request.resource.data.estado) // ...con un estado válido...
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado', 'actualizado']); // ...y solo puede tocar los campos estado y actualizado (no el precio ni el cliente)
 
       // El admin elimina cualquier pedido; el cliente solo cancela los suyos
       // mientras siguen "En espera" (antes de empezar a imprimir).
-      allow delete: if esAdmin()
-        || (estaAutenticado()
-            && resource.data.clienteId == request.auth.uid
-            && resource.data.estado == 'En espera');
-    }
-  }
-}
+      allow delete: if esAdmin() // CANCELAR / ELIMINAR: el admin siempre...
+        || (estaAutenticado() // ...o el cliente, si inició sesión...
+            && resource.data.clienteId == request.auth.uid // ...si el pedido es suyo...
+            && resource.data.estado == 'En espera'); // ...y si sigue "En espera" (aquí está la seguridad de la funcionalidad de cancelar)
+    } // Fin de pedidos
+  } // Fin de la base de datos
+} // Fin de las reglas
